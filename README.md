@@ -5,3 +5,4 @@ Team
 - Pranav Thomas
 - Thomas Weatherly
 - Ankith Kanderi
+- Hemang Dash
