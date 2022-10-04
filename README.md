@@ -3,3 +3,4 @@
 Team
 - Nate Kim
 - Pranav Thomas
+- Thomas Weatherly
