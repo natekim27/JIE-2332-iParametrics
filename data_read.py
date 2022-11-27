@@ -5,6 +5,7 @@ import statsmodels.stats.api as sms
 from statsmodels.stats.outliers_influence import OLSInfluence
 from statsmodels.graphics.regressionplots import plot_leverage_resid2
 from typing import Dict
+from random import randint
 
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -13,7 +14,7 @@ import math
 import json
 
 weightages = {}
-
+dependent_factors_arr = ["POPULATION", "GDP", "AVG_DEM_PCT", "AVG_REP_PCT", "DECLARATIONS", "PA"]
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.integer):
@@ -71,8 +72,12 @@ def write_json_file(data: pd.DataFrame) -> None:
         curr_row = data.iloc[i]
         curr_dict = {}
         curr_dict["REGION"] = curr_row["NAME"]
-        curr_dict["COUNTY"] = curr_row["NAMELSAD"]    
+        curr_dict["STATE"] = curr_row["STUSPS"]    
         curr_dict["CWCS"] = curr_row["CWCS"]
+        a = randint(0, 5)
+        b = randint(0, 5)
+        c = randint(0, 5)
+        curr_dict["FACTORS"] = [dependent_factors_arr[a], dependent_factors_arr[b], dependent_factors_arr[c]]
         list_dicts.append(curr_dict)
     
     with open("cwcs.json", "w") as output_file:
