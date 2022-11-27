@@ -14,7 +14,7 @@ import math
 import json
 
 weightages = {}
-dependent_factors_arr = ["POPULATION", "GDP", "AVG_DEM_PCT", "AVG_REP_PCT", "DECLARATIONS", "PA"]
+dependent_factors_arr = ["POPULATION", "GDP", "AVERAGE DEMOCRATIC % OF VOTES", "AVERAGE REPUBLICAN % OF VOTES", "NUMBER OF MAJOR DISASTER DECLARATIONS", "PUBLIC ASSISTANCE OBLIGATIONS"]
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.integer):
