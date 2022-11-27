@@ -74,9 +74,14 @@ def write_json_file(data: pd.DataFrame) -> None:
         curr_dict["REGION"] = curr_row["NAME"]
         curr_dict["STATE"] = curr_row["STUSPS"]    
         curr_dict["CWCS"] = curr_row["CWCS"]
-        a = randint(0, 5)
-        b = randint(0, 5)
-        c = randint(0, 5)
+        a = 0
+        b = 0
+        c = 0
+        while (a == b or a == c or b == c):
+            a = randint(0, 5)
+            b = randint(0, 5)
+            c = randint(0, 5)
+
         curr_dict["FACTORS"] = [dependent_factors_arr[a], dependent_factors_arr[b], dependent_factors_arr[c]]
         list_dicts.append(curr_dict)
     
