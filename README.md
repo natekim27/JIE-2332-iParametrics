@@ -3,6 +3,7 @@
 Team
 - Nate Kim
 - Pranav Thomas
-- Thomas Weatherly
 - Ankith Kanderi
 - Hemang Dash
+- Eli Kessler
+- Xiaodong Gao
