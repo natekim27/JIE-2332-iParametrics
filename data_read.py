@@ -87,11 +87,41 @@ def write_json_file(data: pd.DataFrame) -> None:
     
     with open("cwcs.json", "w") as output_file:
         output_file.write(json.dumps(list_dicts, cls = NpEncoder))
+        
+def write_unnormalized_json_file(data: pd.DataFrame) -> None:
+    list_dicts = []
+    for i in range(data.shape[0]):
+        curr_row = data.iloc[i]
+        curr_dict = {}
+        curr_dict["REGION"] = curr_row["NAME"]
+        curr_dict["STATE"] = curr_row["STUSPS"]    
+        curr_dict["POPULATION"] = curr_row["POPULATION"]
+        curr_dict["GDP"] = curr_row["GDP"]
+        curr_dict["AVG_DEM_PCT"] = curr_row["AVG_DEM_PCT"]
+        curr_dict["AVG_REP_PCT"] = curr_row["AVG_REP_PCT"]
+        curr_dict["DECLARATIONS"] = curr_row["DECLARATIONS"]
+        curr_dict["HM"] = curr_row["HM"]
+        curr_dict["PA"] = curr_row["PA"]
+
+        a = 0
+        b = 0
+        c = 0
+        while (a == b or a == c or b == c):
+            a = randint(0, 5)
+            b = randint(0, 5)
+            c = randint(0, 5)
+
+        curr_dict["FACTORS"] = [dependent_factors_arr[a], dependent_factors_arr[b], dependent_factors_arr[c]]
+        list_dicts.append(curr_dict)
+    
+    with open("cwcs_unnormalized.json", "w") as output_file:
+        output_file.write(json.dumps(list_dicts, cls = NpEncoder))
 
 def main():
     assign_weights(weightages)
     raw_data = get_dataset()
     cleaned_data = remove_NaN(raw_data)
+    write_unnormalized_json_file(cleaned_data)
     normalized_data = normalize_dataset(cleaned_data)
     final_DS = add_cols(normalized_data)
     write_json_file(final_DS)
