@@ -19,3 +19,4 @@ Our client is iParametrics and we are making a web application to show the Commu
 - View all the backing data for a community
 ### Bug Fixes
 - CSS alignment fixed for the search bar
+- Duplicated communities bug is fixed
