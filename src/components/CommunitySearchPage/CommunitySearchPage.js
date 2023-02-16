@@ -15,11 +15,6 @@ const CommunitySearchPage = () => {
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
-    let handleOnChange = (value) => {
-        this.setState({
-            volume: value
-        });
-    };
     const columns = React.useMemo(() => [
         {
             Header: "Region",
@@ -43,10 +38,9 @@ const CommunitySearchPage = () => {
             maxWidth: 300,
         }
     ], []);
-    for (var i in CwcsData) 
     useEffect(() => {
         setTableData(CwcsData);
-      }, []);
+    }, []);
     return(
         <div className='CommunitySearchPage'>
             <h1>Community Search</h1>
