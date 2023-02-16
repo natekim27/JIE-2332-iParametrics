@@ -11,9 +11,14 @@ const CommunityTable = ({
 }) => {
     const navigate = useNavigate();
     const formatTrProps = (state = {}) => {
-        return { onClick: () => {
-            navigate(`/communityDetails/${state.values.REGION}`, { replace: true });
-        }};
+        return {
+                onClick: () => {
+                navigate(`/communityDetails/${state.values.REGION}`, { replace: true });
+            },
+            style: {
+                cursor: 'pointer'
+            },
+        };
       };
     const {
         getTableProps,
