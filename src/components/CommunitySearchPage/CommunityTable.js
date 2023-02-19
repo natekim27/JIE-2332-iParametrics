@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
-import CwcsData from '../../cwcs.json';
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router";
 import './CommunityTable.css';
 
 const CommunityTable = ({
