@@ -7,6 +7,7 @@ class CommunityPage extends Component {
   render() {
     return (
       <div className="CommunityPage">
+        <h1>Community</h1>
         <CommunityDetails />
       </div>
     );

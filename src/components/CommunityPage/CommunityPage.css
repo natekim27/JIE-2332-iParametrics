@@ -1,9 +1,42 @@
 .CommunityPage {
     background-color: #ECFDFF;
     min-height: 100%;
-    min-height: 100vh;
-    display: flex;
     background-size: cover;
-    align-items: center;
-    justify-content: center;
+}
+
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    align-items: stretch;
+    padding: 1%;
+    gap: 1%;
+    justify-content: space-between;
+    flex-basis: 0;
+}
+
+.flexbox-container-2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: stretch;
+    padding: 1%;
+    gap: 1%;
+    justify-content: space-between;
+    flex-basis: 0;
+}
+
+.cwcs {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+.factors {
+    justify-content: left;
+    margin-top: 5%;
 }

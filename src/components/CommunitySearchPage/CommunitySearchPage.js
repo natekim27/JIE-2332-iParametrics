@@ -15,11 +15,6 @@ const CommunitySearchPage = () => {
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
-    let handleOnChange = (value) => {
-        this.setState({
-            volume: value
-        });
-    };
     const columns = React.useMemo(() => [
         {
             Header: "Region",
@@ -43,14 +38,13 @@ const CommunitySearchPage = () => {
             maxWidth: 300,
         }
     ], []);
-    for (var i in CwcsData) 
     useEffect(() => {
         setTableData(CwcsData);
-      }, []);
+    }, []);
     return(
         <div className='CommunitySearchPage'>
             <h1>Community Search</h1>
-            <div class="flexbox-container">
+            <div class="flexbox-container1">
                 <div class="search-container">
                     <div className="search">
                         <TextField
@@ -62,17 +56,17 @@ const CommunitySearchPage = () => {
                         />
                     </div>
                 </div>
-                <div>
-                <Dropdown>
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                        Population
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">&lt; 10,000</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">10,000 - 100,000</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">&gt; 100,000</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                <div class="button">
+                    <Dropdown>
+                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                            Population
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">&lt; 10,000</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">10,000 - 100,000</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">&gt; 100,000</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
             </div>
             <CommunityTable columns={columns} data={tableData} input={inputText} />             

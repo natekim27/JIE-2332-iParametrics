@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useGlobalFilter, useTable } from "react-table";
-import CwcsData from '../../cwcs.json';
+import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router";
+import './CommunityTable.css';
 
 const CommunityTable = ({
     columns,
@@ -11,9 +10,14 @@ const CommunityTable = ({
 }) => {
     const navigate = useNavigate();
     const formatTrProps = (state = {}) => {
-        return { onClick: () => {
-            navigate(`/communityDetails/${state.values.REGION}`, { replace: true });
-        }};
+        return {
+                onClick: () => {
+                navigate(`/communityDetails/${state.values.REGION}`, { replace: true });
+            },
+            style: {
+                cursor: 'pointer'
+            },
+        };
       };
     const {
         getTableProps,
@@ -26,7 +30,8 @@ const CommunityTable = ({
         columns,
         data
       },
-      useGlobalFilter);
+      useGlobalFilter,
+      useSortBy);
     useEffect(() => {
         setGlobalFilter(input);
     }, [input]);
@@ -36,9 +41,16 @@ const CommunityTable = ({
                 <thead>
                     {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                        <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-                        ))}
+                        {headerGroup.headers.map(column => {
+                            const cl = column.isSorted
+                            ? (column.isSortedDesc
+                              ? "down"
+                              : "up")
+                              : "default";
+                        return (<th className={cl} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                            {column.render("Header")}
+                        </th>);
+                        })}
                     </tr>
                     ))}
                 </thead>
