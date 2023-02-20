@@ -44,7 +44,7 @@ const CommunitySearchPage = () => {
     return(
         <div className='CommunitySearchPage'>
             <h1>Community Search</h1>
-            <div class="flexbox-container">
+            <div class="flexbox-container1">
                 <div class="search-container">
                     <div className="search">
                         <TextField
