@@ -14,14 +14,6 @@ Our client is iParametrics and we are making a web application to show the Commu
 
 # Release Notes
 
-## Version 0.1.0
-### New Features
-- Population dropdown menu on the Community Search page to filter communities by population
-- View all the backing data for a community
-### Bug Fixes
-- CSS alignment fixed for the search bar
-- Duplicated communities bug is fixed
-
 ## Version 0.2.0
 ### New Features
 - Displaying data on Community Details as cards
@@ -31,3 +23,11 @@ Our client is iParametrics and we are making a web application to show the Commu
 ### Bug Fixes
 - Added missing backing data to the Community Details page
 - Make mouse cursor a hand pointer when hovering on table row
+
+## Version 0.1.0
+### New Features
+- Population dropdown menu on the Community Search page to filter communities by population
+- View all the backing data for a community
+### Bug Fixes
+- CSS alignment fixed for the search bar
+- Duplicated communities bug is fixed
