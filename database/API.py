@@ -59,6 +59,7 @@ def features_create_region():
 
     return {'Code': 200}
 
+#Usage: /features/delete?sno=<serial_number>
 @app.route('/features/delete', methods=['GET'])
 def features_delete_region():
     serial_number = request.args.get('sno')
