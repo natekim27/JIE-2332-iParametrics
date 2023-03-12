@@ -11,7 +11,7 @@ class SQLConnectionObject:
        self.database_name = 'iParametrics'
        self.server = '{server}.database.windows.net, 1433'.format(server=self.server_name)
        self.username = "teamipara"
-       self.password = "letsrock123!"
+       self.password = "*****"
 
 
    def create_connection_string(self) -> str:
