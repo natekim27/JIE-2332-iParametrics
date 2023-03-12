@@ -49,13 +49,26 @@ const CommunityDetails = () => {
         });
     }, []);
 
+    let handleDelete = async () => {
+        let res = await fetch(`http://127.0.0.1:5000/features/delete?sno=${sno}`, {
+            method: "GET",
+        });
+        if (res.status === 200) {
+            console.log(message);
+            setMessage("Community updated successfully");
+        } else {
+            setMessage("Some error occured");
+        }
+        navigate("/communitySearch", { replace: true });
+    };
+
     const convertAllCapStringToFormat = ( capitalizedStr ) => {
         const words = capitalizedStr.split(' ');
         const capitalizedWords = words.map( word => {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         });
         return capitalizedWords.join(' ');
-    }
+    };
 
     const downloadFile = ({ data, fileName, fileType }) => {
         const blob = new Blob([data], { type: fileType });
@@ -605,6 +618,11 @@ const CommunityDetails = () => {
             <div style={buttonStyle}>
                 <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/visualizeData/${sno}`, { replace: true })}>
                     Visualize Data
+                </Button>
+            </div>
+            <div style={buttonStyle}>
+                <Button variant="outline-secondary" type="submit" onClick={handleDelete}>
+                    Delete this Community
                 </Button>
             </div>
             <div style={buttonStyle}>
