@@ -120,3 +120,23 @@ def authenticate():
         return {'Code': '200'}
     else:
         return {'Code': '400'}
+    
+@app.route('/users/change-password', methods=['PUT'])
+def users_change_password():
+    data = request.get_json(force=True)
+    data = json.loads(data)
+    username = data['username']
+    stmt = select(Account).where(
+        Account.username.in_([username])
+    )
+
+
+    for obj in session.scalars(stmt):
+        account = obj
+
+
+    setattr(account, 'password', data['password'])
+    session.commit()
+
+
+    return account.as_dict(), 200
