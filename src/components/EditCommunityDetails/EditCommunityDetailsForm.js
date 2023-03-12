@@ -21,8 +21,6 @@ const EditCommunityDetailsForm = () => {
     const [avg_dem_pct, setAvgDemPct] = useState(filteredData[0] && filteredData[0].avg_dem_pct);
     const [avg_rep_pct, setAvgRepPct] = useState(filteredData[0] && filteredData[0].avg_rep_pct);
     const [declarations, setDeclarations] = useState(filteredData[0] && filteredData[0].declarations);
-    const [democratic, setDemocratic] = useState(filteredData[0] && filteredData[0].democratic);
-    const [republican, setRepublican] = useState(filteredData[0] && filteredData[0].republican);
     const [hm, setHM] = useState(filteredData[0] && filteredData[0].hm);
     const [pa, setPA] = useState(filteredData[0] && filteredData[0].PA);
     const [hm_plan_status, setHMPlanStatus] = useState(filteredData[0] && filteredData[0].hm_plan_status);
@@ -54,7 +52,64 @@ const EditCommunityDetailsForm = () => {
     const [bric_environmental, setBricEnvironmental] = useState(filteredData[0] && filteredData[0].bric_environmental);
     const [bric_resilience, setBricResilience] = useState(filteredData[0] && filteredData[0].bric_resilience);
 
-    let handleSubmit = () => {};
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            let res = await fetch(`http://127.0.0.1:5000/features/update`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                },
+                body: JSON.stringify({
+                    sno: sno,
+                    population: population,
+                    gdp: gdp,
+                    avg_dem_pct: avg_dem_pct,
+                    avg_rep_pct: avg_rep_pct,
+                    declarations: declarations,
+                    hm: hm,
+                    pa: pa,
+                    hm_plan_status: hm_plan_status,
+                    nri: nri,
+                    cdc_svi: cdc_svi,
+                    hvri_sovi: hvri_sovi,
+                    high_comb_haz_com: high_comb_haz_com,
+                    high_comb_haz_res: high_comb_haz_res,
+                    em_employment: em_employment,
+                    em_employment_per: em_employment_per,
+                    em_lq: em_lq,
+                    urban_rural: urban_rural,
+                    college_univ: college_univ,
+                    higher_ed: higher_ed,
+                    poverty: poverty,
+                    broadband: broadband,
+                    health_insurance: health_insurance,
+                    voter_turn: voter_turn,
+                    pop_change: pop_change,
+                    income_stability: income_stability,
+                    built_environment: built_environment,
+                    operating_ratio: operating_ratio,
+                    taxes: taxes,
+                    bric_social: bric_social,
+                    bric_econ: bric_econ,
+                    bric_house: bric_house,
+                    bric_community: bric_community,
+                    bric_institutional: bric_institutional,
+                    bric_environmental: bric_environmental,
+                    bric_resilience: bric_resilience
+                }),
+            });
+            if (res.status === 200) {
+                console.log(message);
+                setMessage("Community updated successfully");
+            } else {
+                setMessage("Some error occured");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
@@ -89,9 +144,9 @@ const EditCommunityDetailsForm = () => {
                 <Form.Label>Declarations</Form.Label>
                 <FormControl type="text" placeholder="Declarations" value={filteredData[0] && filteredData[0].declarations} onChange={(e) => setDeclarations(e.target.value)}/>
                 <Form.Label>Avg Democratic % of Votes</Form.Label>
-                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_dem_pct} onChange={(e) => setDemocratic(e.target.value)}/>
+                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_dem_pct} onChange={(e) => setAvgDemPct(e.target.value)}/>
                 <Form.Label>Avg Republic % of Votes</Form.Label>
-                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_rep_pct} onChange={(e) => setRepublican(e.target.value)}/>
+                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_rep_pct} onChange={(e) => setAvgRepPct(e.target.value)}/>
                 <Form.Label>HM Obligations</Form.Label>
                 <FormControl type="text" placeholder="HM Obligations" value={filteredData[0] && filteredData[0].hm} onChange={(e) => setHM(e.target.value)}/>
                 <Form.Label>PA Obligations</Form.Label>
@@ -102,6 +157,8 @@ const EditCommunityDetailsForm = () => {
                 <FormControl type="text" placeholder="National Risk Index" value={filteredData[0] && filteredData[0].nri} onChange={(e) => setNRI(e.target.value)}/>
                 <Form.Label>CDC Social Vulnerability Index</Form.Label>
                 <FormControl type="text" placeholder="CDC Social Vulnerability Index" value={filteredData[0] && filteredData[0].cdc_svi} onChange={(e) => setCdcSvi(e.target.value)}/>
+                <Form.Label>HVRI Social Vulnerability Index</Form.Label>
+                <FormControl type="text" placeholder="HVRI Social Vulnerability Index" value={filteredData[0] && filteredData[0].cdc_svi} onChange={(e) => setHvriSovi(e.target.value)}/>
                 <Form.Label>Resistant Commercial Buildings %</Form.Label>
                 <FormControl type="text" placeholder="Resistant Commercial Buildings %" value={filteredData[0] && filteredData[0].high_comb_haz_com} onChange={(e) => setHighCombHazCom(e.target.value)}/>
                 <Form.Label>Resistant Residential Buildings %</Form.Label>
@@ -154,7 +211,7 @@ const EditCommunityDetailsForm = () => {
                     <Button variant="outline-secondary" type="submit">
                         Submit Changes
                     </Button>
-                    <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${filteredData[0].serial_number}`, { replace: true })}>
+                    <Button variant="outline-secondary" onClick={() => navigate(`/communityDetails/${filteredData[0].serial_number}`, { replace: true })}>
                         Back to Community Details
                     </Button>
                 </div>
