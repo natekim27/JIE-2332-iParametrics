@@ -6,8 +6,6 @@ import { useParams } from "react-router";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import CwcsData from '../../cwcs.json';
-import unnormalizedData from '../../cwcs_unnormalized.json';
 import './CommunityPage.css';
 
 const div1Style = {
