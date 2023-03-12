@@ -21,8 +21,6 @@ const EditCommunityDetailsForm = () => {
     const [avg_dem_pct, setAvgDemPct] = useState(filteredData[0] && filteredData[0].avg_dem_pct);
     const [avg_rep_pct, setAvgRepPct] = useState(filteredData[0] && filteredData[0].avg_rep_pct);
     const [declarations, setDeclarations] = useState(filteredData[0] && filteredData[0].declarations);
-    const [democratic, setDemocratic] = useState(filteredData[0] && filteredData[0].democratic);
-    const [republican, setRepublican] = useState(filteredData[0] && filteredData[0].republican);
     const [hm, setHM] = useState(filteredData[0] && filteredData[0].hm);
     const [pa, setPA] = useState(filteredData[0] && filteredData[0].PA);
     const [hm_plan_status, setHMPlanStatus] = useState(filteredData[0] && filteredData[0].hm_plan_status);
@@ -102,7 +100,6 @@ const EditCommunityDetailsForm = () => {
                     bric_resilience: bric_resilience
                 }),
             });
-            let resJson = await res.json();
             if (res.status === 200) {
                 console.log(message);
                 setMessage("Community updated successfully");
@@ -147,9 +144,9 @@ const EditCommunityDetailsForm = () => {
                 <Form.Label>Declarations</Form.Label>
                 <FormControl type="text" placeholder="Declarations" value={filteredData[0] && filteredData[0].declarations} onChange={(e) => setDeclarations(e.target.value)}/>
                 <Form.Label>Avg Democratic % of Votes</Form.Label>
-                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_dem_pct} onChange={(e) => setDemocratic(e.target.value)}/>
+                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_dem_pct} onChange={(e) => setAvgDemPct(e.target.value)}/>
                 <Form.Label>Avg Republic % of Votes</Form.Label>
-                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_rep_pct} onChange={(e) => setRepublican(e.target.value)}/>
+                <FormControl type="text" placeholder="Votes %" value={filteredData[0] && filteredData[0].avg_rep_pct} onChange={(e) => setAvgRepPct(e.target.value)}/>
                 <Form.Label>HM Obligations</Form.Label>
                 <FormControl type="text" placeholder="HM Obligations" value={filteredData[0] && filteredData[0].hm} onChange={(e) => setHM(e.target.value)}/>
                 <Form.Label>PA Obligations</Form.Label>
@@ -160,6 +157,8 @@ const EditCommunityDetailsForm = () => {
                 <FormControl type="text" placeholder="National Risk Index" value={filteredData[0] && filteredData[0].nri} onChange={(e) => setNRI(e.target.value)}/>
                 <Form.Label>CDC Social Vulnerability Index</Form.Label>
                 <FormControl type="text" placeholder="CDC Social Vulnerability Index" value={filteredData[0] && filteredData[0].cdc_svi} onChange={(e) => setCdcSvi(e.target.value)}/>
+                <Form.Label>HVRI Social Vulnerability Index</Form.Label>
+                <FormControl type="text" placeholder="HVRI Social Vulnerability Index" value={filteredData[0] && filteredData[0].cdc_svi} onChange={(e) => setHvriSovi(e.target.value)}/>
                 <Form.Label>Resistant Commercial Buildings %</Form.Label>
                 <FormControl type="text" placeholder="Resistant Commercial Buildings %" value={filteredData[0] && filteredData[0].high_comb_haz_com} onChange={(e) => setHighCombHazCom(e.target.value)}/>
                 <Form.Label>Resistant Residential Buildings %</Form.Label>
