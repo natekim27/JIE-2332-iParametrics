@@ -167,4 +167,4 @@ def users_change_password():
     return account.as_dict(), 200
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(debug = True, port=5000)
