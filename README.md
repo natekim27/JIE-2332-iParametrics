@@ -12,6 +12,29 @@ Team
 
 Our client is iParametrics and we are making a web application to show the Community Willingness and Capability Scores, or CWCS, of different communities. The world has been constantly plagued with natural disasters. It is imperative that national and local administration takes steps to mitigate such disasters. However, to reduce unnecessary spending, it is important to find out which communities are the best to invest into for mitigation efforts. Hence, using machine learning,  this project determines the CWCS of different communities and displays them in an easy to understand web application. 
 
+# Installation & Development
+
+We use Yarn as our package management library. To install the packages needed to run the web app: 
+
+```
+yarn install
+```
+
+To start a development server: 
+
+```
+yarn start
+```
+
+To build a compiled version for deployment: 
+
+```
+yarn build
+```
+
+The react-start script behind each command is located in ```package.json```. 
+
+
 # Release Notes
 
 ## Version 0.2.0
