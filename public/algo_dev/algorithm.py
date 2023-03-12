@@ -44,3 +44,21 @@ def assign_cwcs(dataset: pd.DataFrame) -> pd.DataFrame:
 
 
     return dataset
+
+
+def split_dataset(dataset: pd.DataFrame):
+    dataset.replace(np.nan, 0, inplace=True)
+    dataset.drop(inplace=True, columns=['STATEFP', 'COUNTYFP', 'GEOID', 'STUSPS', 'HM_PLAN_TYPE', 'HM_PLAN_STATUS', 
+                                        'URBAN_RURAL', 'NAME', 'NAMELSAD', 'HM', 'PA'])
+    X_train, X_test, y_train, y_test = train_test_split(dataset.drop(columns=["CWCS"]), dataset['CWCS'], test_size=0.9, random_state=42)
+    svm = SVC(kernel='linear')
+    svm.fit(X_train, y_train)
+    predictions = svm.predict(X_test)
+
+
+    accuracy = accuracy_score(y_test, predictions)
+    precision = precision_score(y_test, predictions)
+    recall = recall_score(y_test, predictions)
+    f1 = f1_score(y_test, predictions)
+    return X_train, X_test, y_train, y_test
+
