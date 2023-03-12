@@ -256,7 +256,7 @@ const CommunityDetails = () => {
           </Button>
         </div>
         <div style={buttonStyle}>
-          <Button variant="outline-secondary" type="submit" onClick={() => {}}>
+          <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/visualizeData/${county}`, { replace: true })}>
             Visualize Data
           </Button>
         </div>
