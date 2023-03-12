@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TextField from "@mui/material/TextField";
 
-// import express from "express";
-
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
-import CwcsData from '../../cwcs.json';
 
 const CommunitySearchPage = () => {
     const [message, setMessage] = useState("");
