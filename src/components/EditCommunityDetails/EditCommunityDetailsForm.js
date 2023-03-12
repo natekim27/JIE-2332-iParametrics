@@ -54,7 +54,65 @@ const EditCommunityDetailsForm = () => {
     const [bric_environmental, setBricEnvironmental] = useState(filteredData[0] && filteredData[0].bric_environmental);
     const [bric_resilience, setBricResilience] = useState(filteredData[0] && filteredData[0].bric_resilience);
 
-    let handleSubmit = () => {};
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            let res = await fetch(`http://127.0.0.1:5000/features/update`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                },
+                body: JSON.stringify({
+                    sno: sno,
+                    population: population,
+                    gdp: gdp,
+                    avg_dem_pct: avg_dem_pct,
+                    avg_rep_pct: avg_rep_pct,
+                    declarations: declarations,
+                    hm: hm,
+                    pa: pa,
+                    hm_plan_status: hm_plan_status,
+                    nri: nri,
+                    cdc_svi: cdc_svi,
+                    hvri_sovi: hvri_sovi,
+                    high_comb_haz_com: high_comb_haz_com,
+                    high_comb_haz_res: high_comb_haz_res,
+                    em_employment: em_employment,
+                    em_employment_per: em_employment_per,
+                    em_lq: em_lq,
+                    urban_rural: urban_rural,
+                    college_univ: college_univ,
+                    higher_ed: higher_ed,
+                    poverty: poverty,
+                    broadband: broadband,
+                    health_insurance: health_insurance,
+                    voter_turn: voter_turn,
+                    pop_change: pop_change,
+                    income_stability: income_stability,
+                    built_environment: built_environment,
+                    operating_ratio: operating_ratio,
+                    taxes: taxes,
+                    bric_social: bric_social,
+                    bric_econ: bric_econ,
+                    bric_house: bric_house,
+                    bric_community: bric_community,
+                    bric_institutional: bric_institutional,
+                    bric_environmental: bric_environmental,
+                    bric_resilience: bric_resilience
+                }),
+            });
+            let resJson = await res.json();
+            if (res.status === 200) {
+                console.log(message);
+                setMessage("Community updated successfully");
+            } else {
+                setMessage("Some error occured");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
@@ -154,7 +212,7 @@ const EditCommunityDetailsForm = () => {
                     <Button variant="outline-secondary" type="submit">
                         Submit Changes
                     </Button>
-                    <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${filteredData[0].serial_number}`, { replace: true })}>
+                    <Button variant="outline-secondary" onClick={() => navigate(`/communityDetails/${filteredData[0].serial_number}`, { replace: true })}>
                         Back to Community Details
                     </Button>
                 </div>
