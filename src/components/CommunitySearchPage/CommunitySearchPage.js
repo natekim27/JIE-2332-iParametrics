@@ -44,8 +44,8 @@ const CommunitySearchPage = () => {
     return(
         <div className='CommunitySearchPage'>
             <h1>Community Search</h1>
-            <div class="flexbox-container1">
-                <div class="search-container">
+            <div className="flexbox-container1">
+                <div className="search-container">
                     <div className="search">
                         <TextField
                         id="outlined-basic"
@@ -56,7 +56,7 @@ const CommunitySearchPage = () => {
                         />
                     </div>
                 </div>
-                <div class="button">
+                <div className="button">
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             Population

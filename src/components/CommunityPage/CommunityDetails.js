@@ -127,11 +127,11 @@ const CommunityDetails = () => {
           </CardContent>
         </Card>
       </div>
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-5 mx-auto">
-                  <div class="card shadow border">
-                      <div class="card-body d-flex flex-column align-items-center">
+      <div className="container">
+          <div className="row align-items-center">
+              <div className="col-5 mx-auto">
+                  <div className="card shadow border">
+                      <div className="card-body d-flex flex-column align-items-center">
                       <CardContent>
                         <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                           CWCS
