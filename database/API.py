@@ -58,3 +58,17 @@ def features_create_region():
     session.commit()
 
     return {'Code': 200}
+
+#Usage: /features/delete?sno=<serial_number>
+@app.route('/features/delete', methods=['GET'])
+def features_delete_region():
+    serial_number = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_number])
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        session.delete(feature)
+    
+    return result, 200
