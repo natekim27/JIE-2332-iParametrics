@@ -606,25 +606,30 @@ const CommunityDetails = () => {
         </div>
         <div className='flexbox-container'>
             <div style={buttonStyle}>
-            <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
-                Back to Search
-            </Button>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
+                    Back to Search
+                </Button>
             </div>
             <div style={buttonStyle}>
-            <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/visualizeData/${sno}`, { replace: true })}>
-                Visualize Data
-            </Button>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/visualizeData/${sno}`, { replace: true })}>
+                    Visualize Data
+                </Button>
             </div>
             <div style={buttonStyle}>
-            <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                Download Data
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                <Dropdown.Item onClick={exportToCsv}>Export to CSV</Dropdown.Item>
-                <Dropdown.Item onClick={exportToJson}>Export to JSON</Dropdown.Item>
-            </Dropdown.Menu>
-            </Dropdown>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/editCommunityDetails/${filteredData[0].serial_number}`, { replace: true })}>
+                    Edit Data
+                </Button>
+            </div>
+            <div style={buttonStyle}>
+                <Dropdown>
+                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                        Download Data
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={exportToCsv}>Export to CSV</Dropdown.Item>
+                        <Dropdown.Item onClick={exportToJson}>Export to JSON</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
         </div>
         </div>
