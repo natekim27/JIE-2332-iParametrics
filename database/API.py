@@ -20,3 +20,13 @@ api = Api(app)
 
 engine = get_azure_engine()
 session = Session(engine)
+
+@app.route('/features/get-all', methods=['GET'])
+def features():
+   stmt = select(Feature)
+   result = []
+   for feature in session.scalars(stmt):
+       result.append(feature.as_dict())
+
+
+   return result, 200
