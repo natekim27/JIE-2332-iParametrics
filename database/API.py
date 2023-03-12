@@ -57,4 +57,4 @@ def features_create_region():
     session.add(new_region)
     session.commit()
 
-    return {}
+    return {'Code': 200}
