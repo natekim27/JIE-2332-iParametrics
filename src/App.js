@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path="/createAccount" element={<CreateAccountPage />} />
               <Route exact path="/communitySearch" element={<CommunitySearchPage />} />
               <Route exact path="/communityDetails/:sno" element={<CommunityPage />} />
-              <Route exact path="/visualizeData/:county" element={<VisualizeDataPage />} />
+              <Route exact path="/visualizeData/:sno" element={<VisualizeDataPage />} />
             </Routes>
           </div>
         </Router>
