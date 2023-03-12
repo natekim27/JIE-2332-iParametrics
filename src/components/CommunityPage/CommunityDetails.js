@@ -24,6 +24,19 @@ const buttonStyle = {
   flexDirection: 'row',
 };
 
+function nFormatter(num, digits) {
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "K" },
+      { value: 1e6, symbol: "M" }
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var item = lookup.slice().reverse().find(function(item) {
+      return num >= item.value;
+    });
+    return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+}
+
 const CommunityDetails = () => {
     const navigate = useNavigate();
     const { sno } = useParams();
@@ -159,7 +172,7 @@ const CommunityDetails = () => {
                     Population
                 </Typography>
                 <Typography variant="h4" component="div">
-                    {filteredData[0] && filteredData[0].population}
+                    {nFormatter(filteredData[0] && filteredData[0].population, 1)}
                 </Typography>
             </CardContent>
             </Card>
@@ -260,7 +273,7 @@ const CommunityDetails = () => {
                     Avg Democratic % of Votes
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].avg_dem_pct}
+                    {nFormatter(filteredData[0] && filteredData[0].avg_dem_pct, 2)}
                 </Typography>
             </CardContent>
             </Card>
@@ -270,7 +283,7 @@ const CommunityDetails = () => {
                     Avg Republican % of Votes
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].avg_rep_pct}
+                    {nFormatter(filteredData[0] && filteredData[0].avg_rep_pct, 2)}
                 </Typography>
             </CardContent>
             </Card>
