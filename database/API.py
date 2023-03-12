@@ -30,3 +30,16 @@ def features():
 
 
    return result, 200
+
+@app.route('/features/get-by-sno', methods=['GET'])
+def features_get_by_sno():
+    serial_no = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_no])
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+    
+    return result, 200
