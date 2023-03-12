@@ -91,3 +91,32 @@ def features_update_region():
     session.commit()
 
     return feature.as_dict(), 200
+
+@app.route('/users/authenticate', methods=['POST'])
+def authenticate():
+    json_data = request.get_json(force=True)
+    data = json.loads(json_data)
+    if ('username' and 'password' and 'user_type' in data.keys()) is False:
+        return {'Message': 'Fill in all fields', 
+                'Code': 400}
+    
+    username = data['username']
+    password = data['password']
+    user_type = data['user_type']
+
+    stmt = select(Account).where(
+        (Account.username.in_([username]))
+    )
+
+    account = None
+
+    for obj in session.scalars(stmt):
+        account = obj
+
+    if account is None:
+        return {'Code': '400'}
+    
+    if account.password == password and account.user_type == user_type:
+        return {'Code': '200'}
+    else:
+        return {'Code': '400'}
