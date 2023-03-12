@@ -121,6 +121,31 @@ def authenticate():
     else:
         return {'Code': '400'}
     
+@app.route('/users/create-account', methods=['POST'])
+def users_create_account():
+    json_data = request.get_json(force=True)
+    data = json.loads(json_data)
+    if ('username' and 'password' and 'user_type' in data.keys()) is False:
+        return {'Message': 'Must provide name, password and user type to add new region', 
+                'Code': 400}
+    stmt = select(Account).where(
+        (Account.username.in_([data['username']]))
+    )
+    result = []
+    for account in session.scalars(stmt):
+        result.append(account.as_dict())
+
+
+    if result:
+        return {
+            'Message': 'Username already exists',
+            'Code': '400'
+        }
+    new_account = Account(data)
+    session.add(new_account)
+    session.commit()
+    return {'Code': 200}
+
 @app.route('/users/change-password', methods=['PUT'])
 def users_change_password():
     data = request.get_json(force=True)
