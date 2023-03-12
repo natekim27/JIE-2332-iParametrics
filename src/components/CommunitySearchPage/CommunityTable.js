@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useNavigate } from "react-router-dom";
 import './CommunityTable.css';
