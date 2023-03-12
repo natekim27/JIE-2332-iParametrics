@@ -50,9 +50,9 @@ const LoginForm = () => {
             <Form className="LoginForm" id="loginForm">
               <FormGroup>
                 <Form.Label>Username</Form.Label>
-                <FormControl type="username" placeholder="Username" />
+                <FormControl type="username" placeholder="Username" autoComplete='username' />
                 <Form.Label>Password</Form.Label>
-                <FormControl type="password" placeholder="Password" />
+                <FormControl type="password" placeholder="Password" autoComplete='password' />
                 <div style={buttonStyle}>
                   <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
                     Login

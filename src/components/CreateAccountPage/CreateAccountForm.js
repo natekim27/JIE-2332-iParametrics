@@ -50,11 +50,11 @@ const CreateAccountForm = () => {
           <Form className="CreateAccountForm" id="CreateAccountForm">
             <FormGroup>
               <Form.Label>Username</Form.Label>
-              <FormControl type="username" placeholder="Username" />
+              <FormControl type="username" placeholder="Username" autoComplete='username'/>
               <Form.Label>Password</Form.Label>
-              <FormControl type="password" placeholder="Password" />
+              <FormControl type="password" placeholder="Password" autoComplete='current-password' />
               <Form.Label htmlFor="email">Confirm Password</Form.Label>
-              <FormControl type="password" placeholder="Confirm Password" />
+              <FormControl type="password" placeholder="Confirm Password" autoComplete='new-password' />
               <div style={buttonStyle}>
                 <Button variant="outline-secondary" type="submit" onClick={() => navigate('/', {replace: true})}>
                   Create Account

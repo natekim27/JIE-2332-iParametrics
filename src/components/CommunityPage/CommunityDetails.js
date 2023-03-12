@@ -32,6 +32,14 @@ const CommunityDetails = () => {
   const filteredData = CwcsData.find(community => community.REGION === county);
   const unnormData = unnormalizedData.find(community => community.REGION === county);
 
+  const convertAllCapStringToFormat = ( capitalizedStr ) => {
+    const words = capitalizedStr.split(' ');
+    const capitalizedWords = words.map( word => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    return capitalizedWords.join(' ');
+  }
+
   const downloadFile = ({ data, fileName, fileType }) => {
     const blob = new Blob([data], { type: fileType });
   
@@ -119,11 +127,11 @@ const CommunityDetails = () => {
           </CardContent>
         </Card>
       </div>
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-5 mx-auto">
-                  <div class="card shadow border">
-                      <div class="card-body d-flex flex-column align-items-center">
+      <div className="container">
+          <div className="row align-items-center">
+              <div className="col-5 mx-auto">
+                  <div className="card shadow border">
+                      <div className="card-body d-flex flex-column align-items-center">
                       <CardContent>
                         <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                           CWCS
@@ -147,7 +155,7 @@ const CommunityDetails = () => {
                 Factor 1
             </Typography>
             <Typography variant="h5" component="div">
-              {filteredData.FACTORS[0]}
+              {convertAllCapStringToFormat(filteredData.FACTORS[0])}
             </Typography>
           </CardContent>
         </Card>
@@ -157,7 +165,7 @@ const CommunityDetails = () => {
                 Factor 2
             </Typography>
             <Typography variant="h5" component="div">
-              {filteredData.FACTORS[1]}
+              {convertAllCapStringToFormat(filteredData.FACTORS[1])}
             </Typography>
           </CardContent>
         </Card>
@@ -167,7 +175,7 @@ const CommunityDetails = () => {
                 Factor 3
             </Typography>
             <Typography variant="h5" component="div">
-              {filteredData.FACTORS[2]}
+              {convertAllCapStringToFormat(filteredData.FACTORS[2])}
             </Typography>
           </CardContent>
         </Card>
@@ -256,7 +264,7 @@ const CommunityDetails = () => {
           </Button>
         </div>
         <div style={buttonStyle}>
-          <Button variant="outline-secondary" type="submit" onClick={() => {}}>
+          <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/visualizeData/${county}`, { replace: true })}>
             Visualize Data
           </Button>
         </div>
