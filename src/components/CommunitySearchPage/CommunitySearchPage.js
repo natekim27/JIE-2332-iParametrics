@@ -3,12 +3,11 @@ import TextField from "@mui/material/TextField";
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-
 import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
-import CwcsData from '../../cwcs.json';
 
 const CommunitySearchPage = () => {
+    const [message, setMessage] = useState("");
     const [inputText, setInputText] = useState("");
     const [tableData, setTableData] = useState([]);
     let inputHandler = (e) => {
@@ -18,28 +17,29 @@ const CommunitySearchPage = () => {
     const columns = React.useMemo(() => [
         {
             Header: "Region",
-            accessor: "REGION",
-            width: 200,
-            minWidth: 200,
-            maxWidth: 200,
+            accessor: "name",
         },
         {
             Header: "State",
-            accessor: "STATE",
-            width: 100,
-            minWidth: 100,
-            maxWidth: 100,
+            accessor: "stusps",
         },
-        {
+        { // Using dummy data as CWCS
             Header: "CWCS",
-            accessor: "CWCS",
-            width: 300,
-            minWidth: 300,
-            maxWidth: 300,
+            accessor: "poverty",
         }
     ], []);
     useEffect(() => {
-        setTableData(CwcsData);
+        fetch("http://127.0.0.1:5000/features/get-all", {
+            method: "GET",
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setTableData(data);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            setMessage(err.message);
+        });
     }, []);
     return(
         <div className='CommunitySearchPage'>
