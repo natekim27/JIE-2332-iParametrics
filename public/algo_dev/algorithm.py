@@ -30,3 +30,17 @@ def append_target_feature(dataset: pd.DataFrame) -> pd.DataFrame:
     pa_arr = dataset.loc[:, 'PA']
     dataset = dataset.assign(target = hm_arr / pa_arr)
     return dataset
+
+
+def assign_cwcs(dataset: pd.DataFrame) -> pd.DataFrame:
+    arr = np.array(dataset['target'].tolist())
+    arr = np.vectorize(lambda x: stats.percentileofscore(arr, x))(arr)
+    arr = arr / 10
+    arr = np.around(arr, decimals = 0)
+
+
+    dataset.drop(columns=['target'], inplace=True)
+    dataset['CWCS'] = arr
+
+
+    return dataset
