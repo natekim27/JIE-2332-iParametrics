@@ -1,9 +1,4 @@
-import textwrap
-import pyodbc
 import json
-import datetime
-import ast
-import requests
 
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, reqparse
