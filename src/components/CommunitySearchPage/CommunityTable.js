@@ -12,7 +12,7 @@ const CommunityTable = ({
     const formatTrProps = (state = {}) => {
         return {
                 onClick: () => {
-                navigate(`/communityDetails/${state.values.REGION}`, { replace: true });
+                navigate(`/communityDetails/${state.values.serial_number}`, { replace: true });
             },
             style: {
                 cursor: 'pointer'

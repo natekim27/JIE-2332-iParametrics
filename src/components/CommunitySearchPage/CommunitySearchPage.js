@@ -16,6 +16,10 @@ const CommunitySearchPage = () => {
     };
     const columns = React.useMemo(() => [
         {
+            Header: "",
+            accessor: "serial_number",
+        },
+        {
             Header: "Region",
             accessor: "name",
         },
