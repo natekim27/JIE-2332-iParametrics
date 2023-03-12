@@ -35,6 +35,7 @@ class SQLConnectionObject:
        connection_string = 'mssql+pyodbc:///?autocommit=true&odbc_connect={}'.format(params)
        return connection_string
    
+#turn echo = true off later
 def get_azure_engine():
    connection = SQLConnectionObject()
    engine_azure = db.create_engine(connection.create_connection_string(), echo=True)
