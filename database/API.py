@@ -87,5 +87,7 @@ def features_update_region():
 
     for key in data:
         setattr(feature, key, data[key])
+        
+    session.commit()
 
     return feature.as_dict(), 200
