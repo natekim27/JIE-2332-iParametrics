@@ -62,3 +62,14 @@ def split_dataset(dataset: pd.DataFrame):
     f1 = f1_score(y_test, predictions)
     return X_train, X_test, y_train, y_test
 
+
+def main():
+    dataset = get_dataset()
+    dataset['HM'] = dataset['HM'].replace(np.nan, 0)
+    dataset['PA'] = dataset['PA'].replace(np.nan, 0)
+    dataset.drop_duplicates(inplace=True)
+    dataset.to_csv(path_or_buf='/Users/pranavthomas/Desktop/cleaned_data.csv')
+
+
+if __name__ == "__main__":
+    main()
