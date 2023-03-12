@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Form, FormGroup, FormControl, Button, HelpBlock, Row, PageHeader } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import CwcsData from '../../cwcs.json';
 
 const buttonStyle = {
   marginTop: 20,

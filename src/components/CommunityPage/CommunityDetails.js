@@ -8,14 +8,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import './CommunityPage.css';
 
-const div1Style = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'row',
-  height: 50
-};
-
 const buttonStyle = {
   marginTop: 20,
   display: 'flex',
