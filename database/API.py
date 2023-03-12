@@ -5,34 +5,35 @@ import datetime
 import ast
 import requests
 
-
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, reqparse
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from connection import get_azure_engine
 from models import Feature, Account
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 api = Api(app)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 engine = get_azure_engine()
 session = Session(engine)
 
 @app.route('/features/get-all', methods=['GET'])
+@cross_origin()
 def features():
    stmt = select(Feature)
    result = []
    for feature in session.scalars(stmt):
        result.append(feature.as_dict())
 
-
    return result, 200
 
 #Usage: /features/get-by-sno?sno=<serial_number>
 @app.route('/features/get-by-sno', methods=['GET'])
+@cross_origin()
 def features_get_by_sno():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
@@ -46,6 +47,7 @@ def features_get_by_sno():
     return result, 200
 
 @app.route('/features/create-region', methods=['POST'])
+@cross_origin()
 def features_create_region():
     json_data = request.get_json(force=True)
     data = json.loads(json_data)
@@ -61,6 +63,7 @@ def features_create_region():
 
 #Usage: /features/delete?sno=<serial_number>
 @app.route('/features/delete', methods=['GET'])
+@cross_origin()
 def features_delete_region():
     serial_number = request.args.get('sno')
     stmt = select(Feature).where(
@@ -75,6 +78,7 @@ def features_delete_region():
 
 #Pass in a JSON of the data parameters you want to update
 @app.route('/features/update', methods=['PUT'])
+@cross_origin()
 def features_update_region():
     data = request.get_json(force=True)
     data = json.loads(data)
@@ -93,6 +97,7 @@ def features_update_region():
     return feature.as_dict(), 200
 
 @app.route('/users/authenticate', methods=['POST'])
+@cross_origin()
 def authenticate():
     json_data = request.get_json(force=True)
     data = json.loads(json_data)
@@ -122,6 +127,7 @@ def authenticate():
         return {'Code': '400'}
     
 @app.route('/users/create-account', methods=['POST'])
+@cross_origin()
 def users_create_account():
     json_data = request.get_json(force=True)
     data = json.loads(json_data)
@@ -147,6 +153,7 @@ def users_create_account():
     return {'Code': 200}
 
 @app.route('/users/change-password', methods=['PUT'])
+@cross_origin()
 def users_change_password():
     data = request.get_json(force=True)
     data = json.loads(data)
@@ -155,14 +162,11 @@ def users_change_password():
         Account.username.in_([username])
     )
 
-
     for obj in session.scalars(stmt):
         account = obj
 
-
     setattr(account, 'password', data['password'])
     session.commit()
-
 
     return account.as_dict(), 200
 
