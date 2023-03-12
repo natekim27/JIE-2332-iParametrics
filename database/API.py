@@ -44,3 +44,17 @@ def features_get_by_sno():
         result.append(feature.as_dict())
     
     return result, 200
+
+@app.route('/features/create-region', methods=['POST'])
+def features_create_region():
+    json_data = request.get_json(force=True)
+    data = json.loads(json_data)
+    if ('name' and 'namelsad' and 'stusps' in data.keys()) is False:
+        return {'Message': 'Must provide name, namelsad and stusps to add new region', 
+                'Code': 400}
+    
+    new_region = Feature(data)
+    session.add(new_region)
+    session.commit()
+
+    return {}
