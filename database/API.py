@@ -72,3 +72,20 @@ def features_delete_region():
         session.delete(feature)
     
     return result, 200
+
+#Pass in a JSON of the data parameters you want to update
+@app.route('/features/update', methods=['PUT'])
+def features_update_region():
+    data = request.get_json(force=True)
+    data = json.loads(data)
+    serial_number = data['sno']
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_number])
+    )
+    for obj in session.scalars(stmt):
+        feature = obj
+
+    for key in data:
+        setattr(feature, key, data[key])
+
+    return feature.as_dict(), 200
