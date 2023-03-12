@@ -131,11 +131,7 @@ def users_create_account():
     stmt = select(Account).where(
         (Account.username.in_([data['username']]))
     )
-
-
     result = []
-
-
     for account in session.scalars(stmt):
         result.append(account.as_dict())
 
@@ -145,13 +141,9 @@ def users_create_account():
             'Message': 'Username already exists',
             'Code': '400'
         }
-
-
     new_account = Account(data)
     session.add(new_account)
     session.commit()
-
-
     return {'Code': 200}
 
 @app.route('/users/change-password', methods=['PUT'])
