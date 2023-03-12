@@ -31,6 +31,7 @@ def features():
 
    return result, 200
 
+#Usage: /features/get-by-sno?sno=<serial_number>
 @app.route('/features/get-by-sno', methods=['GET'])
 def features_get_by_sno():
     serial_no = request.args.get('sno')
