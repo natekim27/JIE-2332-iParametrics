@@ -37,6 +37,19 @@ The react-start script behind each command is located in ```package.json```.
 
 # Release Notes
 
+## Version 0.3.0
+### New Features
+- Auto complete for login and create account
+- Early version of ML Algorithm using SVM
+- AzureSQL Database
+- Service connection to AzureSQL database
+- API endpoints to create/read/update/delete data from DB
+- Edit community details page
+- Community deletion functionality
+### Bug Fixes
+- Class JSX error in pages fixed
+- Reformatted numbers to round them
+
 ## Version 0.2.0
 ### New Features
 - Displaying data on Community Details as cards
