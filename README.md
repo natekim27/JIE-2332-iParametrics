@@ -44,6 +44,8 @@ The react-start script behind each command is located in ```package.json```.
 - AzureSQL Database
 - Service connection to AzureSQL database
 - API endpoints to create/read/update/delete data from DB
+- User authentication API endpoint
+- Change password functionality
 - Edit community details page
 - Community deletion functionality
 ### Bug Fixes
