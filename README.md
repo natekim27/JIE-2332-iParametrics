@@ -50,6 +50,7 @@ The react-start script behind each command is located in ```package.json```.
 - Community deletion functionality
 ### Bug Fixes
 - Class JSX error in pages fixed
+- Capitalization of factors on the Community Details page
 - Reformatted numbers to round them
 ### Known Issues
 - Need to implement more tests for features
