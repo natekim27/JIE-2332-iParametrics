@@ -51,6 +51,11 @@ The react-start script behind each command is located in ```package.json```.
 ### Bug Fixes
 - Class JSX error in pages fixed
 - Reformatted numbers to round them
+### Known Issues
+- Need to implement more tests for features
+- Continue to update main() in algorithm.py
+- Explore SVC rather than SVM for ML algorithm
+- Have algorithm.py read from DB rather than local
 
 ## Version 0.2.0
 ### New Features
