@@ -128,9 +128,6 @@ const EditCommunityDetailsForm = () => {
     return (
         <div>
         <div>
-            <h2>Edit Community Details</h2>
-        </div>
-        <div>
             <h4>{filteredData[0] && filteredData[0].name}, {filteredData[0] && filteredData[0].stusps}</h4>
         </div>
         <div>

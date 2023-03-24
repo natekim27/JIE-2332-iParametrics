@@ -1,16 +1,5 @@
-.LoginPage {
-    background-color: #FFFFFF;
-    min-height: 100%;
-    min-height: 100vh;
-    display: flex;
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-
 .header-banner {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;

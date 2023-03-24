@@ -164,7 +164,7 @@ const CommunityDetails = () => {
             <Card sx={{ minWidth: 450 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Region
+                    County
                 </Typography>
                 <Typography variant="h4" component="div">
                     {filteredData[0] && filteredData[0].name}
@@ -193,7 +193,7 @@ const CommunityDetails = () => {
                                 CWCS
                             </Typography>
                             <Typography variant="h4" component="div">
-                                {filteredData[0] && filteredData[0].population}
+                                {nFormatter(filteredData[0] && filteredData[0].bric_resilience, 2)}
                             </Typography>
                         </CardContent>
                         </div>
