@@ -21,7 +21,7 @@ const CommunitySearchPage = () => {
             accessor: "serial_number",
         },
         {
-            Header: "Region",
+            Header: "County",
             accessor: "name",
         },
         {
