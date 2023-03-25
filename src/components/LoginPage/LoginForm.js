@@ -39,7 +39,7 @@ const buttonStyle = {
 const LoginForm = () => {
   const navigate = useNavigate();
     return (
-      <div className='gill-sans'>
+      <div className='gillsans'>
         <div style={div1Style}>
           <h4><b>Community Willingness and Capability Score</b></h4>
         </div>

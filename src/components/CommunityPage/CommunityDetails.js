@@ -182,24 +182,18 @@ const CommunityDetails = () => {
             </CardContent>
             </Card>
         </div>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-5 mx-auto">
-                    <div class="card shadow border">
-                        <div class="card-body d-flex flex-column align-items-center">
-                        <CardContent>
-                            <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                            {/* Using dummy data */}
-                                CWCS
-                            </Typography>
-                            <Typography variant="h4" component="div">
-                                {nFormatter(filteredData[0] && filteredData[0].bric_resilience, 2)}
-                            </Typography>
-                        </CardContent>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className="cwcs-container">
+            <Card sx={{ minWidth: 450 }}>
+                <CardContent>
+                    <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+                    {/* Using dummy data */}
+                        CWCS
+                    </Typography>
+                    <Typography variant="h4" component="div">
+                        {nFormatter(filteredData[0] && filteredData[0].bric_resilience, 2)}
+                    </Typography>
+                </CardContent>
+            </Card>
         </div>
         {/* <div className='factors'>
             <h3>Top Factors</h3>

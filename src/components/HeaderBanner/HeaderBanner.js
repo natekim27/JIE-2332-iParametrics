@@ -1,5 +1,7 @@
 import React from "react";
 
+import './HeaderBanner.css';
+
 const HeaderBanner = ({header}) => {
     return (
         <div className="header-banner">

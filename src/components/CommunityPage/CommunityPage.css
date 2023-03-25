@@ -1,10 +1,13 @@
 .CommunityPage {
-    background-color: #ECFDFF;
-    min-height: 100%;
-    background-size: cover;
-    margin-top: 7.3%;
+    background-color: #D0D0CE;
     padding-top: 1%;
 }
+
+.cwcs-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
 
 .flexbox-container {
     display: flex;
