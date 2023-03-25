@@ -11,6 +11,7 @@ const CommunitySearchPage = () => {
     const [message, setMessage] = useState("");
     const [inputText, setInputText] = useState("");
     const [tableData, setTableData] = useState([]);
+    const [populationChoice, setPopulationChoice] = useState(0);
     let inputHandler = (e) => {
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
@@ -34,7 +35,16 @@ const CommunitySearchPage = () => {
         }
     ], []);
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/features/get-all", {
+        let endpoint = "http://127.0.0.1:5000/features/get-all";
+        if (populationChoice == 1) {
+            endpoint = "http://127.0.0.1:5000/features/get-by-population-range?min_pop=0&max_pop=10000";
+        } else if (populationChoice == 2) {
+            endpoint = "http://127.0.0.1:5000/features/get-by-population-range?min_pop=10000&max_pop=100000";
+        } else if (populationChoice == 3) {
+            endpoint = "http://127.0.0.1:5000/features/get-by-population-range?min_pop=100000";
+        }
+        
+        fetch(endpoint, {
             method: "GET",
         })
         .then((response) => response.json())
@@ -45,7 +55,7 @@ const CommunitySearchPage = () => {
             console.log(err.message);
             setMessage(err.message);
         });
-    }, []);
+    }, [populationChoice]);    
     return(
         <div>
             <HeaderBanner header={"Community Search"}/>        
@@ -68,9 +78,9 @@ const CommunitySearchPage = () => {
                                 Population
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">&lt; 10,000</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">10,000 - 100,000</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">&gt; 100,000</Dropdown.Item>
+                                <Dropdown.Item active={populationChoice === 1} onClick={() => setPopulationChoice(1)}>&lt; 10,000</Dropdown.Item>
+                                <Dropdown.Item active={populationChoice === 2} onClick={() => setPopulationChoice(2)}>10,000 - 100,000</Dropdown.Item>
+                                <Dropdown.Item active={populationChoice === 3} onClick={() => setPopulationChoice(3)}>&gt; 100,000</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
