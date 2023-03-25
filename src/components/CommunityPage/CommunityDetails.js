@@ -149,7 +149,7 @@ const CommunityDetails = () => {
     };
 
     return (
-        <div>
+        <div className='gillsans'>
         <div className='flexbox-container'>
             <Card sx={{ minWidth: 450 }}>
             <CardContent>

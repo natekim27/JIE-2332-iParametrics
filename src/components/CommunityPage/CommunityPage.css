@@ -45,3 +45,8 @@
     justify-content: left;
     margin-top: 5%;
 }
+
+.gillsans {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #000;
+}
