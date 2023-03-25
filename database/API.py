@@ -41,6 +41,25 @@ def features_get_by_sno():
     
     return result, 200
 
+#Usage: /features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
+@app.route('/features/get-by-population-range', methods=['GET'])
+@cross_origin()
+def features_get_by_population_range():
+    min_pop = request.args.get('min_pop')
+    max_pop = request.args.get('max_pop')
+    stmt = select(Feature).where(
+        Feature.population >= min_pop
+    ).where(
+        Feature.population <= max_pop
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+    
+    return result, 200
+
+
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
 def features_create_region():
