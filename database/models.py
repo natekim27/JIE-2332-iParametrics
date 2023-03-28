@@ -10,7 +10,7 @@ class Base(DeclarativeBase):
 
 
 class Feature(Base):
-   __tablename__ = "features"
+   __tablename__ = "final_features"
 
 
    serial_number: Mapped[int] = mapped_column(primary_key=True)
