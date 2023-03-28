@@ -47,15 +47,19 @@ def features_get_by_sno():
 def features_get_by_population_range():
     min_pop = request.args.get('min_pop')
     max_pop = request.args.get('max_pop')
-    if max_pop:
+    if max_pop and min_pop:
         stmt = select(Feature).where(
             Feature.population >= min_pop
         ).where(
             Feature.population <= max_pop
         )
-    else:
+    elif min_pop:
         stmt = select(Feature).where(
             Feature.population >= min_pop
+        )
+    else:
+        stmt = select(Feature).where(
+            Feature.population <= max_pop
         )
     result = []
 
