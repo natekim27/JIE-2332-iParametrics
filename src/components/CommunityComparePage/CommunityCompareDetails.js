@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import './CommunityPage.css';
+import './CommunityComparePage.css';
 
 const buttonStyle = {
   marginTop: 20,
@@ -29,7 +29,7 @@ function nFormatter(num, digits) {
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
 
-const CommunityDetails = () => {
+const CommunityCompareDetails = () => {
     const navigate = useNavigate();
     const { sno } = useParams();
     const [filteredData, setFilteredData] = useState({});
@@ -627,4 +627,4 @@ const CommunityDetails = () => {
     );
 }
 
-export default CommunityDetails;
+export default CommunityCompareDetails;
