@@ -11,6 +11,7 @@ import CommunitySearchPage from './components/CommunitySearchPage/CommunitySearc
 import CommunityPage from './components/CommunityPage/CommunityPage';
 import VisualizeDataPage from './components/VisualizeDataPage/VisualizeDataPage';
 import EditCommunityDetailsPage from './components/EditCommunityDetails/EditCommunityDetailsPage';
+import AddCommunityPage from './components/AddCommunityPage/AddCommunityPage';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
               <Route exact path="/communityDetails/:sno" element={<CommunityPage />} />
               <Route exact path="/visualizeData/:sno" element={<VisualizeDataPage />} />
               <Route exact path="/editCommunityDetails/:sno" element={<EditCommunityDetailsPage />} />
+              <Route exact path="/addCommunity" element={<AddCommunityPage />} />
             </Routes>
           </div>
         </Router>

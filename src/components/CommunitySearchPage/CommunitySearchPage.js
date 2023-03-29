@@ -6,8 +6,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
 import HeaderBanner from '../HeaderBanner/HeaderBanner';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 const CommunitySearchPage = () => {
+    const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const [inputText, setInputText] = useState("");
     const [tableData, setTableData] = useState([]);
@@ -83,6 +86,11 @@ const CommunitySearchPage = () => {
                                 <Dropdown.Item active={populationChoice === 3} onClick={() => setPopulationChoice(3)}>&gt; 100,000</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
+                    </div>
+                    <div className="button">
+                        <Button variant="outline-secondary" type="submit" style={{ width: "120px" }} onClick={() => navigate(`/addCommunity`, { replace: true })}>
+                            Add County
+                        </Button>
                     </div>
                 </div>
                 <CommunityTable columns={columns} data={tableData} input={inputText} />             
