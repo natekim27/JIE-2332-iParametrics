@@ -2,11 +2,16 @@ import React from "react";
 
 import './HeaderBanner.css';
 
+import iP_LogoMark_white from './iP_LogoMark_white.png';
+import iPlogo_white from './iP-logo_white.png';
+
 const HeaderBanner = ({header}) => {
     return (
         <div className="header-banner">
-        <div className='garamond'><h2><b>iParametrics</b></h2></div>
-        {header ? <div className="gill-sans"><p>{header}</p></div> : <></>}
+            <div className='garamond'>
+                <img src={iPlogo_white}></img>
+            </div>
+            {header ? <div className="gill-sans"><h4>{header}</h4></div> : <></>}
         </div>
     );
 };

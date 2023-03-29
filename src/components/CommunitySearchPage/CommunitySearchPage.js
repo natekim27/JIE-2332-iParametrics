@@ -31,7 +31,7 @@ const CommunitySearchPage = () => {
         },
         { // Using dummy data as CWCS
             Header: "CWCS",
-            accessor: "poverty",
+            accessor: "cwcs",
         }
     ], []);
     useEffect(() => {

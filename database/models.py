@@ -10,7 +10,7 @@ class Base(DeclarativeBase):
 
 
 class Feature(Base):
-   __tablename__ = "final_features"
+   __tablename__ = "features"
 
 
    serial_number: Mapped[int] = mapped_column(primary_key=True)
@@ -56,6 +56,7 @@ class Feature(Base):
    bric_resilience: Mapped[float]
    operating_ratio: Mapped[float]
    taxes: Mapped[float]
+   cwcs: Mapped[float]
 
 
    def as_dict(self):

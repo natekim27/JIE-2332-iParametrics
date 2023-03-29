@@ -187,11 +187,10 @@ const CommunityDetails = () => {
             <Card sx={{ minWidth: 450 }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    {/* Using dummy data */}
                         CWCS
                     </Typography>
                     <Typography variant="h4" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].bric_resilience, 2)}
+                        {nFormatter(filteredData[0] && filteredData[0].cwcs, 0)}
                     </Typography>
                 </CardContent>
             </Card>
@@ -255,7 +254,7 @@ const CommunityDetails = () => {
             <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Emergency Manageement Directors Employement
+                    Emergency Management Directors Employement
                 </Typography>
                 <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_employment}
