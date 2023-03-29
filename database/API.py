@@ -12,6 +12,7 @@ app = Flask(__name__)
 api = Api(app)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['PROPAGATE_EXCEPTIONS'] = False
 
 engine = get_azure_engine()
 session = Session(engine)
@@ -104,7 +105,6 @@ def features_delete_region():
 @cross_origin()
 def features_update_region():
     data = request.get_json(force=True)
-    data = json.loads(data)
     serial_number = data['sno']
     stmt = select(Feature).where(
         Feature.serial_number.in_([serial_number])
