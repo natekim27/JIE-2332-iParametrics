@@ -8,10 +8,11 @@ import LoginPage from './components/LoginPage/LoginPage';
 import './App.css';
 import CreateAccountPage from './components/CreateAccountPage/CreateAccountPage';
 import CommunitySearchPage from './components/CommunitySearchPage/CommunitySearchPage';
-import CommunityPage from './components/CommunityComparePage/CommunityComparePage';
+import CommunityCompareSearch from './components/CommunityCompareSearch/CommunityCompareSearch';
+import CommunityComparePage from './components/CommunityComparePage/CommunityComparePage';
+import CommunityPage from './components/CommunityPage/CommunityPage';
 import VisualizeDataPage from './components/VisualizeDataPage/VisualizeDataPage';
 import EditCommunityDetailsPage from './components/EditCommunityDetails/EditCommunityDetailsPage';
-import CommunityCompareSearch from './components/CommunityCompareSearch/CommunityCompareSearch';
 
 class App extends Component {
   render() {

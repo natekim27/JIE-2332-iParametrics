@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 import { useNavigate } from "react-router-dom";
-import './CommunityTable.css';
+import './CommunityCompareTable.css';
 
-const CommunityTable = ({
+const CommunityCompareTable = ({
     columns,
     data,
     input
@@ -71,4 +71,4 @@ const CommunityTable = ({
     );
 }
 
-export default CommunityTable;
+export default CommunityCompareTable;

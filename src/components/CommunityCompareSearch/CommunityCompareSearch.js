@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Dropdown from 'react-bootstrap/Dropdown';
 
 import './CommunityCompareSearch.css';
-import CommunityTable from './CommunityTable';
+import CommunityCompareTable from './CommunityCompareTable';
 import HeaderBanner from '../HeaderBanner/HeaderBanner';
 
 const CommunityCompareSearch = () => {
@@ -85,7 +85,7 @@ const CommunityCompareSearch = () => {
                         </Dropdown>
                     </div>
                 </div>
-                <CommunityTable columns={columns} data={tableData} input={inputText} />             
+                <CommunityCompareTable columns={columns} data={tableData} input={inputText} />             
             </div>
         </div>
     );
