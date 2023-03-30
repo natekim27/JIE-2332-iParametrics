@@ -24,8 +24,8 @@ class App extends Component {
               <Route exact path="/" element={<LoginPage />} />
               <Route exact path="/createAccount" element={<CreateAccountPage />} />
               <Route exact path="/communitySearch" element={<CommunitySearchPage />} />
-              <Route exact path="/communityCompareSearch" element={<CommunityCompareSearch />} />
-              <Route exact path="/communityCompareDetails/:sno" element={<CommunityComparePage />} />
+              <Route exact path="/communityCompareSearch/:sno" element={<CommunityCompareSearch />} />
+              <Route exact path="/communityCompareDetails/:sno1/:sno2" element={<CommunityComparePage />} />
               <Route exact path="/communityDetails/:sno" element={<CommunityPage />} />
               <Route exact path="/visualizeData/:sno" element={<VisualizeDataPage />} />
               <Route exact path="/editCommunityDetails/:sno" element={<EditCommunityDetailsPage />} />

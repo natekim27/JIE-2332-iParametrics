@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import './CommunityCompareTable.css';
 
 const CommunityCompareTable = ({
@@ -8,11 +8,12 @@ const CommunityCompareTable = ({
     data,
     input
 }) => {
+    const { sno } = useParams();
     const navigate = useNavigate();
     const formatTrProps = (state = {}) => {
         return {
                 onClick: () => {
-                navigate(`/communityCompareDetails/${state.values.serial_number}`, { replace: true });
+                navigate(`/communityCompareDetails/${sno}/${state.values.serial_number}`, { replace: true });
             },
             style: {
                 cursor: 'pointer'

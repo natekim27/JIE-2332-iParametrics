@@ -6,6 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './CommunityCompareSearch.css';
 import CommunityCompareTable from './CommunityCompareTable';
 import HeaderBanner from '../HeaderBanner/HeaderBanner';
+import { useParams } from 'react-router';
 
 const CommunityCompareSearch = () => {
     const [message, setMessage] = useState("");

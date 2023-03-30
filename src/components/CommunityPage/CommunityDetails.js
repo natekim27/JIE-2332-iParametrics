@@ -99,7 +99,7 @@ const CommunityDetails = () => {
         e.preventDefault();
 
         // Headers for each column
-        let headers = ['name,stusps,cwcs,population,gdp,avg_dem_pct,avg_rep_pct,declarations,hm,pa,hm_plan_status,nri,cdc_svi,hvri_sovi,high_comb_haz_com,high_comb_haz_res,em_employment,em_employment_per,em_lq,urban_rural,college_univ,higher_ed,poverty,broadband,health_insurance,voter_turn,pop_change,income_stability,built_environment,operating_ratio,taxes,bric_social,bric_econ,bric_house,bric_community,bric_institutional,bric_environmental,bric_resilience,factors'];
+        let headers = ['name,stusps,cwcs,population,gdp,avg_dem_pct,avg_rep_pct,declarations,hm,pa,hm_plan_status,nri,cdc_svi,hvri_sovi,high_comb_haz_com,high_comb_haz_res,em_employment,em_employment_per,em_lq,urban_rural,college_univ,higher_ed,poverty,broadband,health_insurance,voter_turn,pop_change,income_stability,built_environment,operating_ratio,taxes,bric_social,bric_econ,bric_house,bric_community,bric_institutional,bric_environmental,bric_resilience'];
 
         // Convert users data to a csv
         let communityCsv = [filteredData[0].name + ','
@@ -139,8 +139,7 @@ const CommunityDetails = () => {
                             + filteredData[0].bric_community + ','
                             + filteredData[0].bric_institutional + ','
                             + filteredData[0].bric_environmental + ','
-                            + filteredData[0].bric_resilience + ','
-                            + '[' + filteredData[0].factors + ']'];
+                            + filteredData[0].bric_resilience];
 
         downloadFile({
         data: [...headers, ...communityCsv].join('\n'),
@@ -254,7 +253,7 @@ const CommunityDetails = () => {
             <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    EM Directors Employement
+                    EM Directors Employment
                 </Typography>
                 <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_employment}
@@ -403,7 +402,7 @@ const CommunityDetails = () => {
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        EM Directors Employement / 1000 Jobs
+                        EM Directors Employment / 1000 Jobs
                     </Typography>
                     <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_employment_per}
@@ -592,7 +591,7 @@ const CommunityDetails = () => {
                 </Button>
             </div>
             <div style={buttonStyle}>
-                <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communityCompareSearch", { replace: true })}>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityCompareSearch/${filteredData[0].serial_number}`, { replace: true })}>
                     Compare Communities
                 </Button>
             </div>
