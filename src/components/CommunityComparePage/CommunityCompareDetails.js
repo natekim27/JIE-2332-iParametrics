@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import './CommunityPage.css';
+import './CommunityComparePage.css';
 
 const buttonStyle = {
   marginTop: 20,
@@ -29,7 +29,7 @@ function nFormatter(num, digits) {
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
 
-const CommunityDetails = () => {
+const CommunityCompareDetails = () => {
     const navigate = useNavigate();
     const { sno } = useParams();
     const [filteredData, setFilteredData] = useState({});
@@ -205,7 +205,7 @@ const CommunityDetails = () => {
                     Public Assistance Obligations
                 </Typography>
                 <Typography variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].pa, 2)}
+                    {filteredData[0] && filteredData[0].pa}
                 </Typography>
             </CardContent>
             </Card>
@@ -215,7 +215,7 @@ const CommunityDetails = () => {
                     Hazard Mitigation Obligations
                 </Typography>
                 <Typography variant="h5" component="div">
-                ${filteredData[0] && nFormatter(filteredData[0].hm, 2)}
+                    {filteredData[0] && filteredData[0].hm}
                 </Typography>
             </CardContent>
             </Card>
@@ -225,7 +225,7 @@ const CommunityDetails = () => {
                     GDP
                 </Typography>
                 <Typography variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].gdp * 1000, 2)}
+                    {filteredData[0] && filteredData[0].gdp}
                 </Typography>
             </CardContent>
             </Card>
@@ -235,7 +235,7 @@ const CommunityDetails = () => {
                     Taxes
                 </Typography>
                 <Typography variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].taxes, 2)}
+                    {filteredData[0] && filteredData[0].taxes}
                 </Typography>
             </CardContent>
             </Card>
@@ -247,14 +247,14 @@ const CommunityDetails = () => {
                     Population
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].population, 2)}
+                    {filteredData[0] && filteredData[0].population}
                 </Typography>
             </CardContent>
             </Card>
             <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    EM Directors Employement
+                    Emergency Management Directors Employement
                 </Typography>
                 <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_employment}
@@ -267,7 +267,7 @@ const CommunityDetails = () => {
                     Colleges / Universities
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].college_univ != null ? filteredData[0].college_univ : 0}
+                    {filteredData[0] && filteredData[0].college_univ}
                 </Typography>
             </CardContent>
             </Card>
@@ -276,7 +276,7 @@ const CommunityDetails = () => {
             <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Major Disaster Declarations
+                    Declaratons
                 </Typography>
                 <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].declarations}
@@ -286,10 +286,10 @@ const CommunityDetails = () => {
             <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Resistant Commercial Buildings
+                    Resistant Commercial Buildings %
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].high_comb_haz_com}%
+                    {filteredData[0] && filteredData[0].high_comb_haz_com}
                 </Typography>
             </CardContent>
             </Card>
@@ -299,7 +299,7 @@ const CommunityDetails = () => {
                     National Risk Index
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].nri, 2)}
+                    {filteredData[0] && filteredData[0].nri}
                 </Typography>
             </CardContent>
             </Card>
@@ -309,7 +309,7 @@ const CommunityDetails = () => {
                     Built Environment
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].built_environment, 2)}%
+                    {filteredData[0] && filteredData[0].built_environment}
                 </Typography>
             </CardContent>
             </Card>
@@ -319,40 +319,40 @@ const CommunityDetails = () => {
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Average Democratic Votes
+                        Avg Democratic % of Votes
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].avg_dem_pct, 2)}%
+                        {nFormatter(filteredData[0] && filteredData[0].avg_dem_pct, 2)}
                     </Typography>
                 </CardContent>
                 </Card>
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Average Republican Votes
+                        Avg Republican % of Votes
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].avg_rep_pct, 2)}%
+                        {nFormatter(filteredData[0] && filteredData[0].avg_rep_pct, 2)}
                     </Typography>
                 </CardContent>
                 </Card>
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Resistant Residential Buildings
+                        Resistant Residential Buildings %
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].high_comb_haz_res}%
+                        {filteredData[0] && filteredData[0].high_comb_haz_res}
                     </Typography>
                 </CardContent>
                 </Card>
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Broadband Subscription
+                        Broadband Subscription %
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].broadband, 2)}%
+                        {filteredData[0] && filteredData[0].broadband}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -396,14 +396,14 @@ const CommunityDetails = () => {
                         Operating Ratio
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].operating_ratio, 2)}
+                        {filteredData[0] && filteredData[0].operating_ratio}
                     </Typography>
                 </CardContent>
                 </Card>
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        EM Directors Employement / 1000 Jobs
+                        Emergency Manageement Directors Employement / 1000 Jobs
                     </Typography>
                     <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_employment_per}
@@ -413,7 +413,7 @@ const CommunityDetails = () => {
                 <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        EM Directors Location Quotient
+                        Emergency Manageement Directors Location Quotient
                     </Typography>
                     <Typography variant="h5" component="div">
                     {filteredData[0] && filteredData[0].em_lq}
@@ -438,7 +438,7 @@ const CommunityDetails = () => {
                         Higher Education
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].higher_ed, 2)}%
+                        {filteredData[0] && filteredData[0].higher_ed}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -448,7 +448,7 @@ const CommunityDetails = () => {
                         Above Poverty Line
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%
+                        {filteredData[0] && filteredData[0].poverty}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -460,7 +460,7 @@ const CommunityDetails = () => {
                         Health Insurance
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].health_insurance, 2)}%
+                        {filteredData[0] && filteredData[0].health_insurance}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -470,7 +470,7 @@ const CommunityDetails = () => {
                         Voter Turnout (2020)
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].voter_turn, 2)}%
+                        {filteredData[0] && filteredData[0].voter_turn}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -480,7 +480,7 @@ const CommunityDetails = () => {
                         Population Change (2010-2020)
                     </Typography>
                     <Typography variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%
+                        {filteredData[0] && filteredData[0].pop_change}
                     </Typography>
                 </CardContent>
                 </Card>
@@ -627,4 +627,4 @@ const CommunityDetails = () => {
     );
 }
 
-export default CommunityDetails;
+export default CommunityCompareDetails;
