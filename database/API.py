@@ -7,6 +7,7 @@ from sqlalchemy import select
 from connection import get_azure_engine
 from models import Feature, Account
 from flask_cors import CORS, cross_origin
+from algo_dev.build_cwcs import random_forest_regression_prediction
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,7 +26,7 @@ def features():
    for feature in session.scalars(stmt):
        result.append(feature.as_dict())
 
-   return result, 200
+   return json.dumps(result), 200
 
 #Usage: /features/get-by-sno?sno=<serial_number>
 @app.route('/features/get-by-sno', methods=['GET'])
@@ -40,7 +41,7 @@ def features_get_by_sno():
     for feature in session.scalars(stmt):
         result.append(feature.as_dict())
     
-    return result, 200
+    return json.dumps(result), 200
 
 #Usage: /features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
 @app.route('/features/get-by-population-range', methods=['GET'])
@@ -78,6 +79,11 @@ def features_create_region():
         return 'Must provide name, namelsad and stusps to add new region', 400
     
     new_region = Feature(data)
+    feats = new_region.generate_cwcs_array_features()
+    cwcs = random_forest_regression_prediction(feats)
+    if cwcs:
+        new_region.cwcs = cwcs[0]
+    
     try:
         session.add(new_region)
         session.commit()
@@ -116,7 +122,10 @@ def features_update_region():
 
     for key in data:
         setattr(feature, key, data[key])
-        
+
+    feats = feature.generate_cwcs_array_features()
+    cwcs = random_forest_regression_prediction(feats)[0]
+    setattr(feature, 'CWCS', cwcs)
     session.commit()
 
     return feature.as_dict(), 200
