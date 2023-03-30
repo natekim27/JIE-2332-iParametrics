@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Form, FormGroup, FormControl, Button, Row, Col, FormSelect } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
-
-import AddCommunityPage from './AddCommunityPage.css';
+import React, { useState } from 'react';
+import { Form, FormControl, Button, FormSelect } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const buttonStyle = {
   marginTop: 20,
@@ -14,7 +12,6 @@ const buttonStyle = {
 
 const AddCommunityForm = () => {
     const navigate = useNavigate();
-    const [filteredData, setFilteredData] = useState({});
     const [message, setMessage] = useState("");
 
     const [name, setName] = useState(null);
@@ -56,10 +53,10 @@ const AddCommunityForm = () => {
     const [bric_environmental, setBricEnvironmental] = useState(0);
     const [bric_resilience, setBricResilience] = useState(0);
 
-    let handleSubmit = async (e) => {
+    let handleSubmit = (e) => {
         e.preventDefault();
         try {
-            let res = await fetch(`http://127.0.0.1:5000/features/create-region`, {
+            let res = fetch(`http://127.0.0.1:5000/features/create-region`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -121,67 +118,67 @@ const AddCommunityForm = () => {
         <div>
             <Form className="container mt-3 mb-3" id="AddCommunityForm" onSubmit={handleSubmit}>
                 <Form.Label>Name</Form.Label>
-                <FormControl type="text" placeholder="Name" onChange={(e) => setPopulation(e.target.value)}/>
+                <FormControl type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
                 <Form.Label>Type of Community</Form.Label>
-                <FormSelect defaultValue="Choose..." className="select-style">
+                <FormSelect defaultValue="Choose..." className="select-style" onChange={(e) => setNamelsad(e.target.value)}>
                     <option disabled>Choose...</option>
-                    <option value=" County" onChange={(e) => setNamelsad(e.target.value)}>County</option>
-                    <option value=" Parish" onChange={(e) => setNamelsad(e.target.value)}>Parish</option>
-                    <option value=" city" onChange={(e) => setNamelsad(e.target.value)}>city</option>
+                    <option value=" County">County</option>
+                    <option value=" Parish" >Parish</option>
+                    <option value=" city">city</option>
                 </FormSelect>
                 <Form.Label>State</Form.Label>
-                <FormSelect defaultValue="Choose..." className="select-style">
+                <FormSelect defaultValue="Choose..." className="select-style" onChange={(e) => setStusps(e.target.value)}>
                     <option disabled>Choose...</option>
-                    <option value="AL" onChange={(e) => setStusps(e.target.value)}>Alabama</option>
-                    <option value="AK" onChange={(e) => setStusps(e.target.value)}>Alaska</option>
-                    <option value="AZ" onChange={(e) => setStusps(e.target.value)}>Arizona</option>
-                    <option value="AR" onChange={(e) => setStusps(e.target.value)}>Arkansas</option>
-                    <option value="CA" onChange={(e) => setStusps(e.target.value)}>California</option>
-                    <option value="CO" onChange={(e) => setStusps(e.target.value)}>Colorado</option>
-                    <option value="CT" onChange={(e) => setStusps(e.target.value)}>Connecticut</option>
-                    <option value="DE" onChange={(e) => setStusps(e.target.value)}>Delaware</option>
-                    <option value="FL" onChange={(e) => setStusps(e.target.value)}>Florida</option>
-                    <option value="GA" onChange={(e) => setStusps(e.target.value)}>Georgia</option>
-                    <option value="HI" onChange={(e) => setStusps(e.target.value)}>Hawaii</option>
-                    <option value="ID" onChange={(e) => setStusps(e.target.value)}>Idaho</option>
-                    <option value="IL" onChange={(e) => setStusps(e.target.value)}>Illinois</option>
-                    <option value="IN" onChange={(e) => setStusps(e.target.value)}>Indiana</option>
-                    <option value="IA" onChange={(e) => setStusps(e.target.value)}>Iowa</option>
-                    <option value="KS" onChange={(e) => setStusps(e.target.value)}>Kansas</option>
-                    <option value="KY" onChange={(e) => setStusps(e.target.value)}>Kentucky</option>
-                    <option value="LA" onChange={(e) => setStusps(e.target.value)}>Louisiana</option>
-                    <option value="ME" onChange={(e) => setStusps(e.target.value)}>Maine</option>
-                    <option value="MD" onChange={(e) => setStusps(e.target.value)}>Maryland</option>
-                    <option value="MA" onChange={(e) => setStusps(e.target.value)}>Massachusetts</option>
-                    <option value="MI" onChange={(e) => setStusps(e.target.value)}>Michigan</option>
-                    <option value="MN" onChange={(e) => setStusps(e.target.value)}>Minnesota</option>
-                    <option value="MS" onChange={(e) => setStusps(e.target.value)}>Mississippi</option>
-                    <option value="MO" onChange={(e) => setStusps(e.target.value)}>Missouri</option>
-                    <option value="MT" onChange={(e) => setStusps(e.target.value)}>Montana</option>
-                    <option value="NE" onChange={(e) => setStusps(e.target.value)}>Nebraska</option>
-                    <option value="NV" onChange={(e) => setStusps(e.target.value)}>Nevada</option>
-                    <option value="NH" onChange={(e) => setStusps(e.target.value)}>New Hampshire</option>
-                    <option value="NJ" onChange={(e) => setStusps(e.target.value)}>New Jersey</option>
-                    <option value="NM" onChange={(e) => setStusps(e.target.value)}>New Mexico</option>
-                    <option value="NY" onChange={(e) => setStusps(e.target.value)}>New York</option>
-                    <option value="NC" onChange={(e) => setStusps(e.target.value)}>North Carolina</option>
-                    <option value="ND" onChange={(e) => setStusps(e.target.value)}>North Dakota</option>
-                    <option value="OH" onChange={(e) => setStusps(e.target.value)}>Ohio</option>
-                    <option value="OK" onChange={(e) => setStusps(e.target.value)}>Oklahoma</option>
-                    <option value="OR" onChange={(e) => setStusps(e.target.value)}>Oregon</option>
-                    <option value="PA" onChange={(e) => setStusps(e.target.value)}>Pennsylvania</option>
-                    <option value="RI" onChange={(e) => setStusps(e.target.value)}>Rhode Island</option>
-                    <option value="SC" onChange={(e) => setStusps(e.target.value)}>South Carolina</option>
-                    <option value="SD" onChange={(e) => setStusps(e.target.value)}>South Dakota</option>
-                    <option value="TN" onChange={(e) => setStusps(e.target.value)}>Tennessee</option>
-                    <option value="TX" onChange={(e) => setStusps(e.target.value)}>Texas</option>
-                    <option value="UT" onChange={(e) => setStusps(e.target.value)}>Utah</option>
-                    <option value="VT" onChange={(e) => setStusps(e.target.value)}>Vermont</option>
-                    <option value="VA" onChange={(e) => setStusps(e.target.value)}>Virginia</option>
-                    <option value="WA" onChange={(e) => setStusps(e.target.value)}>Washington</option>
-                    <option value="WV" onChange={(e) => setStusps(e.target.value)}>West Virginia</option>
-                    <option value="WI" onChange={(e) => setStusps(e.target.value)}>Wisconsin</option>
-                    <option value="WY" onChange={(e) => setStusps(e.target.value)}>Wyoming</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
                 </FormSelect>
                 <Form.Label>Declarations</Form.Label>
                 <FormControl type="text" placeholder="Declarations" onChange={(e) => setDeclarations(e.target.value)}/>

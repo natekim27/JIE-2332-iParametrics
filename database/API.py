@@ -73,17 +73,19 @@ def features_get_by_population_range():
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
 def features_create_region():
-    json_data = request.get_json(force=True)
-    data = json.loads(json_data)
-    if ('name' and 'namelsad' and 'stusps' in data.keys()) is False:
-        return {'Message': 'Must provide name, namelsad and stusps to add new region', 
-                'Code': 400}
+    data = request.get_json(force=True)
+    if data['name'] == None or data['namelsad'] == None or data['stusps'] == None:
+        return 'Must provide name, namelsad and stusps to add new region', 400
     
     new_region = Feature(data)
-    session.add(new_region)
-    session.commit()
+    try:
+        session.add(new_region)
+        session.commit()
+    except:
+        session.rollback()
+        raise
 
-    return {'Code': 200}
+    return 'Success', 200
 
 #Usage: /features/delete?sno=<serial_number>
 @app.route('/features/delete', methods=['GET'])
@@ -125,8 +127,7 @@ def authenticate():
     json_data = request.get_json(force=True)
     data = json.loads(json_data)
     if ('username' and 'password' and 'user_type' in data.keys()) is False:
-        return {'Message': 'Fill in all fields', 
-                'Code': 400}
+        return 'Fill in all fields', 400
     
     username = data['username']
     password = data['password']
@@ -142,12 +143,12 @@ def authenticate():
         account = obj
 
     if account is None:
-        return {'Code': '400'}
+        return 400
     
     if account.password == password and account.user_type == user_type:
-        return {'Code': '200'}
+        return 200
     else:
-        return {'Code': '400'}
+        return 400
     
 @app.route('/users/create-account', methods=['POST'])
 @cross_origin()
@@ -166,14 +167,11 @@ def users_create_account():
 
 
     if result:
-        return {
-            'Message': 'Username already exists',
-            'Code': '400'
-        }
+        return 'Username already exists', 400
     new_account = Account(data)
     session.add(new_account)
     session.commit()
-    return {'Code': 200}
+    return 200
 
 @app.route('/users/change-password', methods=['PUT'])
 @cross_origin()
