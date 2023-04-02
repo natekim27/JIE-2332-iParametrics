@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 
+import HeaderBanner from '../HeaderBanner/HeaderBanner';
+import VisualizeData from './VisualizeData';
 import './VisualizeDataPage.css';
 
 class VisualizeDataPage extends Component {
   render() {
     return (
-      <div className="VisualizeDataPage">
-        <h1>Data Visualization</h1>
+      <div>
+        <HeaderBanner header={"Visualize Data"}/>
+        <div className="VisualizeDataPage">
+          <VisualizeData></VisualizeData>
+        </div>
       </div>
     );
   }

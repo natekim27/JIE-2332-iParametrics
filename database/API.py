@@ -1,6 +1,7 @@
 import json
+import sys
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, send_file
 from flask_restful import Resource, Api, reqparse
 from sqlalchemy.orm import Session
 from sqlalchemy import select
@@ -8,6 +9,7 @@ from connection import get_azure_engine
 from models import Feature, Account
 from flask_cors import CORS, cross_origin
 from algo_dev.build_cwcs import random_forest_regression_prediction
+from compare_image import compare_floats_bar, compare_floats_pie
 
 app = Flask(__name__)
 api = Api(app)
@@ -70,6 +72,43 @@ def features_get_by_population_range():
     
     return result, 200
 
+@app.route('/features/get-bar-graph', methods=['GET'])
+@cross_origin()
+def features_get_bar_graph():
+    serial_no = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_no])
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+
+    field = request.args.get('field')
+    b_val = request.args.get('bval')
+    
+    compare_floats_bar(result[0][field], int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+
+@app.route('/features/get-pie-chart', methods=['GET'])
+@cross_origin()
+def features_get_pie_chart():
+    serial_no = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_no])
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+
+    field = request.args.get('field')
+    b_val = request.args.get('bval')
+    
+    compare_floats_pie(result[0][field], int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return 'Success', 200
 
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
