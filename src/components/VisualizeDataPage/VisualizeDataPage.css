@@ -32,4 +32,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #D0D0CE;
+    padding-top: 1%;
+}
+
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    align-items: stretch;
+    padding: 1%;
+    gap: 1%;
+    justify-content: space-between;
+    flex-basis: 0;
+}
+
+.gillsans {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #000;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -73,3 +73,5 @@ const CommunityCompareTable = ({
 }
 
 export default CommunityCompareTable;
+
+export default CommunityCompareTable;

@@ -407,3 +407,5 @@ const CommunityCompareDetails = () => {
 }
 
 export default CommunityCompareDetails;
+
+export default CommunityCompareDetails;

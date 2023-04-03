@@ -93,3 +93,5 @@ const CommunityCompareSearch = () => {
 }
 
 export default CommunityCompareSearch;
+
+export default CommunityCompareSearch;
