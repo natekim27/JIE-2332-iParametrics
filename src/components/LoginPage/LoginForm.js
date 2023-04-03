@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 import './LoginPage.css';
