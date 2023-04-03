@@ -1,9 +1,18 @@
 .LoginPage {
-    background-color: #ECFDFF;
-    min-height: 100%;
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     background-size: cover;
     align-items: center;
     justify-content: center;
+    margin-top: 7.3%;
+    padding-top: 1%;
+}
+
+body {
+    color: black;
+}
+
+.gillsans {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #000;
 }

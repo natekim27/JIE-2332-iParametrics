@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
+import './LoginPage.css';
 
 const div1Style = {
   display: 'flex',
@@ -16,7 +17,7 @@ const div2Style = {
   alignItems: 'center',
   justifyContent: 'center',
   flexDirection: 'row',
-  height: 500
+  height: 500,
 };
 
 const cardStyle = {
@@ -43,10 +44,9 @@ const LoginForm = () => {
           <h2>iParametrics</h2>
         </div>
         <div style={div1Style}>
-          <h4>Community Willingness and Capability Score</h4>
+          <h4><b>Community Willingness and Capability Score</b></h4>
         </div>
         <div style={div2Style}>
-          <Card style={cardStyle}>
             <Form className="LoginForm" id="loginForm">
               <FormGroup>
                 <Form.Label>Username</Form.Label>
@@ -59,13 +59,12 @@ const LoginForm = () => {
                   </Button>
                 </div>
                 <div style={buttonStyle}>
-                  <Button variant="outline-secondary" type="submit" onClick={() => navigate("/createAccount", { replace: true })}>
+                  <Button color="white" variant="outline-secondary" type="submit" onClick={() => navigate("/createAccount", { replace: true })}>
                     Create Account
                   </Button>
                 </div>
               </FormGroup>
             </Form>
-          </Card>
         </div>
       </div>
     );
