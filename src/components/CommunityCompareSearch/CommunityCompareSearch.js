@@ -58,7 +58,7 @@ const CommunityCompareSearch = () => {
         });
     }, [populationChoice]);    
     return(
-        <div>
+        <div className='font-face-gs'>
             <HeaderBanner header={"Compare Communities"}/>        
             <div className='CommunityCompareSearch'>
                 <div className="flexbox-container1">

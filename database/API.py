@@ -61,7 +61,13 @@ def features_get_by_sno():
     
     return json.dumps(result), 200
 
-
+#Returns the communities within a population range
+#URL: http://127.0.0.1:5000/features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - minimum population, maximum population 
 #Usage: /features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
 @app.route('/features/get-by-population-range', methods=['GET'])
 @cross_origin()
@@ -89,6 +95,14 @@ def features_get_by_population_range():
     
     return result, 200
 
+#Returns a bar graph comparing a community's stat with a state average stat
+#URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<serial_number>&field=<field>&bval=<b_value>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number, field, b_value
+#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
 @app.route('/features/get-bar-graph', methods=['GET'])
 @cross_origin()
 def features_get_bar_graph():
@@ -117,6 +131,14 @@ def features_get_bar_graph():
 
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
+#Returns a pie chart comparing a community's stat with a state average stat
+#URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number, field, b_value
+#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
 @app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
 def features_get_pie_chart():
@@ -193,6 +215,7 @@ def features_delete_region():
         session.delete(feature)
     
     return result, 200
+
 #Returns the region that has been updated in the database, must pass in the serial number in the JSON request 
 #URL: http://127.0.0.1:5000/features/update
 #Request format: JSON
