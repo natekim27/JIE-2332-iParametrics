@@ -22,6 +22,13 @@ app.config['PROPAGATE_EXCEPTIONS'] = False
 engine = get_azure_engine()
 session = Session(engine)
 
+#Returns all the communities & their data [GET]
+#URL: http://127.0.0.1:5000/features/get-all
+#Request format: None
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - None 
 @app.route('/features/get-all', methods=['GET'])
 @cross_origin()
 def features():
@@ -32,6 +39,13 @@ def features():
 
    return json.dumps(result), 200
 
+#Returns the data of a community based on the serial number
+#URL: http://127.0.0.1:5000/features/get-by-sno?sno=<serial_number>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number of community 
 #Usage: /features/get-by-sno?sno=<serial_number>
 @app.route('/features/get-by-sno', methods=['GET'])
 @cross_origin()
@@ -46,6 +60,7 @@ def features_get_by_sno():
         result.append(feature.as_dict())
     
     return json.dumps(result), 200
+
 
 #Usage: /features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
 @app.route('/features/get-by-population-range', methods=['GET'])
@@ -129,6 +144,13 @@ def features_get_pie_chart():
 
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
+#Returns whether the region has successfully been added to the database
+#URL: http://127.0.0.1:5000/features/create-region
+#Request format: JSON
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - None 
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
 def features_create_region():
@@ -150,7 +172,13 @@ def features_create_region():
         raise
 
     return 'Success', 200
-
+#Returns the region that has been deleted from the database
+#URL: http://127.0.0.1:5000/features/delete?sno=<serial_number>
+#Request format: None
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number 
 #Usage: /features/delete?sno=<serial_number>
 @app.route('/features/delete', methods=['GET'])
 @cross_origin()
@@ -165,7 +193,14 @@ def features_delete_region():
         session.delete(feature)
     
     return result, 200
-
+#Returns the region that has been updated in the database, must pass in the serial number in the JSON request 
+#URL: http://127.0.0.1:5000/features/update
+#Request format: JSON
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - None 
+#Usage: /features/update
 #Pass in a JSON of the data parameters you want to update
 @app.route('/features/update', methods=['PUT'])
 @cross_origin()
