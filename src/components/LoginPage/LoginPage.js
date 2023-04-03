@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HeaderBanner from '../HeaderBanner/HeaderBanner';
 import LoginForm from './LoginForm';
 
 import './LoginPage.css';
@@ -6,9 +7,12 @@ import './LoginPage.css';
 class LoginPage extends Component {
   render() {
     return (
-      <div className="LoginPage">
-        <LoginForm />
-      </div>
+      <div className='font-face-gs'>
+        <HeaderBanner />
+        <div className="LoginPage">
+          <LoginForm />
+        </div>
+      </div> 
     );
   }
 }
