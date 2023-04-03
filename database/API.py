@@ -11,6 +11,8 @@ from flask_cors import CORS, cross_origin
 from algo_dev.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
 
+import values
+
 app = Flask(__name__)
 api = Api(app)
 cors = CORS(app)
@@ -84,12 +86,21 @@ def features_get_bar_graph():
     for feature in session.scalars(stmt):
         result.append(feature.as_dict())
 
+    state_abbreviated = result[0]['stusps']
+    state_name = values.state_abbreviations[state_abbreviated]
+
     field = request.args.get('field')
     b_val = request.args.get('bval')
-    
-    compare_floats_bar(result[0][field], int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    general_value = 0
+    if field == 'gdp': 
+        general_value = values.gdp_state[state_name]
+    elif field == 'population': 
+        general_value = values.population_state[state_name]
+    
+    compare_floats_bar(general_value, int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200sssssssssssssssssssssssssssssssssssssssssssssssssssss
 
 @app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
@@ -99,16 +110,24 @@ def features_get_pie_chart():
         Feature.serial_number.in_([serial_no])
     )
     result = []
-
     for feature in session.scalars(stmt):
         result.append(feature.as_dict())
 
+    state_abbreviated = result[0]['stusps']
+    state_name = values.state_abbreviations[state_abbreviated]
+
     field = request.args.get('field')
     b_val = request.args.get('bval')
-    
-    compare_floats_pie(result[0][field], int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
 
-    return 'Success', 200
+    general_value = 0
+    if field == 'gdp': 
+        general_value = values.gdp_state[state_name]
+    elif field == 'population': 
+        general_value = values.population_state[state_name]
+    
+    compare_floats_pie(general_value, int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
