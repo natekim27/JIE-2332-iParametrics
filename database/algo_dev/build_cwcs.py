@@ -24,3 +24,23 @@ def build_dataset():
     X= dataset[COLUMNS] 
     Y= dataset[['CWCS']]  
     return X, Y
+
+def process_input(X_input):
+    df = pd.DataFrame(X_input, COLUMNS)
+    return df 
+
+def logistic_regression_prediction(X_input):
+    X, Y = build_dataset()
+    logreg = LogisticRegression(max_iter = 10000)
+    logreg.fit(X, Y)
+    X_processed_input = process_input(X_input)
+    Y_pred = logreg.predict(X_processed_input)
+    return Y_pred
+
+def svc_prediction(X_input):
+    X, Y = build_dataset()
+    model_svc = SVC()
+    model_svc.fit(X, Y)
+    X_processed_input = process_input(X_input)
+    Y_pred = model_svc.predict(X_processed_input)
+    return Y_pred
