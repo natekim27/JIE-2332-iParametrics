@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
+import { Button } from 'react-bootstrap';
 
 const CommunitySearchPage = () => {
     const [message, setMessage] = useState("");
