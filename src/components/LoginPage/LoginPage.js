@@ -12,7 +12,7 @@ class LoginPage extends Component {
         <div className="LoginPage">
           <LoginForm />
         </div>
-      </div> 
+      </div>
     );
   }
 }

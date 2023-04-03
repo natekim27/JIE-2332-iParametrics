@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 import './LoginPage.css';
@@ -40,6 +40,9 @@ const LoginForm = () => {
   const navigate = useNavigate();
     return (
       <div>
+        <div style={div1Style}>
+          <h2>iParametrics</h2>
+        </div>
         <div style={div1Style}>
           <h4><b>Community Willingness and Capability Score</b></h4>
         </div>
