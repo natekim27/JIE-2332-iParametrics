@@ -1,0 +1,22 @@
+.CommunityCompareSearch {
+    padding-top: 1%;
+}
+
+.flexbox-container1 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: center;
+    padding-bottom: 1%;
+}
+
+.search-container {
+    position:relative;
+    width:95%;
+    height:auto;
+}
+
+.button{ 
+	padding-left: 2%;
+} 
