@@ -1,0 +1,69 @@
+.CommunityComparePage {
+    background-color: #D0D0CE;
+    padding: 1%;
+}
+
+.cwcs-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    align-items: stretch;
+    padding: 1%;
+    gap: 1%;
+    justify-content: space-between;
+    flex-basis: 0;
+}
+
+.flexbox-container-2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: stretch;
+    padding: 1%;
+    gap: 1%;
+    justify-content: space-between;
+    flex-basis: 0;
+}
+
+.cwcs {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+.factors {
+    justify-content: left;
+    margin-top: 5%;
+}
+
+.gillsans {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #000;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #D0D0CE;
+}
+
+.table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table th {
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+
+.table td {
+  border: 1px solid black;
+}
