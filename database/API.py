@@ -8,6 +8,8 @@ from connection import get_azure_engine
 from models import Feature, Account
 from flask_cors import CORS, cross_origin
 
+from compare_image import compare_floats_bar, compare_floats_pie
+
 app = Flask(__name__)
 api = Api(app)
 cors = CORS(app)
@@ -40,6 +42,77 @@ def features_get_by_sno():
         result.append(feature.as_dict())
     
     return result, 200
+
+#Returns a bar graph comparing a community's stat with a state average stat
+#URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<serial_number>&field=<field>&bval=<b_value>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number, field, b_value
+#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+@app.route('/features/get-bar-graph', methods=['GET'])
+@cross_origin()
+def features_get_bar_graph():
+    serial_no = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_no])
+    )
+    result = []
+
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+
+    state_abbreviated = result[0]['stusps']
+    state_name = values.state_abbreviations[state_abbreviated]
+
+    field = request.args.get('field')
+    b_val = request.args.get('bval')
+
+    general_value = 0
+    if field == 'gdp': 
+        general_value = values.gdp_state[state_name]
+    elif field == 'population': 
+        general_value = values.population_state[state_name]
+    
+    compare_floats_bar(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+
+#Returns a pie chart comparing a community's stat with a state average stat
+#URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+#Request format: None 
+#Response format: JSON
+#No authentication 
+#Rate limited: No 
+#Parameters - serial number, field, b_value
+#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+@app.route('/features/get-pie-chart', methods=['GET'])
+@cross_origin()
+def features_get_pie_chart():
+    serial_no = request.args.get('sno')
+    stmt = select(Feature).where(
+        Feature.serial_number.in_([serial_no])
+    )
+    result = []
+    for feature in session.scalars(stmt):
+        result.append(feature.as_dict())
+
+    state_abbreviated = result[0]['stusps']
+    state_name = values.state_abbreviations[state_abbreviated]
+
+    field = request.args.get('field')
+    b_val = request.args.get('bval')
+
+    general_value = 0
+    if field == 'gdp': 
+        general_value = values.gdp_state[state_name]
+    elif field == 'population': 
+        general_value = values.population_state[state_name]
+    
+    compare_floats_pie(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
