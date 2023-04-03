@@ -7,7 +7,7 @@ import './EditCommunityDetailsPage.css';
 class EditCommunityDetailsPage extends Component {
   render() {
     return (
-      <div>
+      <div className='font-face-gs'>
         <HeaderBanner header={"Edit Community Details"}/>
         <div className="EditCommunityDetailsPage">
           <EditCommunityDetailsForm />

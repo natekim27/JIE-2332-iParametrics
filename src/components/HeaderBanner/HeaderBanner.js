@@ -11,7 +11,7 @@ const HeaderBanner = ({header}) => {
             <div className='garamond'>
                 <img src={iPlogo_white}></img>
             </div>
-            {header ? <div className="gill-sans"><h4>{header}</h4></div> : <></>}
+            {header ? <div className="font-face-gs"><h4>{header}</h4></div> : <></>}
         </div>
     );
 };

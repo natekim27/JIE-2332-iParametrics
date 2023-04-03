@@ -7,7 +7,7 @@ import './LoginPage.css';
 class LoginPage extends Component {
   render() {
     return (
-      <div>
+      <div className='font-face-gs'>
         <HeaderBanner />
         <div className="LoginPage">
           <LoginForm />

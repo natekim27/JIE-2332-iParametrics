@@ -7,7 +7,7 @@ import './AddCommunityPage.css';
 class AddCommunityPage extends Component {
   render() {
     return (
-      <div>
+      <div className='font-face-gs'>
         <HeaderBanner header={"Add a Community"}/>
         <div className="AddCommunityPagePage">
           <AddCommunityForm />

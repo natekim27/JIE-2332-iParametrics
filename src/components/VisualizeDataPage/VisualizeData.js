@@ -73,7 +73,7 @@ const VisualizeData = () => {
       
 
     return (
-        <div className='gillsans'>
+        <div className='font-face-gs'>
             <div className='grid-container'>
                 <div className='grid-item'>
                     <img src={imageList[8]}></img>

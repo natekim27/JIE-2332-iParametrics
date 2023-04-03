@@ -176,7 +176,7 @@ const CommunityCompareDetails = () => {
     console.log(community1);
     
     return (
-        <div className='gillsans'>
+        <div className='font-face-gs'>
             <h4>{community1 && community1[0].name}, {community1 && community1[0].stusps} and {community2 && community2[0].name}, {community2 && community2[0].stusps}</h4>
             <Table className='table'>
                 <thead>

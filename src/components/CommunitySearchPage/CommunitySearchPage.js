@@ -60,7 +60,7 @@ const CommunitySearchPage = () => {
         });
     }, [populationChoice]);    
     return(
-        <div>
+        <div className='font-face-gs'>
             <HeaderBanner header={"Community Search"}/>        
             <div className='CommunitySearchPage'>
                 <div className="flexbox-container1">

@@ -8,3 +8,9 @@ body {
   font-family: sans-serif;
   height: 100%;
 }
+
+@font-face {
+  font-family: "GillSans";
+  src: local("GillSans"),
+   url("./fonts/gillsans.ttf") format("truetype");
+}

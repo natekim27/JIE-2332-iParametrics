@@ -4,9 +4,12 @@
     background-size: cover;
     align-items: center;
     justify-content: center;
-    color: #fff;
     margin-top: 7.3%;
     padding-top: 1%;
+}
+
+body {
+    color: black;
 }
 
 .gillsans {
