@@ -1,6 +1,6 @@
-.CommunityPage {
+.CommunityComparePage {
     background-color: #D0D0CE;
-    padding-top: 1%;
+    padding: 1%;
 }
 
 .cwcs-container {
@@ -49,4 +49,21 @@
 .gillsans {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #000;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #D0D0CE;
+}
+
+.table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table th {
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+
+.table td {
+  border: 1px solid black;
 }

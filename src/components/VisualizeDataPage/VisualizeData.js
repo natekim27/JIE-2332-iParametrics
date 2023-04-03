@@ -88,7 +88,6 @@ const VisualizeData = () => {
                     <img src={imageList[7]}></img>
                 </div>
             </div>
-
             <div className='flexbox-container'>
                 <div style={buttonStyle}>
                     <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>

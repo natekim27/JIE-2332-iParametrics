@@ -3,14 +3,12 @@ import TextField from "@mui/material/TextField";
 
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import './CommunitySearchPage.css';
-import CommunityTable from './CommunityTable';
+import './CommunityCompareSearch.css';
+import CommunityCompareTable from './CommunityCompareTable';
 import HeaderBanner from '../HeaderBanner/HeaderBanner';
-import { Button } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router';
 
-const CommunitySearchPage = () => {
-    const navigate = useNavigate();
+const CommunityCompareSearch = () => {
     const [message, setMessage] = useState("");
     const [inputText, setInputText] = useState("");
     const [tableData, setTableData] = useState([]);
@@ -61,8 +59,8 @@ const CommunitySearchPage = () => {
     }, [populationChoice]);    
     return(
         <div>
-            <HeaderBanner header={"Community Search"}/>        
-            <div className='CommunitySearchPage'>
+            <HeaderBanner header={"Compare Communities"}/>        
+            <div className='CommunityCompareSearch'>
                 <div className="flexbox-container1">
                     <div className="search-container">
                         <div className="search">
@@ -87,16 +85,11 @@ const CommunitySearchPage = () => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <div className="button">
-                        <Button variant="outline-secondary" type="submit" style={{ width: "120px" }} onClick={() => navigate(`/addCommunity`, { replace: true })}>
-                            Add County
-                        </Button>
-                    </div>
                 </div>
-                <CommunityTable columns={columns} data={tableData} input={inputText} />             
+                <CommunityCompareTable columns={columns} data={tableData} input={inputText} />             
             </div>
         </div>
     );
 }
 
-export default CommunitySearchPage;
+export default CommunityCompareSearch;

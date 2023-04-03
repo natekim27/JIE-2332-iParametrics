@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HeaderBanner from '../HeaderBanner/HeaderBanner';
 import CommunityDetails from './CommunityDetails';
 
 import './CommunityPage.css';
@@ -6,9 +7,11 @@ import './CommunityPage.css';
 class CommunityPage extends Component {
   render() {
     return (
-      <div className="CommunityPage">
-        <h1>Community</h1>
-        <CommunityDetails />
+      <div>
+        <HeaderBanner header={"Community"}/>
+        <div className="CommunityPage">
+          <CommunityDetails />
+        </div>
       </div>
     );
   }

@@ -82,6 +82,7 @@ def features_get_bar_graph():
         Feature.serial_number.in_([serial_no])
     )
     result = []
+
     for feature in session.scalars(stmt):
         result.append(feature.as_dict())
 
@@ -99,11 +100,11 @@ def features_get_bar_graph():
     
     compare_floats_bar(general_value, int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200sssssssssssssssssssssssssssssssssssssssssssssssssssss
 
-@app.route('/features/get-pie-graph', methods=['GET'])
+@app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
-def features_get_pie_graph():
+def features_get_pie_chart():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
         Feature.serial_number.in_([serial_no])
