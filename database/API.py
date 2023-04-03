@@ -103,7 +103,7 @@ def features_get_bar_graph():
 
 @app.route('/features/get-pie-graph', methods=['GET'])
 @cross_origin()
-def features_get_bar_graph():
+def features_get_pie_graph():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
         Feature.serial_number.in_([serial_no])
