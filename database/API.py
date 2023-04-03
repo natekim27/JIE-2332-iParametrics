@@ -9,6 +9,7 @@ from models import Feature, Account
 from flask_cors import CORS, cross_origin
 
 from compare_image import compare_floats_bar, compare_floats_pie
+import values
 
 app = Flask(__name__)
 api = Api(app)
