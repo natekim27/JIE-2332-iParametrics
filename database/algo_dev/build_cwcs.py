@@ -44,3 +44,20 @@ def svc_prediction(X_input):
     X_processed_input = process_input(X_input)
     Y_pred = model_svc.predict(X_processed_input)
     return Y_pred
+
+def dt_classifier_prediction(X_input):
+    X, Y = build_dataset()
+    model_dt = DecisionTreeClassifier(max_depth = 50)
+    model_dt.fit(X, Y)
+    X_processed_input = process_input(X_input)
+    Y_pred = model_dt.predict(X_processed_input)
+    return Y_pred
+
+def random_forest_regression_prediction(X_input):
+    X, Y = build_dataset()
+    model = RandomForestRegressor(n_estimators=200, random_state=42)
+    model.fit(X, Y)
+    X_processed_input = process_input(X_input).transpose()
+    Y_pred = model.predict(X_processed_input)
+    Y_pred = [round(y_pred) for y_pred in Y_pred]
+    return Y_pred
