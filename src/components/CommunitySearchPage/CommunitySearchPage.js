@@ -7,7 +7,6 @@ import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import HeaderBanner from '../HeaderBanner/HeaderBanner';
 
 const CommunitySearchPage = () => {
     const navigate = useNavigate();
@@ -50,41 +49,39 @@ const CommunitySearchPage = () => {
         });
     }, []);
     return(
-        <div className='font-face-gs'>
-            <HeaderBanner header={"Community Search"}/>        
-            <div className='CommunitySearchPage'>
-                <div className="flexbox-container1">
-                    <div className="search-container">
-                        <div className="search">
-                            <TextField
-                            id="outlined-basic"
-                            onChange={inputHandler}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
-                            />
-                        </div>
+        <div className='CommunitySearchPage'>
+            <h1>Community Search</h1>
+            <div className="flexbox-container1">
+                <div className="search-container">
+                    <div className="search">
+                        <TextField
+                        id="outlined-basic"
+                        onChange={inputHandler}
+                        variant="outlined"
+                        fullWidth
+                        label="Search"
+                        />
                     </div>
-                    <div className="button">
-                        <Dropdown>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                Population
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">&lt; 10,000</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">10,000 - 100,000</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">&gt; 100,000</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <div className="button">
+                </div>
+                <div className="button">
+                    <Dropdown>
+                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                            Population
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1">&lt; 10,000</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">10,000 - 100,000</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">&gt; 100,000</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+                <div className="button">
                         <Button variant="outline-secondary" type="submit" style={{ width: "120px" }} onClick={() => navigate(`/addCommunity`, { replace: true })}>
                             Add County
                         </Button>
-                    </div>
                 </div>
-                <CommunityTable columns={columns} data={tableData} input={inputText} />             
             </div>
+            <CommunityTable columns={columns} data={tableData} input={inputText} />             
         </div>
     );
 }
