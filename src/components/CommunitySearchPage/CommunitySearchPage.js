@@ -72,6 +72,11 @@ const CommunitySearchPage = () => {
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
+                <div className="button">
+                        <Button variant="outline-secondary" type="submit" style={{ width: "120px" }} onClick={() => navigate(`/addCommunity`, { replace: true })}>
+                            Add County
+                        </Button>
+                </div>
             </div>
             <CommunityTable columns={columns} data={tableData} input={inputText} />             
         </div>
