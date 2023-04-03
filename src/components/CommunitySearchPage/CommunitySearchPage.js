@@ -5,8 +5,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import './CommunitySearchPage.css';
 import CommunityTable from './CommunityTable';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const CommunitySearchPage = () => {
+    const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const [inputText, setInputText] = useState("");
     const [tableData, setTableData] = useState([]);
