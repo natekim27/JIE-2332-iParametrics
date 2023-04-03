@@ -56,6 +56,7 @@ class Feature(Base):
    bric_resilience: Mapped[float]
    operating_ratio: Mapped[float]
    taxes: Mapped[float]
+   cwcs: Mapped[float]
 
 
    def as_dict(self):
@@ -64,6 +65,24 @@ class Feature(Base):
    def __init__(self, dict):
        for key in dict:
            setattr(self, key, dict[key])
+
+   def generate_cwcs_array_features(self):
+      arr = []
+      arr.append(self.gdp) if self.gdp else arr.append(0)
+      arr.append(self.taxes) if self.taxes else arr.append(0)
+      arr.append(self.population) if self.population else arr.append(0)
+      arr.append(self.em_employment) if self.em_employment else arr.append(0)
+      arr.append(self.high_comb_haz_res) if self.high_comb_haz_res else arr.append(0)
+      arr.append(self.high_comb_haz_com) if self.high_comb_haz_com else arr.append(0)
+      arr.append(self.college_univ) if self.college_univ else arr.append(0)
+      arr.append(self.nri) if self.nri else arr.append(0)
+      arr.append(self.avg_dem_pct) if self.avg_dem_pct else arr.append(0)
+      arr.append(self.higher_ed) if self.higher_ed else arr.append(0)
+      arr.append(self.avg_rep_pct) if self.avg_rep_pct else arr.append(0)
+      arr.append(self.voter_turn) if self.voter_turn else arr.append(0)
+      arr.append(self.broadband) if self.broadband else arr.append(0)
+      return arr
+      
 
 class Account(Base):
    __tablename__ = "account"
