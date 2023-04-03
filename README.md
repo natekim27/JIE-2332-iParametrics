@@ -37,6 +37,23 @@ The react-start script behind each command is located in ```package.json```.
 
 # Release Notes
 
+## Version 0.4.0
+### New Features
+- Created search page for community comparison
+- Created 'Compare Community' page to compare backing data of communities
+- Readjusted display of backing data in order of relevance to CWCS
+- Added extended data view
+- Improved ML algorithm accuracy
+- Added data visualization for community data through graphs
+- Created 'Add Community' page
+### Bug Fixes
+- Rerouted 'Add Community' button to the 'Add Community' page
+- Added units to data features
+- Renamed 'Region' to 'County'
+- Readjusted styling to follow iParametrics brand guide
+### Known Issues
+- Database values failing to show on M1 and M2 Macs
+
 ## Version 0.3.0
 ### New Features
 - Auto complete for login and create account
