@@ -51,6 +51,18 @@ const VisualizeData = () => {
       
                 await new Promise((resolve) => setTimeout(resolve, 100));
               }
+              for (let i = 0; i < fields.length; i++) {
+                const { name, value } = fields[i];
+                const response = await fetch(
+                  `http://127.0.0.1:5000/features/get-pie-chart?sno=${sno}&field=${name}&bval=${value}`
+                );
+                const blob = await response.blob();
+                const src = URL.createObjectURL(blob);
+                imageList.push(src);
+                setImageList(imageList);
+      
+                await new Promise((resolve) => setTimeout(resolve, 100));
+              }
             };
             fetchImage();
           })
@@ -64,7 +76,7 @@ const VisualizeData = () => {
         <div className='gillsans'>
             <div className='grid-container'>
                 <div className='grid-item'>
-                    <img src={imageList[0]}></img>
+                    <img src={imageList[8]}></img>
                 </div>
                 <div className='grid-item'>
                     <img src={imageList[1]}></img>

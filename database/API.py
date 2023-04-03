@@ -98,9 +98,9 @@ def features_get_bar_graph():
     elif field == 'population': 
         general_value = values.population_state[state_name]
     
-    compare_floats_bar(general_value, int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_bar(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200sssssssssssssssssssssssssssssssssssssssssssssssssssss
+    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 @app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
@@ -125,7 +125,7 @@ def features_get_pie_chart():
     elif field == 'population': 
         general_value = values.population_state[state_name]
     
-    compare_floats_pie(general_value, int(b_val), result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_pie(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
 
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 

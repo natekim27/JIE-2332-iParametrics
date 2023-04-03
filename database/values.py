@@ -49,9 +49,9 @@ population_state = {
     'West Virginia': 1795045,
     'Wisconsin': 5897473,
     'Wyoming': 576851
-}; 
+}
 
-// NOTE: unit is in billions of dollars
+# NOTE: unit is in billions of dollars
 gdp_state = {
     "Alabama": 194, 
     "Alaska": 54, 
@@ -103,7 +103,7 @@ gdp_state = {
     "West Virginia": 68, 
     "Wisconsin": 314, 
     "Wyoming": 36
-};
+}
 
 tax_state = {
     "Alabama": 23936700000,
@@ -156,7 +156,7 @@ tax_state = {
     "West Virginia": 5873000000,
     "Wisconsin": 32228300000,
     "Wyoming": 2239000000
-};
+}
 
 colleges_state = {
     "Alabama": 79,
@@ -210,7 +210,7 @@ colleges_state = {
     "West Virginia": 43,
     "Wisconsin": 100,
     "Wyoming": 7
-}; 
+}
 
 disaster_declarations_state = {
     "Alabama": 72,
@@ -265,7 +265,7 @@ disaster_declarations_state = {
     "West Virginia": 77,
     "Wisconsin": 58,
     "Wyoming": 31
-};
+}
 
 national_risk_index_state = {
     "Alabama": 4.44,
@@ -318,17 +318,70 @@ national_risk_index_state = {
     "West Virginia": 3.63,
     "Wisconsin": 3.51,
     "Wyoming": 3.1
-};
+}
 
-public_obligation_state_avg = 1077064892; 
+state_abbreviations = {
+    'AL': 'Alabama',
+    'AK': 'Alaska',
+    'AZ': 'Arizona',
+    'AR': 'Arkansas',
+    'CA': 'California',
+    'CO': 'Colorado',
+    'CT': 'Connecticut',
+    'DE': 'Delaware',
+    'FL': 'Florida',
+    'GA': 'Georgia',
+    'HI': 'Hawaii',
+    'ID': 'Idaho',
+    'IL': 'Illinois',
+    'IN': 'Indiana',
+    'IA': 'Iowa',
+    'KS': 'Kansas',
+    'KY': 'Kentucky',
+    'LA': 'Louisiana',
+    'ME': 'Maine',
+    'MD': 'Maryland',
+    'MA': 'Massachusetts',
+    'MI': 'Michigan',
+    'MN': 'Minnesota',
+    'MS': 'Mississippi',
+    'MO': 'Missouri',
+    'MT': 'Montana',
+    'NE': 'Nebraska',
+    'NV': 'Nevada',
+    'NH': 'New Hampshire',
+    'NJ': 'New Jersey',
+    'NM': 'New Mexico',
+    'NY': 'New York',
+    'NC': 'North Carolina',
+    'ND': 'North Dakota',
+    'OH': 'Ohio',
+    'OK': 'Oklahoma',
+    'OR': 'Oregon',
+    'PA': 'Pennsylvania',
+    'RI': 'Rhode Island',
+    'SC': 'South Carolina',
+    'SD': 'South Dakota',
+    'TN': 'Tennessee',
+    'TX': 'Texas',
+    'UT': 'Utah',
+    'VT': 'Vermont',
+    'VA': 'Virginia',
+    'WA': 'Washington',
+    'WV': 'West Virginia',
+    'WI': 'Wisconsin',
+    'WY': 'Wyoming'
+}
 
-hazard_obligation_national = 17.5; // note: this value is in billion dollars
+public_obligation_state_avg = 1077064892
 
-// gdp of the us in billions of dollars
-gdp_us = 23400; 
+hazard_obligation_national = 17.5 # note: this value is in billion dollars
 
-// population of the us
-population_us = 331000000; 
+# gdp of the us in billions of dollars
+gdp_us = 23400
+
+# population of the us
+population_us = 331000000
 
 
 
