@@ -52,10 +52,24 @@ const EditCommunityDetailsForm = () => {
     const [bric_environmental, setBricEnvironmental] = useState(filteredData[0] && filteredData[0].bric_environmental);
     const [bric_resilience, setBricResilience] = useState(filteredData[0] && filteredData[0].bric_resilience);
 
+    useEffect(() => {
+        fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
+            method: "GET",
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            setFilteredData(data);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            setMessage(err.message);
+        });
+    }, []);
+
     let handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await fetch(`http://127.0.0.1:5000/features/update`, {
+            const response = await fetch(`http://127.0.0.1:5000/features/update`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,30 +114,17 @@ const EditCommunityDetailsForm = () => {
                     bric_resilience: bric_resilience
                 }),
             });
-            if (res.status === 200) {
+            if (response.status === 200) {
                 console.log(message);
                 setMessage("Community updated successfully");
+                navigate(`/communityDetails/${filteredData[0].serial_number}`, { replace: true });
             } else {
-                setMessage("Some error occured");
+                setMessage("Some error occurred");
             }
         } catch (err) {
             console.log(err);
         }
     };
-
-    useEffect(() => {
-        fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
-            method: "GET",
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            setFilteredData(data);
-        })
-        .catch((err) => {
-            console.log(err.message);
-            setMessage(err.message);
-        });
-    }, []);
 
     return (
         <div>
