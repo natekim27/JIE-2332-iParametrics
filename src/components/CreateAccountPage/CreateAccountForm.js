@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Form, FormGroup, FormControl, Button, Modal } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const div1Style = {
   display: 'flex',
@@ -26,7 +27,9 @@ const buttonStyle = {
 };
 
 const CreateAccountForm = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const [message, setMessage] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -44,7 +47,7 @@ const CreateAccountForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
+      setMessage("Passwords do not match");
       setShowModal(true);
       return;
     }
@@ -61,31 +64,44 @@ const CreateAccountForm = () => {
         }),
     }).then(res => {
       if (res.status === 200) {
-        setErrorMessage("Login successful");
+        setMessage("Account created.");
         setShowModal(true);
-        navigate('/', {replace: true});
       } else {
-        console.log(res.status);
+        res.text().then(text => {
+          setMessage(text);
+          setShowModal(true);
+        });
       }
     }).catch(error => console.error(error));
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setErrorMessage("");
+    setMessage("");
   };
 
   return (
     <div>
-      <Modal show={showModal} onHide={closeModal}>
+      <Modal show={showModal} onHide={closeModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Error</Modal.Title>
+          {
+            message === "Account created."
+            ? <Modal.Title>Success</Modal.Title>
+            : <Modal.Title>Error</Modal.Title>
+          }
         </Modal.Header>
-        <Modal.Body>{errorMessage}</Modal.Body>
+        <Modal.Body>{message}</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            Close
-          </Button>
+          {message === "Account created." && (
+            <Button variant="primary" onClick={() => navigate('/', {replace: true})}>
+              Close
+            </Button>
+          )}
+          {message !== "Account created." && (
+            <Button variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
       <div style={div1Style}>

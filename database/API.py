@@ -242,17 +242,22 @@ def features_update_region():
     feats = feature.generate_cwcs_array_features()
     cwcs = random_forest_regression_prediction(feats)[0]
     setattr(feature, 'CWCS', cwcs)
-    session.commit()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        raise
 
     return feature.as_dict(), 200
 
 @app.route('/users/authenticate', methods=['POST'])
 @cross_origin()
 def authenticate():
-    json_data = request.get_json(force=True)
-    data = json.loads(json_data)
-    if ('username' and 'password' and 'user_type' in data.keys()) is False:
+    data = request.get_json(force=True)
+    if data['username'] == None or data['password'] == None or data['user_type'] == None:
         return 'Fill in all fields', 400
+    if data['username'] == "" or data['password'] == "":
+        return 'Fill in correct username and password', 400
     
     username = data['username']
     password = data['password']
@@ -268,12 +273,12 @@ def authenticate():
         account = obj
 
     if account is None:
-        return 400
+        return 'Account not found', 400
     
     if account.password == password and account.user_type == user_type:
-        return 200
+        return 'Success', 200
     else:
-        return 400
+        return 'Invalid Credentials', 400
     
 @app.route('/users/create-account', methods=['POST'])
 @cross_origin()
@@ -293,9 +298,13 @@ def users_create_account():
     if result:
         return 'Username already exists', 400
     new_account = Account(data)
-    session.add(new_account)
-    session.commit()
-    return 200
+    try:
+        session.add(new_account)
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    return 'Success', 200
 
 @app.route('/users/change-password', methods=['PUT'])
 @cross_origin()
@@ -311,7 +320,11 @@ def users_change_password():
         account = obj
 
     setattr(account, 'password', data['password'])
-    session.commit()
+    try:
+        session.commit()
+    except:
+        session.rollback()
+        raise
 
     return account.as_dict(), 200
 
