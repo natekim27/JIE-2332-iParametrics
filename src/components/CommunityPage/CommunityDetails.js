@@ -601,6 +601,11 @@ const CommunityDetails = () => {
                 </Button>
             </div>
             <div style={buttonStyle}>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityCompareSearch/${filteredData[0].serial_number}`, { replace: true })}>
+                    Compare Communities
+                </Button>
+            </div>
+            <div style={buttonStyle}>
                 <Button variant="outline-secondary" type="submit" onClick={handleDelete}>
                     Delete this Community
                 </Button>

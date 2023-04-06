@@ -51,4 +51,3 @@ def compare_floats_pie(a, b, community_name, average_name, axis_name, filepath):
 
     plt.tight_layout()
     plt.savefig(filepath)
-

@@ -1,3 +1,5 @@
+import React from 'react';
+import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
@@ -67,10 +69,13 @@ const LoginForm = () => {
     return (
       <div>
         <div style={div1Style}>
+          <h2>iParametrics</h2>
+        </div>
+        <div style={div1Style}>
           <h4><b>Community Willingness and Capability Score</b></h4>
         </div>
         <div style={div2Style}>
-            <Form className="LoginForm" id="loginForm" onSubmit={handleSubmit}>
+            <Form className="LoginForm" id="loginForm">
               <FormGroup>
                 <Form.Label>Username</Form.Label>
                 <FormControl type="username" placeholder="Username" autoComplete='username' onChange={(e) => setUsername(e.target.value)}/>
@@ -82,7 +87,7 @@ const LoginForm = () => {
                   </Button>
                 </div>
                 <div style={buttonStyle}>
-                  <Button color="white" variant="outline-secondary" onClick={() => navigate("/createAccount", { replace: true })}>
+                  <Button color="white" variant="outline-secondary" type="submit" onClick={() => navigate("/createAccount", { replace: true })}>
                     Create Account
                   </Button>
                 </div>

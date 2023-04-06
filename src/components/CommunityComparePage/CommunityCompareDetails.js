@@ -42,7 +42,6 @@ const CommunityCompareDetails = () => {
                 });
                 const data1 = await response1.json();
                 setCommunity1(data1);
-    
                 const response2 = await fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno2}`, {
                     method: "GET",
                 });
@@ -53,7 +52,6 @@ const CommunityCompareDetails = () => {
                 setMessage(err.message);
             }
         };
-    
         fetchData();
     }, [sno1, sno2]);
 
@@ -174,7 +172,6 @@ const CommunityCompareDetails = () => {
     };
 
     console.log(community1);
-    
     return (
         <div className='font-face-gs'>
             <h4>{community1 && community1[0].name}, {community1 && community1[0].stusps} and {community2 && community2[0].name}, {community2 && community2[0].stusps}</h4>

@@ -249,11 +249,10 @@ def features_update_region():
 @app.route('/users/authenticate', methods=['POST'])
 @cross_origin()
 def authenticate():
-    data = request.get_json(force=True)
-    if data['username'] == None or data['password'] == None or data['user_type'] == None:
+    json_data = request.get_json(force=True)
+    data = json.loads(json_data)
+    if ('username' and 'password' and 'user_type' in data.keys()) is False:
         return 'Fill in all fields', 400
-    if data['username'] == "" or data['password'] == "":
-        return 'Fill in correct username and password', 400
     
     username = data['username']
     password = data['password']
@@ -269,12 +268,12 @@ def authenticate():
         account = obj
 
     if account is None:
-        return 'Account not found', 400
+        return 400
     
     if account.password == password and account.user_type == user_type:
-        return 'Success', 200
+        return 200
     else:
-        return 'Invalid credentials', 400
+        return 400
     
 @app.route('/users/create-account', methods=['POST'])
 @cross_origin()
@@ -293,11 +292,10 @@ def users_create_account():
 
     if result:
         return 'Username already exists', 400
-
     new_account = Account(data)
     session.add(new_account)
     session.commit()
-    return 'Success', 200
+    return 200
 
 @app.route('/users/change-password', methods=['PUT'])
 @cross_origin()

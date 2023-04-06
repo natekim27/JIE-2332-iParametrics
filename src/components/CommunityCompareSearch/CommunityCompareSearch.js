@@ -44,7 +44,6 @@ const CommunityCompareSearch = () => {
         } else if (populationChoice == 3) {
             endpoint = "http://127.0.0.1:5000/features/get-by-population-range?min_pop=100000";
         }
-        
         fetch(endpoint, {
             method: "GET",
         })

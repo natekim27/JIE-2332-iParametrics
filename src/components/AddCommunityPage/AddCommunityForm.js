@@ -103,12 +103,15 @@ const AddCommunityForm = () => {
                     bric_resilience: bric_resilience
                 }),
             });
-            if (res.status === 200) {
-                console.log(message);
-                setMessage("Community updated successfully");
-            } else {
-                setMessage("Some error occured");
-            }
+            res.then(response => {
+                if (response.status === 200) {
+                  console.log(message);
+                  setMessage("Community updated successfully");
+                  navigate("/communitySearch", { replace: true });
+                } else {
+                  setMessage("Some error occurred");
+                }
+            });
         } catch (err) {
             console.log(err);
         }

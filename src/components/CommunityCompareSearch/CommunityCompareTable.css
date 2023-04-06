@@ -2,18 +2,15 @@
     margin: 0 auto;
     overflow: auto;
   }
-  
   .table {
     width: 100%;
     border-spacing: 0;
   }
-  
   .table th {
     padding: 8px 10px;
     border-bottom: 1px solid #1a1a1a;
     font-weight: bold;
   }
-  
   .table th.up {
     background-image: url("./images/up_arrow.png");
   }
@@ -28,7 +25,6 @@
     background-repeat: no-repeat;
     background-position: center right;
   }
-  
   .table td {
     border-top: 1px solid #ddd;
     padding: 8px 20px;
