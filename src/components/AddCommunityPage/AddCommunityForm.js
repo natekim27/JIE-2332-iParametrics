@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormControl, Button, FormSelect } from 'react-bootstrap';
+import { Form, FormControl, Button, FormSelect, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const buttonStyle = {
@@ -13,6 +13,7 @@ const buttonStyle = {
 const AddCommunityForm = () => {
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
     const [name, setName] = useState(null);
     const [namelsad, setNamelsad] = useState(null);
@@ -106,10 +107,13 @@ const AddCommunityForm = () => {
             res.then(response => {
                 if (response.status === 200) {
                   console.log(message);
-                  setMessage("Community updated successfully");
+                  setMessage("Community added successfully");
                   navigate("/communitySearch", { replace: true });
                 } else {
-                  setMessage("Some error occurred");
+                    response.text().then(text => {
+                        setMessage(text);
+                        setShowModal(true);
+                    });
                 }
             });
         } catch (err) {
@@ -117,8 +121,36 @@ const AddCommunityForm = () => {
         }
     };
 
+    const closeModal = () => {
+        setShowModal(false);
+        setMessage("");
+    };
+    
+
     return (
         <div>
+            <Modal show={showModal} onHide={closeModal} centered>
+                <Modal.Header closeButton>
+                {
+                    message === "Community added successfully"
+                    ? <Modal.Title>Success</Modal.Title>
+                    : <Modal.Title>Error</Modal.Title>
+                }
+                </Modal.Header>
+                <Modal.Body>{message}</Modal.Body>
+                <Modal.Footer>
+                {message === "Community added successfully" && (
+                    <Button variant="primary" onClick={() => navigate('/', {replace: true})}>
+                        Close
+                    </Button>
+                )}
+                {message !== "Community added successfully" && (
+                    <Button variant="secondary" onClick={closeModal}>
+                        Close
+                    </Button>
+                )}
+                </Modal.Footer>
+            </Modal>
             <Form className="container mt-3 mb-3" id="AddCommunityForm" onSubmit={handleSubmit}>
                 <Form.Label>Name</Form.Label>
                 <FormControl type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}/>

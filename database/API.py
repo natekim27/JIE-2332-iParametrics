@@ -178,7 +178,7 @@ def features_get_pie_chart():
 def features_create_region():
     data = request.get_json(force=True)
     if data['name'] == None or data['namelsad'] == None or data['stusps'] == None:
-        return 'Must provide name, namelsad and stusps to add new region', 400
+        return 'Must provide Name, Type of Community and State to add a new community', 400
     
     new_region = Feature(data)
     feats = new_region.generate_cwcs_array_features()
