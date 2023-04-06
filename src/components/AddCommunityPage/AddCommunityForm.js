@@ -108,7 +108,7 @@ const AddCommunityForm = () => {
                 if (response.status === 200) {
                   console.log(message);
                   setMessage("Community added successfully");
-                  navigate("/communitySearch", { replace: true });
+                  setShowModal(true);
                 } else {
                     response.text().then(text => {
                         setMessage(text);
@@ -140,7 +140,7 @@ const AddCommunityForm = () => {
                 <Modal.Body>{message}</Modal.Body>
                 <Modal.Footer>
                 {message === "Community added successfully" && (
-                    <Button variant="primary" onClick={() => navigate('/', {replace: true})}>
+                    <Button variant="primary" onClick={() => navigate("/communitySearch", { replace: true })}>
                         Close
                     </Button>
                 )}
