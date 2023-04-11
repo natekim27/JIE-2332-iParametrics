@@ -4,7 +4,6 @@ from shutil import rmtree
 
 from setuptools import find_packages, setup
 
-# Package meta-data.
 NAME = 'cwcs-app'
 DESCRIPTION = 'Data Visualization Tool for Disaster Relief Management'
 URL = 'https://github.com/natekim27/JIE-2332-iParametrics'
@@ -13,7 +12,6 @@ AUTHOR = 'iParametrics'
 REQUIRES_PYTHON = '>=3.7.0'
 VERSION = '0.1.0'
 
-# What packages are required for this module to be executed?
 REQUIRED = [
     'flask_cors',
     'flask',
@@ -28,7 +26,6 @@ REQUIRED = [
     'requests',
 ]
 
-# Where the magic happens:
 setup(
     name=NAME,
     version=VERSION,
@@ -38,12 +35,6 @@ setup(
     python_requires=REQUIRES_PYTHON,
     url=URL,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
-
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
     install_requires=REQUIRED,
     include_package_data=True,
     license='MIT',
