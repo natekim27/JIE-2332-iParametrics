@@ -2,7 +2,7 @@ import json
 import sys
 
 from flask import Flask, request, send_file
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Api
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from connection import get_azure_engine

@@ -1,5 +1,4 @@
 import textwrap
-import pyodbc
 import sqlalchemy as db
 import urllib
 
