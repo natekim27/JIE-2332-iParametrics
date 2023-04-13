@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, OverlayTrigger, Tooltip, Modal } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
@@ -154,6 +154,17 @@ const CommunityDetails = () => {
         fileType: 'text/csv',
         });
     };
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+    setOpen(true);
+    };
+
+    const handleClose = () => {
+    setOpen(false);
+    };
+
+    const cwcs = filteredData[0] && filteredData[0].cwcs;
 
     return (
         <div className='font-face-gs'>
@@ -190,16 +201,42 @@ const CommunityDetails = () => {
             </Card>
         </div>
         <div className="cwcs-container">
-            <Card sx={{ minWidth: 450 }}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        CWCS
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h4" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].cwcs, 0)}
-                    </Typography>
-                </CardContent>
+        <Card sx={{ minWidth: 450 }}>
+            <CardContent>
+                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+                    CWCS
+                    <OverlayTrigger
+                        placement="right"
+                        overlay={<Tooltip>Click for more information</Tooltip>}
+                    >
+                        <Button variant="link" onClick={handleOpen}>
+                        ⓘ
+                        </Button>
+                    </OverlayTrigger>
+                </Typography>
+                <Typography fontFamily='Gill Sans' variant="h4" component="div">
+                    {filteredData[0] && filteredData[0].cwcs}
+                </Typography>
+            </CardContent>
             </Card>
+            <Modal show={open} onHide={handleClose} centered>
+                <Modal.Header closeButton>
+                <Modal.Title>CWCS Information</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Community Willingness & Capability Score: This score is generated using 4 main factors which have the most correlation:</p>
+                    <ul><li>Hazard Mitigation Obligation (20%)</li>
+                    <li>Public Assistance Obligation (20%)</li>
+                    <li>Ratio of Total Revenues to Total Expenses (30%)</li>
+                    <li>Number of Federally Declared Major Disaster Declarations - 2003 to Present (30%)</li></ul>
+                    <p>We then use predictive machine learning modeling to generate the scores for the communities. This is a score you can use to quantify the suitability of a region to receive disaster relief funding.</p>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
         <div className='factors'>
             <h3>Backing Data</h3>
