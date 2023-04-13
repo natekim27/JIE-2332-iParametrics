@@ -14,15 +14,22 @@ const buttonStyle = {
 };
 
 function nFormatter(num, digits) {
+    if (num === 0 || num == null) return 0;
     const lookup = [
-      { value: 1, symbol: "" },
-      { value: 1e3, symbol: "K" },
-      { value: 1e6, symbol: "M" }
+        { value: 1, symbol: "" },
+        { value: 1e3, symbol: "K" },
+        { value: 1e6, symbol: "M" },
+        { value: 1e9, symbol: "B" }
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
-      return num >= item.value;
+        return num >= item.value;
     });
+    if (Math.abs(num) < 1e-3) {
+        const exponent = Math.floor(Math.log10(Math.abs(num)));
+        const mantissa = (num * Math.pow(10, -exponent)).toFixed(digits);
+        return mantissa + "E" + exponent;
+    }
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
 
@@ -244,8 +251,8 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>Built Environment</td>
-                        <td>{community1 && nFormatter(community1[0].pa, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].pa, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].built_environment, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].built_environment, 2)}%</td>
                     </tr>
                     {extendedView ? <>
                     <tr>
@@ -325,8 +332,8 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>Income Stability</td>
-                        <td>{community1 && community1[0].income_stability}</td>
-                        <td>{community2 && community2[0].income_stability}</td>
+                        <td>{community1 && nFormatter(community1[0].income_stability, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].income_stability, 2)}</td>
                     </tr>
                     <tr>
                         <td>Broadband Subscription</td>
