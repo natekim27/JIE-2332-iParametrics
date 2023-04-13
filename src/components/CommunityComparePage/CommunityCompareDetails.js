@@ -244,8 +244,8 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>Built Environment</td>
-                        <td>{community1 && nFormatter(community1[0].pa, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].pa, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].built_environment, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].built_environment, 2)}%</td>
                     </tr>
                     {extendedView ? <>
                     <tr>

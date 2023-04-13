@@ -241,7 +241,7 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>Built Environment</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].pa, 2)}%</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].built_environment, 2)}%</td>
                 </tr>
                 {extendedView ? <>
                 <tr>
