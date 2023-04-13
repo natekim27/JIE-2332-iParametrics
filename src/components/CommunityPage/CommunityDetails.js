@@ -17,15 +17,22 @@ const buttonStyle = {
 };
 
 function nFormatter(num, digits) {
+    if (num === 0) return "0";
     const lookup = [
-      { value: 1, symbol: "" },
-      { value: 1e3, symbol: "K" },
-      { value: 1e6, symbol: "M" }
+        { value: 1, symbol: "" },
+        { value: 1e3, symbol: "K" },
+        { value: 1e6, symbol: "M" },
+        { value: 1e9, symbol: "B" }
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
-      return num >= item.value;
+        return num >= item.value;
     });
+    if (Math.abs(num) < 1e-3) {
+        const exponent = Math.floor(Math.log10(Math.abs(num)));
+        const mantissa = (num * Math.pow(10, -exponent)).toFixed(digits);
+        return mantissa + "E" + exponent;
+    }
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
 
@@ -241,7 +248,7 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>Built Environment</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].pa, 2)}%</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].built_environment, 2)}%</td>
                 </tr>
                 {extendedView ? <>
                 <tr>
@@ -314,7 +321,7 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>BRIC Social Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_social}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_social, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Economic Sub-Index Score</td>
