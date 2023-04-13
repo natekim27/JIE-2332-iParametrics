@@ -284,9 +284,10 @@ def authenticate():
 @cross_origin()
 def users_create_account():
     data = request.get_json(force=True)
-    if ('username' and 'password' and 'user_type' in data.keys()) is False:
-        return {'Message': 'Must provide name, password and user type to add new region', 
-                'Code': 400}
+    if data['username'] == None or data['password'] == None or data['user_type'] == None:
+        return 'Fill in all fields', 400
+    if data['username'] == "" or data['password'] == "":
+        return 'Fill in correct username and password', 400
     stmt = select(Account).where(
         (Account.username.in_([data['username']]))
     )
