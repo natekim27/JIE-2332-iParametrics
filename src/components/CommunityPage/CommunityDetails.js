@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
@@ -197,380 +197,152 @@ const CommunityDetails = () => {
         <div className='factors'>
             <h3>Backing Data</h3>
         </div>
-        <div className='flexbox-container-2'>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Public Assistance Obligations
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].pa, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Hazard Mitigation Obligations
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                ${filteredData[0] && nFormatter(filteredData[0].hm, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    GDP
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].gdp * 1000, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Taxes
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    ${filteredData[0] && nFormatter(filteredData[0].taxes, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-        </div>
-        <div className='flexbox-container-2'>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Population
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].population, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    EM Directors Employment
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].em_employment}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Colleges / Universities
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].college_univ != null ? filteredData[0].college_univ : 0}
-                </Typography>
-            </CardContent>
-            </Card>
-        </div>
-        <div className='flexbox-container-2'>            
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Major Disaster Declarations
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].declarations}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Resistant Commercial Buildings
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].high_comb_haz_com}%
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    National Risk Index
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].nri, 2)}
-                </Typography>
-            </CardContent>
-            </Card>
-            <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-            <CardContent>
-                <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Built Environment
-                </Typography>
-                <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && nFormatter(filteredData[0].built_environment, 2)}%
-                </Typography>
-            </CardContent>
-            </Card>
-        </div>
-        {extendedView ? <>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Average Democratic Votes
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].avg_dem_pct, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    Average Republican Votes
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {nFormatter(filteredData[0] && filteredData[0].avg_rep_pct, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Resistant Residential Buildings
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].high_comb_haz_res}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Broadband Subscription
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].broadband, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Hazard Mitigation Plan Status
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].hm_plan_status}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        CDC Social Vulnerability Index
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].cdc_svi}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        HVRI Social Responsibility Index
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].hvri_sovi}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Operating Ratio
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].operating_ratio, 2)}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        EM Directors Employment / 1000 Jobs
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].em_employment_per}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        EM Directors Location Quotient
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                    {filteredData[0] && filteredData[0].em_lq}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        NCHS Urban-Rural Classification Scheme
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].urban_rural}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Higher Education
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].higher_ed, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Above Poverty Line
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Health Insurance
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].health_insurance, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Voter Turnout (2020)
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].voter_turn, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Population Change (2010-2020)
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        Income Stability
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].income_stability}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Social Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_social}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Economic Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_econ}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Housing/Infrastructure Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_house}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Community Capital Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_community}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            <div className='flexbox-container-2'>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Institutional Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_institutional}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Environmental Sub-Index Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_environmental}
-                    </Typography>
-                </CardContent>
-                </Card>
-                <Card sx={{ width: 450 }} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'column'}}>
-                <CardContent>
-                    <Typography fontFamily='Gill Sans' sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                        BRIC Resilience Score
-                    </Typography>
-                    <Typography fontFamily='Gill Sans' variant="h5" component="div">
-                        {filteredData[0] && filteredData[0].bric_resilience}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-        </>
-        : null
-        }
+        <Table className='table'>
+            <tbody>
+                <tr>
+                    <td>Public Assistance Obligations</td>
+                    <td>${filteredData[0] && nFormatter(filteredData[0].pa, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Hazard Mitigation Obligations</td>
+                    <td>${filteredData[0] && nFormatter(filteredData[0].hm, 2)}</td>
+                </tr>
+                <tr>
+                    <td>GDP</td>
+                    <td>${filteredData[0] && nFormatter(filteredData[0].gdp * 1000, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Taxes</td>
+                    <td>${filteredData[0] && nFormatter(filteredData[0].taxes, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Population</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].population, 2)}</td>
+                </tr>
+                <tr>
+                    <td>EM Directors Employment</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].em_employment, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Colleges / Universities</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].college_univ, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Major Disaster Declarations</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].declarations, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Resistant Commercial Buildings</td>
+                    <td>{filteredData[0] && filteredData[0].high_comb_haz_com}%</td>
+                </tr>
+                <tr>
+                    <td>National Risk Index</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].nri, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Built Environment</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].pa, 2)}%</td>
+                </tr>
+                {extendedView ? <>
+                <tr>
+                    <td>Average Democratic Percentage</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].avg_dem_pct, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Average Republican Percentage</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].avg_rep_pct, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Resistant Residential Buildings</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].high_comb_haz_res, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Hazard Mitigation Plan Status</td>
+                    <td>{filteredData[0] && filteredData[0].hm_plan_status}</td>
+                </tr>
+                <tr>
+                    <td>CDC Social Vulnerability Index</td>
+                    <td>{filteredData[0] && filteredData[0].cdc_svi}</td>
+                </tr>
+                <tr>
+                    <td>HVRI Social Responsibility Index</td>
+                    <td>{filteredData[0] && filteredData[0].hvri_sovi}</td>
+                </tr>
+                <tr>
+                    <td>Operating Ratio</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].operating_ratio, 2)}</td>
+                </tr>
+                <tr>
+                    <td>EM Directors Employment / 100 Jobs</td>
+                    <td>{filteredData[0] && filteredData[0].em_employment_per}</td>
+                </tr>
+                <tr>
+                    <td>EM Directors Location Quotient</td>
+                    <td>{filteredData[0] && filteredData[0].em_lq}</td>
+                </tr>
+                <tr>
+                    <td>NCHS Urban-Rural Classification Scheme</td>
+                    <td>{filteredData[0] && filteredData[0].urban_rural}</td>
+                </tr>
+                <tr>
+                    <td>Higher Education</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].higher_ed, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Health Insurance</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].health_insurance, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Voter Turnout (2020)</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].voter_turn, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Above Poverty Line</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Population Change (2010-2020)</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>Income Stability</td>
+                    <td>{filteredData[0] && filteredData[0].income_stability}</td>
+                </tr>
+                <tr>
+                    <td>Broadband Subscription</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].broadband, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>BRIC Social Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_social}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Economic Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_econ}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Housing/Infrastructure Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_house}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Community Capital Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_community}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Institutional Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_institutional}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Environmental Sub-Index Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_environmental}</td>
+                </tr>
+                <tr>
+                    <td>BRIC Resilience Score</td>
+                    <td>{filteredData[0] && filteredData[0].bric_resilience}</td>
+                </tr>
+                </> : null}
+            </tbody>
+        </Table>
         <div className="d-flex justify-content-center align-items-center">
             <div style={buttonStyle}>
                 {
