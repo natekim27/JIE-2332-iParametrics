@@ -120,14 +120,33 @@ def features_get_bar_graph():
 
     field = request.args.get('field')
     b_val = request.args.get('bval')
+    is_national = request.args.get('national')
 
     general_value = 0
-    if field == 'gdp': 
+    if field == 'gdp':  
         general_value = values.gdp_state[state_name]
+        if is_national == 'true': general_value = values.gdp_national
     elif field == 'population': 
         general_value = values.population_state[state_name]
+        if is_national == 'true': general_value = values.population_average_county
+    elif field == 'nri': 
+        general_value = values.national_risk_index_state[state_name]
+    elif field == 'taxes': 
+        general_value = values.tax_state[state_name]
+        if is_national == 'true': general_value = values.tax_national
+    elif field == 'college_univ': 
+        general_value = values.colleges_state[state_name]
+        if is_national == 'true': general_value = values.college_national
+    elif field == 'declarations': 
+        general_value = values.disaster_declarations_state[state_name]
+    elif field == 'pa': 
+        general_value = values.public_obligation_state_avg
+    elif field == 'hm': 
+        general_value = values.hazard_obligation_national
     
-    compare_floats_bar(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+    average_marker = 'State' 
+    if is_national == 'true': average_marker = 'National'
+    compare_floats_bar(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
 
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
@@ -155,14 +174,33 @@ def features_get_pie_chart():
 
     field = request.args.get('field')
     b_val = request.args.get('bval')
+    is_national = request.args.get('national')
 
     general_value = 0
-    if field == 'gdp': 
+    if field == 'gdp':  
         general_value = values.gdp_state[state_name]
+        if is_national == 'true': general_value = values.gdp_national
     elif field == 'population': 
         general_value = values.population_state[state_name]
+        if is_national == 'true': general_value = values.population_average_county
+    elif field == 'nri': 
+        general_value = values.national_risk_index_state[state_name]
+    elif field == 'taxes': 
+        general_value = values.tax_state[state_name]
+        if is_national == 'true': general_value = values.tax_national
+    elif field == 'college_univ': 
+        general_value = values.colleges_state[state_name]
+        if is_national == 'true': general_value = values.college_national
+    elif field == 'declarations': 
+        general_value = values.disaster_declarations_state[state_name]
+    elif field == 'pa': 
+        general_value = values.public_obligation_state_avg
+    elif field == 'hm': 
+        general_value = values.hazard_obligation_national
     
-    compare_floats_pie(int(b_val), general_value, result[0]['name'], 'State Average', field, './images/' + result[0]['name'] + '_' + field)
+    average_marker = 'State' 
+    if is_national == 'true': average_marker = 'National'
+    compare_floats_pie(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
 
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
