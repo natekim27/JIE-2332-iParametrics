@@ -24,6 +24,7 @@ REQUIRED = [
     'pandas',
     'matplotlib',
     'requests',
+    'pyodbc',
 ]
 
 setup(
