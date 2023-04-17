@@ -436,6 +436,8 @@ disaster_declarations_state = {
     "Wyoming": 31
 }
 
+disaster_declarations_national = 69
+
 disaster_declarations_state_county = {
     "Alabama": 1,
     "Alaska": 1,
@@ -544,6 +546,8 @@ national_risk_index_state = {
     "Wyoming": 3.1
 }
 
+national_risk_index_national = 3.99
+
 state_abbreviations = {
     'AL': 'Alabama',
     'AK': 'Alaska',
@@ -599,10 +603,10 @@ state_abbreviations = {
 
 public_obligation_state_avg = 1077064892
 
-hazard_obligation_national = 17.5 # note: this value is in billion dollars
+hazard_obligation_national = 1750000000 # note: this value is in billion dollars
 
 # gdp of the us in billions of dollars
-gdp_us = 23400
+gdp_us = 2340000000000
 
 # population of the us
 population_us = 331000000

@@ -31,7 +31,6 @@ const VisualizeData = (props) => {
         })
           .then((response) => response.json())
           .then(async (data) => {
-      
             const fields = [
               { name: "population", value: data[0]["population"] || 0  },
               { name: "gdp", value: data[0]["gdp"] || 0  },
@@ -92,7 +91,7 @@ const VisualizeData = (props) => {
                     <img src={imageList[2]}></img>
                 </div>
                 <div className='grid-item'>
-                    <img src={imageList[3]}></img>
+                    <img src={imageList[11]}></img>
                 </div>
                 <div className='grid-item'>
                     <img src={imageList[4]}></img>
