@@ -12,11 +12,18 @@ const buttonStyle = {
   flexDirection: 'row',
 };
 
-const VisualizeData = () => {
+const VisualizeData = (props) => {
     const navigate = useNavigate();
     const { sno } = useParams();
 
     const [imageList, setImageList] = useState(''); 
+
+    // const [isNational, setNational] = useState(false); 
+
+    // const handleSliderChange = () => {
+    //   setNational(!isNational);
+    //   window.location.reload();
+    // };
     
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
@@ -42,26 +49,26 @@ const VisualizeData = () => {
               for (let i = 0; i < fields.length; i++) {
                 const { name, value } = fields[i];
                 const response = await fetch(
-                  `http://127.0.0.1:5000/features/get-bar-graph?sno=${sno}&field=${name}&bval=${value}`
+                  `http://127.0.0.1:5000/features/get-bar-graph?sno=${sno}&field=${name}&bval=${value}&national=${props.isNational}`
                 );
                 const blob = await response.blob();
                 const src = URL.createObjectURL(blob);
                 imageList.push(src);
                 setImageList(imageList);
       
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
               }
               for (let i = 0; i < fields.length; i++) {
                 const { name, value } = fields[i];
                 const response = await fetch(
-                  `http://127.0.0.1:5000/features/get-pie-chart?sno=${sno}&field=${name}&bval=${value}`
+                  `http://127.0.0.1:5000/features/get-pie-chart?sno=${sno}&field=${name}&bval=${value}&national=${props.isNational}`
                 );
                 const blob = await response.blob();
                 const src = URL.createObjectURL(blob);
                 imageList.push(src);
                 setImageList(imageList);
       
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
               }
             };
             fetchImage();
@@ -101,6 +108,11 @@ const VisualizeData = () => {
                 </div>
             </div>
             <div className='flexbox-container'>
+                {/* <div style={buttonStyle}>
+                    <Button variant="outline-secondary" type="submit" onClick={() => handleSliderChange()}>
+                        Toggle National
+                    </Button>
+                </div> */}
                 <div style={buttonStyle}>
                     <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
                         Back to Search

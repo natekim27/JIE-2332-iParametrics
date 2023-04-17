@@ -1,9 +1,17 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 # a is the instance value and b the population value
 # axis name is just the name of the value we are comparing, for instance GDP
 # filepath is the output path of the png image of the graph
 def compare_floats_bar(a, b, community_name, average_name, axis_name, filepath):
+    # if np.isnan(a):
+    #     a = 0
+    # if np.isnan(b):
+    #     b = 0
+
+    if axis_name == 'nri': b = int(b)
+
     diff = abs(a - b)
     fig, ax = plt.subplots()
 
@@ -28,6 +36,11 @@ def compare_floats_bar(a, b, community_name, average_name, axis_name, filepath):
     plt.savefig(filepath)
 
 def compare_floats_pie(a, b, community_name, average_name, axis_name, filepath):
+    # if np.isnan(a):
+    #     a = 0
+    # if np.isnan(b):
+    #     b = 0
+
     diff = abs(a - b)
     fig, ax = plt.subplots()
 

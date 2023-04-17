@@ -51,6 +51,8 @@ population_state = {
     'Wyoming': 576851
 }
 
+population_average_county = 105189
+
 # NOTE: unit is in billions of dollars
 gdp_state = {
     "Alabama": 194, 
@@ -105,6 +107,8 @@ gdp_state = {
     "Wyoming": 36
 }
 
+gdp_national = 68101
+
 tax_state = {
     "Alabama": 23936700000,
     "Alaska": 6338000000,
@@ -157,6 +161,8 @@ tax_state = {
     "Wisconsin": 32228300000,
     "Wyoming": 2239000000
 }
+
+tax_national = 14320
 
 colleges_state = {
     "Alabama": 79,
@@ -211,6 +217,8 @@ colleges_state = {
     "Wisconsin": 100,
     "Wyoming": 7
 }
+
+college_national = 1
 
 disaster_declarations_state = {
     "Alabama": 72,
