@@ -82,7 +82,7 @@ const VisualizeData = (props) => {
         <div className='font-face-gs'>
             <div className='grid-container'>
                 <div className='grid-item'>
-                    <img src={imageList[8]}></img>
+                    <img src={imageList[0]}></img>
                 </div>
                 <div className='grid-item'>
                     <img src={imageList[1]}></img>
@@ -91,7 +91,7 @@ const VisualizeData = (props) => {
                     <img src={imageList[2]}></img>
                 </div>
                 <div className='grid-item'>
-                    <img src={imageList[11]}></img>
+                    <img src={imageList[3]}></img>
                 </div>
                 <div className='grid-item'>
                     <img src={imageList[4]}></img>
@@ -99,12 +99,16 @@ const VisualizeData = (props) => {
                 <div className='grid-item'>
                     <img src={imageList[5]}></img>
                 </div>
-                <div className='grid-item'>
-                    <img src={imageList[6]}></img>
-                </div>
-                <div className='grid-item'>
-                    <img src={imageList[7]}></img>
-                </div>
+                {(props.isNational) ?
+                  <div className='grid-item'>
+                      <img src={imageList[14]}></img>
+                  </div>
+                : null}
+                {(props.isNational) ?
+                  <div className='grid-item'>
+                      <img src={imageList[15]}></img>
+                  </div>
+                : null}
             </div>
             <div className='flexbox-container'>
                 {/* <div style={buttonStyle}>

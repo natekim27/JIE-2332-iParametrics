@@ -147,9 +147,9 @@ def features_get_bar_graph():
     
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_bar(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_bar(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field + '_bar')
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + result[0]['name'] + '_' + field + '_bar' + '.png', mimetype='image/png'), 200
 
 #Returns a pie chart comparing a community's stat with a state average stat
 #URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
@@ -194,6 +194,7 @@ def features_get_pie_chart():
         if is_national == 'true': general_value = values.college_national
     elif field == 'declarations': 
         general_value = values.disaster_declarations_state_county[state_name]
+        if is_national == 'true': general_value = values.disaster_declarations_national
     elif field == 'pa': 
         general_value = values.public_obligation_state_avg
     elif field == 'hm': 
@@ -201,9 +202,9 @@ def features_get_pie_chart():
     
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_pie(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_pie(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field + '_pie')
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + result[0]['name'] + '_' + field + '_pie' + '.png', mimetype='image/png'), 200
 
 #Returns whether the region has successfully been added to the database
 #URL: http://127.0.0.1:5000/features/create-region
