@@ -139,6 +139,7 @@ def features_get_bar_graph():
         if is_national == 'true': general_value = values.college_national
     elif field == 'declarations': 
         general_value = values.disaster_declarations_state_county[state_name]
+        if is_national == 'true': general_value = values.disaster_declarations_national
     elif field == 'pa': 
         general_value = values.public_obligation_state_avg
     elif field == 'hm': 
