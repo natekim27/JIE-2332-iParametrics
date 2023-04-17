@@ -14,7 +14,7 @@ const buttonStyle = {
 };
 
 function nFormatter(num, digits) {
-    if (num === 0 || num == null) return 0;
+    if (num === 0 || num == null) return "0";
     const lookup = [
         { value: 1, symbol: "" },
         { value: 1e3, symbol: "K" },
@@ -25,10 +25,12 @@ function nFormatter(num, digits) {
     var item = lookup.slice().reverse().find(function(item) {
         return num >= item.value;
     });
-    if (Math.abs(num) < 1e-3) {
+    if (Math.abs(num) < 1e-2) {
         const exponent = Math.floor(Math.log10(Math.abs(num)));
         const mantissa = (num * Math.pow(10, -exponent)).toFixed(digits);
         return mantissa + "E" + exponent;
+    } else if (Math.abs(num) < 1 && Math.abs(num) > 0) {
+        return num.toFixed(digits).replace(rx, "$1");
     }
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
@@ -322,13 +324,13 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>Above Poverty Line</td>
-                        <td>{community1 && nFormatter(community1[0].pop_change, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].pop_change, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].poverty, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].poverty, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Population Change (2010-2020)</td>
-                        <td>{community1 && nFormatter(community1[0].poverty, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].poverty, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].pop_change, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].pop_change, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Income Stability</td>
@@ -342,38 +344,38 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>BRIC Social Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_social}</td>
-                        <td>{community2 && community2[0].bric_social}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_social, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_social, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Economic Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_econ}</td>
-                        <td>{community2 && community2[0].bric_econ}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_econ, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_econ, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Housing/Infrastructure Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_house}</td>
-                        <td>{community2 && community2[0].bric_house}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_house, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_house, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Community Capital Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_community}</td>
-                        <td>{community2 && community2[0].bric_community}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_community, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_community, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Institutional Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_institutional}</td>
-                        <td>{community2 && community2[0].bric_institutional}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_institutional, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_institutional, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Environmental Sub-Index Score</td>
-                        <td>{community1 && community1[0].bric_environmental}</td>
-                        <td>{community2 && community2[0].bric_environmental}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_environmental, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_environmental, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Resilience Score</td>
-                        <td>{community1 && community1[0].bric_resilience}</td>
-                        <td>{community2 && community2[0].bric_resilience}</td>
+                        <td>{community1 && nFormatter(community1[0].bric_resilience, 2)}</td>
+                        <td>{community2 && nFormatter(community2[0].bric_resilience, 2)}</td>
                     </tr>
                     </> : null}
                 </tbody>
