@@ -56,7 +56,7 @@ const VisualizeData = (props) => {
                 imageList.push(src);
                 setImageList(imageList);
       
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
               }
               for (let i = 0; i < fields.length; i++) {
                 const { name, value } = fields[i];
@@ -68,7 +68,7 @@ const VisualizeData = (props) => {
                 imageList.push(src);
                 setImageList(imageList);
       
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
               }
             };
             fetchImage();
