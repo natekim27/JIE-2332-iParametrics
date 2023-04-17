@@ -11,7 +11,7 @@ def compare_floats_bar(a, b, community_name, average_name, axis_name, filepath):
     #     b = 0
 
     if axis_name == 'nri': b = int(b)
-
+    
     diff = abs(a - b)
     fig, ax = plt.subplots()
 
