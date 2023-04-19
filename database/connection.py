@@ -8,7 +8,6 @@ import os
 class SQLConnectionObject:
    def __init__(self):
        load_dotenv()
-       print(os.getenv("DRIVER"))
        self.driver = os.getenv("DRIVER")
        self.database_name = os.getenv("DATABASE")
        self.server = os.getenv("SERVER")

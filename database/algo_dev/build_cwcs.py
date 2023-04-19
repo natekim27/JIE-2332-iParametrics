@@ -14,7 +14,6 @@ COLUMNS = ['GDP', 'TAXES', 'POPULATION', 'EM_EMPLOYMENT', 'HIGH_COMB_HAZ_RES', '
 
 def build_dataset():
     cd = os.getcwd()
-    print(cd)
     cd += ('/algo_dev/ml_model.csv')
     dataset = pd.read_csv(cd, encoding='latin-1', index_col=0)
     dataset.replace(np.nan, 0, inplace=True)
