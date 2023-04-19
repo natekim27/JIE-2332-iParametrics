@@ -13,7 +13,7 @@ class Feature(Base):
    __tablename__ = "features"
 
 
-   serial_number: Mapped[int] = mapped_column(primary_key=True)
+   sno: Mapped[int] = mapped_column(primary_key=True)
    statefp: Mapped[int]
    countyfp: Mapped[int]
    geoid: Mapped[int]
@@ -56,7 +56,7 @@ class Feature(Base):
    bric_resilience: Mapped[float]
    operating_ratio: Mapped[float]
    taxes: Mapped[float]
-   cwcs: Mapped[float]
+   cwcs: Mapped[int]
 
 
    def as_dict(self):

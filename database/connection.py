@@ -1,16 +1,19 @@
+from dotenv import load_dotenv
+
 import textwrap
 import sqlalchemy as db
 import urllib
-
+import os
 
 class SQLConnectionObject:
    def __init__(self):
-       self.driver = '{ODBC Driver 18 for SQL Server}'
-       self.server_name = 'iparametricsserver'
-       self.database_name = 'iParametrics'
-       self.server = '{server}.database.windows.net, 1433'.format(server=self.server_name)
-       self.username = "teamipara"
-       self.password = "*****"
+       load_dotenv()
+       print(os.getenv("DRIVER"))
+       self.driver = os.getenv("DRIVER")
+       self.database_name = os.getenv("DATABASE")
+       self.server = os.getenv("SERVER")
+       self.username = os.getenv("USERNAME")
+       self.password = os.getenv("PASSWORD")
 
 
    def create_connection_string(self) -> str:
