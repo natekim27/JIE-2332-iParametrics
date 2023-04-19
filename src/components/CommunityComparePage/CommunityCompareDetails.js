@@ -14,7 +14,7 @@ const buttonStyle = {
 };
 
 function nFormatter(num, digits) {
-    if (num === 0 || num == null) return 0;
+    if (num === 0 || num == null) return "0";
     const lookup = [
         { value: 1, symbol: "" },
         { value: 1e3, symbol: "K" },
@@ -25,10 +25,12 @@ function nFormatter(num, digits) {
     var item = lookup.slice().reverse().find(function(item) {
         return num >= item.value;
     });
-    if (Math.abs(num) < 1e-3) {
+    if (Math.abs(num) < 1e-2) {
         const exponent = Math.floor(Math.log10(Math.abs(num)));
         const mantissa = (num * Math.pow(10, -exponent)).toFixed(digits);
         return mantissa + "E" + exponent;
+    } else if (Math.abs(num) < 1 && Math.abs(num) > 0) {
+        return num.toFixed(digits).replace(rx, "$1");
     }
     return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 }
