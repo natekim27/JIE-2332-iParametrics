@@ -277,7 +277,7 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>Resistant Commercial Buildings</td>
-                    <td>{filteredData[0] && filteredData[0].high_comb_haz_com}%</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].high_comb_haz_com, 2)}%</td>
                 </tr>
                 <tr>
                     <td>National Risk Index</td>
@@ -342,15 +342,15 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>Above Poverty Line</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
-                </tr>
-                <tr>
-                    <td>Population Change (2010-2020)</td>
                     <td>{filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%</td>
                 </tr>
                 <tr>
+                    <td>Population Change (2010-2020)</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
+                </tr>
+                <tr>
                     <td>Income Stability</td>
-                    <td>{filteredData[0] && filteredData[0].income_stability}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].income_stability, 2)}</td>
                 </tr>
                 <tr>
                     <td>Broadband Subscription</td>
@@ -362,27 +362,27 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>BRIC Economic Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_econ}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_econ, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Housing/Infrastructure Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_house}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_house, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Community Capital Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_community}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_community, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Institutional Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_institutional}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_institutional, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Environmental Sub-Index Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_environmental}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_environmental, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Resilience Score</td>
-                    <td>{filteredData[0] && filteredData[0].bric_resilience}</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_resilience, 2)}</td>
                 </tr>
                 </> : null}
             </tbody>
