@@ -342,11 +342,11 @@ const CommunityDetails = () => {
                 </tr>
                 <tr>
                     <td>Above Poverty Line</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Population Change (2010-2020)</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%</td>
+                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Income Stability</td>
