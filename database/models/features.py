@@ -1,7 +1,6 @@
 from typing import List
-from typing import Optional
 from sqlalchemy import String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from database.models.base import Base
 
 class Feature(Base):
