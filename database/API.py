@@ -40,19 +40,19 @@ def features():
    return json.dumps(result), 200
 
 #Returns the data of a community based on the serial number
-#URL: http://127.0.0.1:5000/features/get-by-sno?sno=<serial_number>
+#URL: http://127.0.0.1:5000/features/get-by-sno?sno=<sno>
 #Request format: None 
 #Response format: JSON
 #No authentication 
 #Rate limited: No 
 #Parameters - serial number of community 
-#Usage: /features/get-by-sno?sno=<serial_number>
+#Usage: /features/get-by-sno?sno=<sno>
 @app.route('/features/get-by-sno', methods=['GET'])
 @cross_origin()
 def features_get_by_sno():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
+        Feature.sno.in_([serial_no])
     )
     result = []
 
@@ -96,19 +96,19 @@ def features_get_by_population_range():
     return result, 200
 
 #Returns a bar graph comparing a community's stat with a state average stat
-#URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<serial_number>&field=<field>&bval=<b_value>
+#URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<sno>&field=<field>&bval=<b_value>
 #Request format: None 
 #Response format: JSON
 #No authentication 
 #Rate limited: No 
 #Parameters - serial number, field, b_value
-#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+#Usage: /features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
 @app.route('/features/get-bar-graph', methods=['GET'])
 @cross_origin()
 def features_get_bar_graph():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
+        Feature.sno.in_([serial_no])
     )
     result = []
 
@@ -152,19 +152,19 @@ def features_get_bar_graph():
     return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 #Returns a pie chart comparing a community's stat with a state average stat
-#URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+#URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
 #Request format: None 
 #Response format: JSON
 #No authentication 
 #Rate limited: No 
 #Parameters - serial number, field, b_value
-#Usage: /features/get-pie-chart?sno=<serial_number>&field=<field>&bval=<b_value>
+#Usage: /features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
 @app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
 def features_get_pie_chart():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
+        Feature.sno.in_([serial_no])
     )
     result = []
     for feature in session.scalars(stmt):
@@ -234,19 +234,19 @@ def features_create_region():
 
     return 'Success', 200
 #Returns the region that has been deleted from the database
-#URL: http://127.0.0.1:5000/features/delete?sno=<serial_number>
+#URL: http://127.0.0.1:5000/features/delete?sno=<sno>
 #Request format: None
 #Response format: JSON
 #No authentication 
 #Rate limited: No 
 #Parameters - serial number 
-#Usage: /features/delete?sno=<serial_number>
+#Usage: /features/delete?sno=<sno>
 @app.route('/features/delete', methods=['GET'])
 @cross_origin()
 def features_delete_region():
-    serial_number = request.args.get('sno')
+    sno = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_number])
+        Feature.sno.in_([sno])
     )
     result = []
 
@@ -268,9 +268,9 @@ def features_delete_region():
 @cross_origin()
 def features_update_region():
     data = request.get_json(force=True)
-    serial_number = data['sno']
+    sno = data['sno']
     stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_number])
+        Feature.sno.in_([sno])
     )
     for obj in session.scalars(stmt):
         feature = obj
