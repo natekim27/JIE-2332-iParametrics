@@ -324,13 +324,13 @@ const CommunityCompareDetails = () => {
                     </tr>
                     <tr>
                         <td>Above Poverty Line</td>
-                        <td>{community1 && nFormatter(community1[0].pop_change, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].pop_change, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].poverty, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].poverty, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Population Change (2010-2020)</td>
-                        <td>{community1 && nFormatter(community1[0].poverty, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].poverty, 2)}%</td>
+                        <td>{community1 && nFormatter(community1[0].pop_change, 2)}%</td>
+                        <td>{community2 && nFormatter(community2[0].pop_change, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Income Stability</td>
