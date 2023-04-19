@@ -13,7 +13,7 @@ class Feature(Base):
    __tablename__ = "features"
 
 
-   sno: Mapped[int] = mapped_column(primary_key=True)
+   serial_number: Mapped[int] = mapped_column(primary_key=True)
    statefp: Mapped[int]
    countyfp: Mapped[int]
    geoid: Mapped[int]

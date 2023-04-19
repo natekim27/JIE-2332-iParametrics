@@ -52,7 +52,7 @@ def features():
 def features_get_by_sno():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.sno.in_([serial_no])
+        Feature.serial_number.in_([serial_no])
     )
     result = []
 
@@ -108,7 +108,7 @@ def features_get_by_population_range():
 def features_get_bar_graph():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.sno.in_([serial_no])
+        Feature.serial_number.in_([serial_no])
     )
     result = []
 
@@ -164,7 +164,7 @@ def features_get_bar_graph():
 def features_get_pie_chart():
     serial_no = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.sno.in_([serial_no])
+        Feature.serial_number.in_([serial_no])
     )
     result = []
     for feature in session.scalars(stmt):
@@ -246,7 +246,7 @@ def features_create_region():
 def features_delete_region():
     sno = request.args.get('sno')
     stmt = select(Feature).where(
-        Feature.sno.in_([sno])
+        Feature.serial_number.in_([sno])
     )
     result = []
 
@@ -270,7 +270,7 @@ def features_update_region():
     data = request.get_json(force=True)
     sno = data['sno']
     stmt = select(Feature).where(
-        Feature.sno.in_([sno])
+        Feature.serial_number.in_([sno])
     )
     for obj in session.scalars(stmt):
         feature = obj
