@@ -1,13 +1,7 @@
 from typing import List
-from typing import Optional
 from sqlalchemy import String
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
-
-
-class Base(DeclarativeBase):
-   pass
-
+from sqlalchemy.orm import Mapped, mapped_column
+from database.models.base import Base
 
 class Feature(Base):
    __tablename__ = "features"
@@ -83,20 +77,3 @@ class Feature(Base):
       arr.append(self.broadband) if self.broadband else arr.append(0)
       return arr
       
-
-class Account(Base):
-   __tablename__ = "account"
-
-
-   username: Mapped[int] = mapped_column(primary_key=True, autoincrement=False)
-   password: Mapped[str] = mapped_column(String(50))
-   user_type: Mapped[int]
-  
-
-
-   def as_dict(self):
-      return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-  
-   def __init__(self, dict):
-       for key in dict:
-           setattr(self, key, dict[key])
