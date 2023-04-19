@@ -25,6 +25,7 @@ REQUIRED = [
     'matplotlib',
     'requests',
     'pyodbc',
+    'python-dotenv'
 ]
 
 setup(
