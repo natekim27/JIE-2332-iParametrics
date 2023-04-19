@@ -6,7 +6,9 @@ from flask_restful import Api
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from connection import get_azure_engine
-from models import Feature, Account
+# from models import Feature, Account
+
+from database.models import Account, Feature
 from flask_cors import CORS, cross_origin
 from algo_dev.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
