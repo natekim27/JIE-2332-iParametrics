@@ -1,5 +1,4 @@
 import json
-import sys
 
 from flask import Flask, request, send_file
 from flask_restful import Api
