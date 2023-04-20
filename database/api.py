@@ -6,7 +6,7 @@ from sqlalchemy import select
 from database.models.account import Account
 from database.models.features import Feature
 from flask_cors import CORS, cross_origin
-from algo_dev.build_cwcs import random_forest_regression_prediction
+from ml.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
 from database.resources import db
 
