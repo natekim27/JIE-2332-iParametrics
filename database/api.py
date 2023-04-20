@@ -2,8 +2,6 @@ import json
 
 from flask import Flask, request, send_file
 from flask_restful import Api
-from sqlalchemy import select
-from database.models.account import Account
 from database.models.features import Feature
 from flask_cors import CORS, cross_origin
 from ml.build_cwcs import random_forest_regression_prediction
@@ -131,11 +129,6 @@ def features_get_pie_chart():
 
 #Returns whether the region has successfully been added to the database
 #URL: http://127.0.0.1:5000/features/create-region
-#Request format: JSON
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - None 
 @app.route('/features/create-region', methods=['POST'])
 @cross_origin()
 def features_create_region():
@@ -164,13 +157,6 @@ def features_delete_region():
 
 #Returns the region that has been updated in the database, must pass in the serial number in the JSON request 
 #URL: http://127.0.0.1:5000/features/update
-#Request format: JSON
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - None 
-#Usage: /features/update
-#Pass in a JSON of the data parameters you want to update
 @app.route('/features/update', methods=['PUT'])
 @cross_origin()
 def features_update_region():

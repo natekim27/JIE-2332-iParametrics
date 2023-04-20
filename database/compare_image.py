@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 # a is the instance value and b the population value
 # axis name is just the name of the value we are comparing, for instance GDP
