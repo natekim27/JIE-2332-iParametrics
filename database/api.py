@@ -2,14 +2,13 @@ import json
 
 from flask import Flask, request, send_file
 from flask_restful import Api
-from sqlalchemy.orm import Session
 from sqlalchemy import select
-from connection import get_azure_engine
 from database.models.account import Account
 from database.models.features import Feature
 from flask_cors import CORS, cross_origin
 from algo_dev.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
+from database.resources import db
 
 import values
 
@@ -19,105 +18,42 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['PROPAGATE_EXCEPTIONS'] = False
 
-engine = get_azure_engine()
-session = Session(engine)
-
 #Returns all the communities & their data [GET]
 #URL: http://127.0.0.1:5000/features/get-all
-#Request format: None
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - None 
 @app.route('/features/get-all', methods=['GET'])
 @cross_origin()
-def features():
-   stmt = select(Feature)
-   result = []
-   for feature in session.scalars(stmt):
-       result.append(feature.as_dict())
-
-   return json.dumps(result), 200
+def get_all():
+   features = db.get_all_features()
+   return json.dumps(features), 200
 
 #Returns the data of a community based on the serial number
 #URL: http://127.0.0.1:5000/features/get-by-sno?sno=<sno>
-#Request format: None 
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - serial number of community 
-#Usage: /features/get-by-sno?sno=<sno>
 @app.route('/features/get-by-sno', methods=['GET'])
 @cross_origin()
 def features_get_by_sno():
     serial_no = request.args.get('sno')
-    stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
-    )
-    result = []
-
-    for feature in session.scalars(stmt):
-        result.append(feature.as_dict())
-    
-    return json.dumps(result), 200
+    feature = db.get_feature_by_sno(serial_no).as_dict()
+    return json.dumps(feature), 200
 
 #Returns the communities within a population range
 #URL: http://127.0.0.1:5000/features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
-#Request format: None 
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - minimum population, maximum population 
-#Usage: /features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
 @app.route('/features/get-by-population-range', methods=['GET'])
 @cross_origin()
 def features_get_by_population_range():
     min_pop = request.args.get('min_pop')
     max_pop = request.args.get('max_pop')
-    if max_pop and min_pop:
-        stmt = select(Feature).where(
-            Feature.population >= min_pop
-        ).where(
-            Feature.population <= max_pop
-        )
-    elif min_pop:
-        stmt = select(Feature).where(
-            Feature.population >= min_pop
-        )
-    else:
-        stmt = select(Feature).where(
-            Feature.population <= max_pop
-        )
-    result = []
-
-    for feature in session.scalars(stmt):
-        result.append(feature.as_dict())
-    
-    return result, 200
+    features = db.get_features_by_population_range(min_pop, max_pop)
+    return features, 200
 
 #Returns a bar graph comparing a community's stat with a state average stat
 #URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<sno>&field=<field>&bval=<b_value>
-#Request format: None 
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - serial number, field, b_value
-#Usage: /features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
 @app.route('/features/get-bar-graph', methods=['GET'])
 @cross_origin()
 def features_get_bar_graph():
     serial_no = request.args.get('sno')
-    stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
-    )
-    result = []
-
-    for feature in session.scalars(stmt):
-        result.append(feature.as_dict())
-
-    state_abbreviated = result[0]['stusps']
+    feature = db.get_feature_by_sno(serial_no).as_dict()
+    state_abbreviated = feature[0]['stusps']
     state_name = values.state_abbreviations[state_abbreviated]
-
     field = request.args.get('field')
     b_val = request.args.get('bval')
     is_national = request.args.get('national')
@@ -147,30 +83,18 @@ def features_get_bar_graph():
     
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_bar(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_bar(round(float(b_val)), general_value, feature[0]['name'], average_marker + ' Average', field, './images/' + feature[0]['name'] + '_' + field)
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + feature[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 #Returns a pie chart comparing a community's stat with a state average stat
 #URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
-#Request format: None 
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - serial number, field, b_value
-#Usage: /features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
 @app.route('/features/get-pie-chart', methods=['GET'])
 @cross_origin()
 def features_get_pie_chart():
     serial_no = request.args.get('sno')
-    stmt = select(Feature).where(
-        Feature.serial_number.in_([serial_no])
-    )
-    result = []
-    for feature in session.scalars(stmt):
-        result.append(feature.as_dict())
-
-    state_abbreviated = result[0]['stusps']
+    feature = db.get_feature_by_sno(serial_no).as_dict()
+    state_abbreviated = feature[0]['stusps']
     state_name = values.state_abbreviations[state_abbreviated]
 
     field = request.args.get('field')
@@ -201,9 +125,9 @@ def features_get_pie_chart():
     
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_pie(round(float(b_val)), general_value, result[0]['name'], average_marker + ' Average', field, './images/' + result[0]['name'] + '_' + field)
+    compare_floats_pie(round(float(b_val)), general_value, feature[0]['name'], average_marker + ' Average', field, './images/' + feature[0]['name'] + '_' + field)
 
-    return send_file('./images/' + result[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + feature[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 #Returns whether the region has successfully been added to the database
 #URL: http://127.0.0.1:5000/features/create-region
@@ -222,38 +146,21 @@ def features_create_region():
     new_region = Feature(data)
     feats = new_region.generate_cwcs_array_features()
     cwcs = random_forest_regression_prediction(feats)
+
     if cwcs:
-        new_region.cwcs = cwcs[0]
-    
-    try:
-        session.add(new_region)
-        session.commit()
-    except:
-        session.rollback()
-        raise
+        new_region.cwcs = cwcs[0] 
+    db.add_feature(new_region)
 
     return 'Success', 200
+
 #Returns the region that has been deleted from the database
 #URL: http://127.0.0.1:5000/features/delete?sno=<sno>
-#Request format: None
-#Response format: JSON
-#No authentication 
-#Rate limited: No 
-#Parameters - serial number 
-#Usage: /features/delete?sno=<sno>
 @app.route('/features/delete', methods=['GET'])
 @cross_origin()
 def features_delete_region():
-    sno = request.args.get('sno')
-    stmt = select(Feature).where(
-        Feature.serial_number.in_([sno])
-    )
-    result = []
-
-    for feature in session.scalars(stmt):
-        session.delete(feature)
-    
-    return result, 200
+    serial_no = request.args.get('sno')
+    db.delete_feature_by_sno(serial_no)
+    return 'Success', 200
 
 #Returns the region that has been updated in the database, must pass in the serial number in the JSON request 
 #URL: http://127.0.0.1:5000/features/update
@@ -268,12 +175,8 @@ def features_delete_region():
 @cross_origin()
 def features_update_region():
     data = request.get_json(force=True)
-    sno = data['sno']
-    stmt = select(Feature).where(
-        Feature.serial_number.in_([sno])
-    )
-    for obj in session.scalars(stmt):
-        feature = obj
+    serial_no = data['sno']
+    feature = db.get_feature_by_sno(serial_no)
 
     for key in data:
         setattr(feature, key, data[key])
@@ -281,12 +184,7 @@ def features_update_region():
     feats = feature.generate_cwcs_array_features()
     cwcs = random_forest_regression_prediction(feats)[0]
     setattr(feature, 'CWCS', cwcs)
-    try:
-        session.commit()
-    except:
-        session.rollback()
-        raise
-
+    db.session_commit()
     return feature.as_dict(), 200
 
 @app.route('/users/authenticate', methods=['POST'])
@@ -301,19 +199,11 @@ def authenticate():
     username = data['username']
     password = data['password']
     user_type = data['user_type']
-
-    stmt = select(Account).where(
-        (Account.username.in_([username]))
-    )
-
-    account = None
-
-    for obj in session.scalars(stmt):
-        account = obj
+    account = db.get_account_by_username(username)
 
     if account is None:
         return 'Account not found', 400
-
+    
     if account.password == password and account.user_type == user_type:
         return 'Success', 200
     else:
@@ -327,23 +217,14 @@ def users_create_account():
         return 'Fill in all fields', 400
     if data['username'] == "" or data['password'] == "":
         return 'Fill in correct username and password', 400
-    stmt = select(Account).where(
-        (Account.username.in_([data['username']]))
-    )
-    result = []
-    for account in session.scalars(stmt):
-        result.append(account.as_dict())
+    
+    account = db.get_account_by_username(data['username'])
 
-
-    if result:
+    if account:
         return 'Username already exists', 400
-    new_account = Account(data)
-    try:
-        session.add(new_account)
-        session.commit()
-    except:
-        session.rollback()
-        raise
+    else:
+        db.add_account(data['username'], data['password'], data['user_type'])
+    
     return 'Success', 200
 
 @app.route('/users/change-password', methods=['PUT'])
@@ -352,20 +233,8 @@ def users_change_password():
     data = request.get_json(force=True)
     data = json.loads(data)
     username = data['username']
-    stmt = select(Account).where(
-        Account.username.in_([username])
-    )
-
-    for obj in session.scalars(stmt):
-        account = obj
-
-    setattr(account, 'password', data['password'])
-    try:
-        session.commit()
-    except:
-        session.rollback()
-        raise
-
+    password = data['password']
+    account = db.update_account_password(username, password)
     return account.as_dict(), 200
 
 if __name__ == '__main__':
