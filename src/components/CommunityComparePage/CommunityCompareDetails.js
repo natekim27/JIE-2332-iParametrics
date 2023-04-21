@@ -431,6 +431,16 @@ const CommunityCompareDetails = () => {
                     </Button>
                 </div>
                 <div style={buttonStyle}>
+                    <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${sno1}`, { replace: true })}>
+                        Go to Community 1
+                    </Button>
+                </div>
+                <div style={buttonStyle}>
+                    <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${sno2}`, { replace: true })}>
+                        Go to Community 2
+                    </Button>
+                </div>
+                <div style={buttonStyle}>
                     <Dropdown>
                         <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             Download Data
