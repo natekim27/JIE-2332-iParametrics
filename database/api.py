@@ -41,7 +41,7 @@ def features_get_by_population_range():
     min_pop = request.args.get('min_pop')
     max_pop = request.args.get('max_pop')
     features = db.get_features_by_population_range(min_pop, max_pop)
-    return features, 200
+    return json.dumps(features), 200
 
 #Returns a bar graph comparing a community's stat with a state average stat
 #URL: http://127.0.0.1:5000/features/get-bar-graph?sno=<sno>&field=<field>&bval=<b_value>
@@ -120,7 +120,7 @@ def features_get_pie_chart():
         general_value = values.public_obligation_state_avg
     elif field == 'hm': 
         general_value = values.hazard_obligation_national
-        
+
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
     compare_floats_pie(round(float(b_val)), general_value, feature['name'], average_marker + ' Average', field, './images/' + feature['name'] + '_' + field)
