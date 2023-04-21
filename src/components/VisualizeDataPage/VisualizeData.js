@@ -102,6 +102,22 @@ const VisualizeData = (props) => {
       });
     };
 
+    const handleBackToSearch = () => {
+      fetch("http://127.0.0.1:5000/features/delete-local-images")
+      .catch((err) => {
+        console.log(err.message);
+      });
+      navigate("/communitySearch", { replace: true });
+    };
+
+    const handleBackToCommunity = () => {
+      fetch("http://127.0.0.1:5000/features/delete-local-images")
+      .catch((err) => {
+        console.log(err.message);
+      });
+      navigate(`/communityDetails/${sno}`, { replace: true });
+    };
+
     return (
         <div className='font-face-gs'>
             <div className='grid-container'>
@@ -136,12 +152,12 @@ const VisualizeData = (props) => {
             </div>
             <div className='flexbox-container'>
                 <div style={buttonStyle}>
-                    <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
+                    <Button variant="outline-secondary" type="submit" onClick={handleBackToSearch}>
                         Back to Search
                     </Button>
                 </div>
                 <div style={buttonStyle}>
-                    <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${sno}`, { replace: true })}>
+                    <Button variant="outline-secondary" type="submit" onClick={handleBackToCommunity}>
                         Back to Community
                     </Button>
                 </div>
