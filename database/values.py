@@ -601,9 +601,9 @@ state_abbreviations = {
     'WY': 'Wyoming'
 }
 
-public_obligation_state_avg = 1077064892
+public_obligation_state_avg = 26761582.73
 
-hazard_obligation_national = 1750000000
+hazard_obligation_national = 3736433.574
 
 gdp_us = 2340000000000
 

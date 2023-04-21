@@ -33,14 +33,14 @@ const VisualizeData = (props) => {
           .then(async (data) => {
       
             const fields = [
-              { name: "population", value: data[0]["population"] || 0  },
-              { name: "gdp", value: data[0]["gdp"] || 0  },
-              { name: "nri", value: data[0]["nri"] || 0  },
-              { name: "taxes", value: data[0]["taxes"] || 0  },
-              { name: "college_univ", value: data[0]["college_univ"] || 0 },
-              { name: "declarations", value: data[0]["declarations"] },
-              { name: "pa", value: data[0]["pa"] || 0  },
-              { name: "hm", value: data[0]["hm"] || 0  },
+              { name: "population", value: data["population"] || 0  },
+              { name: "gdp", value: data["gdp"] || 0  },
+              { name: "nri", value: data["nri"] || 0  },
+              { name: "taxes", value: data["taxes"] || 0  },
+              { name: "college_univ", value: data["college_univ"] || 0 },
+              { name: "declarations", value: data["declarations"] },
+              { name: "pa", value: data["pa"] || 0  },
+              { name: "hm", value: data["hm"] || 0  },
             ];
       
             const imageList = [];
@@ -102,12 +102,12 @@ const VisualizeData = (props) => {
                 </div>
                 {(props.isNational) ?
                   <div className='grid-item'>
-                      <img src={imageList[14]}></img>
+                      <img src={imageList[6]}></img>
                   </div>
                 : null}
                 {(props.isNational) ?
                   <div className='grid-item'>
-                      <img src={imageList[15]}></img>
+                      <img src={imageList[7]}></img>
                   </div>
                 : null}
             </div>

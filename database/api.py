@@ -50,7 +50,7 @@ def features_get_by_population_range():
 def features_get_bar_graph():
     serial_no = request.args.get('sno')
     feature = db.get_feature_by_sno(serial_no).as_dict()
-    state_abbreviated = feature[0]['stusps']
+    state_abbreviated = feature['stusps']
     state_name = values.state_abbreviations[state_abbreviated]
     field = request.args.get('field')
     b_val = request.args.get('bval')
@@ -81,9 +81,9 @@ def features_get_bar_graph():
     
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_bar(round(float(b_val)), general_value, feature[0]['name'], average_marker + ' Average', field, './images/' + feature[0]['name'] + '_' + field)
+    compare_floats_bar(round(float(b_val)), general_value, feature['name'], average_marker + ' Average', field, './images/' + feature['name'] + '_' + field)
 
-    return send_file('./images/' + feature[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + feature['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 #Returns a pie chart comparing a community's stat with a state average stat
 #URL: http://127.0.0.1:5000/features/get-pie-chart?sno=<sno>&field=<field>&bval=<b_value>
@@ -92,7 +92,7 @@ def features_get_bar_graph():
 def features_get_pie_chart():
     serial_no = request.args.get('sno')
     feature = db.get_feature_by_sno(serial_no).as_dict()
-    state_abbreviated = feature[0]['stusps']
+    state_abbreviated = feature['stusps']
     state_name = values.state_abbreviations[state_abbreviated]
 
     field = request.args.get('field')
@@ -120,12 +120,12 @@ def features_get_pie_chart():
         general_value = values.public_obligation_state_avg
     elif field == 'hm': 
         general_value = values.hazard_obligation_national
-    
+        
     average_marker = 'State' 
     if is_national == 'true': average_marker = 'National'
-    compare_floats_pie(round(float(b_val)), general_value, feature[0]['name'], average_marker + ' Average', field, './images/' + feature[0]['name'] + '_' + field)
+    compare_floats_pie(round(float(b_val)), general_value, feature['name'], average_marker + ' Average', field, './images/' + feature['name'] + '_' + field)
 
-    return send_file('./images/' + feature[0]['name'] + '_' + field + '.png', mimetype='image/png'), 200
+    return send_file('./images/' + feature['name'] + '_' + field + '.png', mimetype='image/png'), 200
 
 #Returns whether the region has successfully been added to the database
 #URL: http://127.0.0.1:5000/features/create-region
