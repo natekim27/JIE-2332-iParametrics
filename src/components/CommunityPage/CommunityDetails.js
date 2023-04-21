@@ -246,145 +246,182 @@ const CommunityDetails = () => {
         <Table className='table'>
             <tbody>
                 <tr>
+                    <td>1</td>
                     <td>Public Assistance Obligations</td>
                     <td>${filteredData && nFormatter(filteredData.pa, 2)}</td>
                 </tr>
                 <tr>
+                    <td>2</td>
                     <td>Hazard Mitigation Obligations</td>
                     <td>${filteredData && nFormatter(filteredData.hm, 2)}</td>
                 </tr>
                 <tr>
+                    <td>3</td>
                     <td>GDP</td>
                     <td>${filteredData && nFormatter(filteredData.gdp * 1000, 2)}</td>
                 </tr>
                 <tr>
+                    <td>4</td>
                     <td>Taxes</td>
                     <td>${filteredData && nFormatter(filteredData.taxes, 2)}</td>
                 </tr>
                 <tr>
+                    <td>5</td>
                     <td>Population</td>
                     <td>{filteredData && nFormatter(filteredData.population, 2)}</td>
                 </tr>
                 <tr>
+                    <td>6</td>
                     <td>EM Directors Employment</td>
                     <td>{filteredData && nFormatter(filteredData.em_employment, 2)}</td>
                 </tr>
                 <tr>
-                    <td>Colleges / Universities</td>
-                    <td>{filteredData && nFormatter(filteredData.college_univ, 2)}</td>
-                </tr>
-                <tr>
+                    <td>7</td>
                     <td>Major Disaster Declarations</td>
                     <td>{filteredData && nFormatter(filteredData.declarations, 2)}</td>
+                    
                 </tr>
+                
                 <tr>
+                    <td>8</td>
                     <td>Resistant Commercial Buildings</td>
                     <td>{filteredData && nFormatter(filteredData.high_comb_haz_com, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>National Risk Index</td>
-                    <td>{filteredData && nFormatter(filteredData.nri, 2)}</td>
-                </tr>
-                <tr>
-                    <td>Built Environment</td>
-                    <td>{filteredData && nFormatter(filteredData.built_environment, 2)}%</td>
-                </tr>
-                {extendedView ? <>
-                <tr>
-                    <td>Average Democratic Percentage</td>
-                    <td>{filteredData && nFormatter(filteredData.avg_dem_pct, 2)}%</td>
-                </tr>
-                <tr>
-                    <td>Average Republican Percentage</td>
-                    <td>{filteredData && nFormatter(filteredData.avg_rep_pct, 2)}%</td>
-                </tr>
-                <tr>
+                    <td>9</td>
                     <td>Resistant Residential Buildings</td>
                     <td>{filteredData && nFormatter(filteredData.high_comb_haz_res, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>Hazard Mitigation Plan Status</td>
-                    <td>{filteredData && filteredData.hm_plan_status}</td>
+                    <td>10</td>
+                    <td>National Risk Index</td>
+                    <td>{filteredData && nFormatter(filteredData.nri, 2)}</td>
                 </tr>
                 <tr>
-                    <td>CDC Social Vulnerability Index</td>
-                    <td>{filteredData && filteredData.cdc_svi}</td>
+                    <td>11</td>
+                    <td>Colleges / Universities</td>
+                    <td>{filteredData && nFormatter(filteredData.college_univ, 2)}</td>
                 </tr>
+                {extendedView ? <>
                 <tr>
-                    <td>HVRI Social Responsibility Index</td>
-                    <td>{filteredData && filteredData.hvri_sovi}</td>
-                </tr>
-                <tr>
-                    <td>Operating Ratio</td>
-                    <td>{filteredData && nFormatter(filteredData.operating_ratio, 2)}</td>
-                </tr>
-                <tr>
-                    <td>EM Directors Employment / 100 Jobs</td>
-                    <td>{filteredData && filteredData.em_employment_per}</td>
-                </tr>
-                <tr>
-                    <td>EM Directors Location Quotient</td>
-                    <td>{filteredData && filteredData.em_lq}</td>
-                </tr>
-                <tr>
-                    <td>NCHS Urban-Rural Classification Scheme</td>
-                    <td>{filteredData && filteredData.urban_rural}</td>
-                </tr>
-                <tr>
-                    <td>Higher Education</td>
-                    <td>{filteredData && nFormatter(filteredData.higher_ed, 2)}%</td>
-                </tr>
-                <tr>
-                    <td>Health Insurance</td>
-                    <td>{filteredData && nFormatter(filteredData.health_insurance, 2)}%</td>
-                </tr>
-                <tr>
+                    <td>12</td>
                     <td>Voter Turnout (2020)</td>
                     <td>{filteredData && nFormatter(filteredData.voter_turn, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>Above Poverty Line</td>
-                    <td>{filteredData && nFormatter(filteredData.poverty, 2)}%</td>
+                    <td>13</td>
+                    <td>Average Republican Percentage</td>
+                    <td>{filteredData && nFormatter(filteredData.avg_rep_pct, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>Population Change (2010-2020)</td>
-                    <td>{filteredData && nFormatter(filteredData.pop_change, 2)}%</td>
+                    <td>14</td>
+                    <td>Built Environment</td>
+                    <td>{filteredData && nFormatter(filteredData.built_environment, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>Income Stability</td>
-                    <td>{filteredData && nFormatter(filteredData.income_stability, 2)}</td>
+                    <td>15</td>
+                    <td>Average Democratic Percentage</td>
+                    <td>{filteredData && nFormatter(filteredData.avg_dem_pct, 2)}%</td>
                 </tr>
                 <tr>
+                    <td>16</td>
+                    <td>EM Directors Location Quotient</td>
+                    <td>{filteredData && filteredData.em_lq}</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Higher Education</td>
+                    <td>{filteredData && nFormatter(filteredData.higher_ed, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>18</td>
                     <td>Broadband Subscription</td>
                     <td>{filteredData && nFormatter(filteredData.broadband, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>BRIC Social Sub-Index Score</td>
-                    <td>{filteredData && nFormatter(filteredData.bric_social, 2)}</td>
+                    <td>19</td>
+                    <td>Above Poverty Line</td>
+                    <td>{filteredData && nFormatter(filteredData.poverty, 2)}%</td>
                 </tr>
                 <tr>
-                    <td>BRIC Economic Sub-Index Score</td>
-                    <td>{filteredData && nFormatter(filteredData.bric_econ, 2)}</td>
+                    <td>20</td>
+                    <td>EM Directors Employment / 100 Jobs</td>
+                    <td>{filteredData && filteredData.em_employment_per}</td>
                 </tr>
                 <tr>
+                    <td>21</td>
+                    <td>Health Insurance</td>
+                    <td>{filteredData && nFormatter(filteredData.health_insurance, 2)}%</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>Operating Ratio</td>
+                    <td>{filteredData && nFormatter(filteredData.operating_ratio, 2)}</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>CDC Social Vulnerability Index</td>
+                    <td>{filteredData && filteredData.cdc_svi}</td>
+                </tr>
+                <tr>
+                    <td>24</td>
                     <td>BRIC Housing/Infrastructure Sub-Index Score</td>
                     <td>{filteredData && nFormatter(filteredData.bric_house, 2)}</td>
                 </tr>
                 <tr>
-                    <td>BRIC Community Capital Sub-Index Score</td>
-                    <td>{filteredData && nFormatter(filteredData.bric_community, 2)}</td>
-                </tr>
-                <tr>
+                    <td>25</td>
                     <td>BRIC Institutional Sub-Index Score</td>
                     <td>{filteredData && nFormatter(filteredData.bric_institutional, 2)}</td>
                 </tr>
                 <tr>
+                    <td>26</td>
+                    <td>BRIC Social Sub-Index Score</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_social, 2)}</td>
+                </tr>
+                <tr>
+                    <td>27</td>
+                    <td>BRIC Community Capital Sub-Index Score</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_community, 2)}</td>
+                </tr>
+                <tr>
+                    <td>28</td>
                     <td>BRIC Environmental Sub-Index Score</td>
                     <td>{filteredData && nFormatter(filteredData.bric_environmental, 2)}</td>
                 </tr>
                 <tr>
+                    <td>29</td>
+                    <td>BRIC Economic Sub-Index Score</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_econ, 2)}</td>
+                </tr>
+                <tr>
+                    <td>30</td>
                     <td>BRIC Resilience Score</td>
                     <td>{filteredData && nFormatter(filteredData.bric_resilience, 2)}</td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>Income Stability</td>
+                    <td>{filteredData && nFormatter(filteredData.income_stability, 2)}</td>
+                </tr>
+                <tr>
+                    <td>Unranked</td>
+                    <td>Hazard Mitigation Plan Status</td>
+                    <td>{filteredData && filteredData.hm_plan_status}</td>
+                </tr>
+                <tr>
+                    <td>Unranked</td>
+                    <td>HVRI Social Responsibility Index</td>
+                    <td>{filteredData && filteredData.hvri_sovi}</td>
+                </tr>                
+                <tr>
+                    <td>Unranked</td>
+                    <td>NCHS Urban-Rural Classification Scheme</td>
+                    <td>{filteredData && filteredData.urban_rural}</td>
+                </tr>
+                <tr>
+                    <td>Unranked</td>
+                    <td>Population Change (2010-2020)</td>
+                    <td>{filteredData && nFormatter(filteredData.pop_change, 2)}%</td>
                 </tr>
                 </> : null}
             </tbody>

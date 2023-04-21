@@ -24,9 +24,7 @@ class Database():
     
     def get_features_by_population_range(self, min_pop: int, max_pop: int) -> List[Feature]:
         if max_pop and min_pop:
-            stmt = select(Feature).where
-            (Feature.population >= min_pop).where
-            (Feature.population <= max_pop)
+            stmt = select(Feature).where(Feature.population >= min_pop).where(Feature.population <= max_pop)
         elif min_pop:
             stmt = select(Feature).where(Feature.population >= min_pop)
         else:
