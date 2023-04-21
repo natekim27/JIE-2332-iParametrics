@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import './VisualizeDataPage.css';
 
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
 const buttonStyle = {
   marginTop: 20,
   display: 'flex',
@@ -16,14 +19,20 @@ const VisualizeData = (props) => {
     const navigate = useNavigate();
     const { sno } = useParams();
 
-    const [imageList, setImageList] = useState(''); 
+    const [imageList, setImageList] = useState([]); 
 
     // const [isNational, setNational] = useState(false); 
 
-    // const handleSliderChange = () => {
-    //   setNational(!isNational);
-    //   window.location.reload();
-    // };
+    let fields = [
+              { name: "population", value: 0  },
+              { name: "gdp", value: 0  },
+              { name: "nri", value: 0  },
+              { name: "taxes", value: 0  },
+              { name: "college_univ", value: 0 },
+              { name: "declarations", value: 0 },
+              { name: "pa", value: 0  },
+              { name: "hm", value: 0  },
+    ];
     
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/features/get-by-sno?sno=${sno}`, {
@@ -32,7 +41,7 @@ const VisualizeData = (props) => {
           .then((response) => response.json())
           .then(async (data) => {
       
-            const fields = [
+            fields = [
               { name: "population", value: data["population"] || 0  },
               { name: "gdp", value: data["gdp"] || 0  },
               { name: "nri", value: data["nri"] || 0  },
@@ -78,6 +87,20 @@ const VisualizeData = (props) => {
           });
       }, []);
       
+    const downloadImages = async () => {
+      const zip = new JSZip();
+    
+      for (let i = 0; i < imageList.length; i++) {
+        const field = fields && fields[i % 8].name;
+        const response = await fetch(imageList[i]);
+        const blob = await response.blob();
+        (i < 8) ? zip.file(`${field}_bar.jpg`, blob) : zip.file(`${field}_pie.jpg`, blob);
+      }
+    
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
+        saveAs(content, 'images.zip');
+      });
+    };
 
     return (
         <div className='font-face-gs'>
@@ -112,11 +135,6 @@ const VisualizeData = (props) => {
                 : null}
             </div>
             <div className='flexbox-container'>
-                {/* <div style={buttonStyle}>
-                    <Button variant="outline-secondary" type="submit" onClick={() => handleSliderChange()}>
-                        Toggle National
-                    </Button>
-                </div> */}
                 <div style={buttonStyle}>
                     <Button variant="outline-secondary" type="submit" onClick={() => navigate("/communitySearch", { replace: true })}>
                         Back to Search
@@ -126,6 +144,11 @@ const VisualizeData = (props) => {
                     <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityDetails/${sno}`, { replace: true })}>
                         Back to Community
                     </Button>
+                </div>
+                <div style={buttonStyle}>
+                    <Button variant="outline-secondary" type="submit" onClick={downloadImages}>
+                        Download Images
+                    </Button> 
                 </div>
             </div>
         </div>
