@@ -4,16 +4,10 @@ import matplotlib.pyplot as plt
 # axis name is just the name of the value we are comparing, for instance GDP
 # filepath is the output path of the png image of the graph
 def compare_floats_bar(a, b, community_name, average_name, axis_name, filepath):
-    # if np.isnan(a):
-    #     a = 0
-    # if np.isnan(b):
-    #     b = 0
-
+    plt.switch_backend('Agg') 
     if axis_name == 'nri': b = int(b)
-    
     diff = abs(a - b)
-    fig, ax = plt.subplots()
-
+    _, ax = plt.subplots()
     # Create a bar chart with two bars, one for "Instance" and one for "Population".
     ax.bar([community_name, average_name],
             [a, b],
@@ -35,13 +29,9 @@ def compare_floats_bar(a, b, community_name, average_name, axis_name, filepath):
     plt.savefig(filepath)
 
 def compare_floats_pie(a, b, community_name, average_name, axis_name, filepath):
-    # if np.isnan(a):
-    #     a = 0
-    # if np.isnan(b):
-    #     b = 0
-
+    plt.switch_backend('Agg') 
     diff = abs(a - b)
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     # Create a pie chart with two slices, one for "Instance" and one for "Population".
     slices = [a, b]
