@@ -7,7 +7,7 @@ from flask_cors import CORS, cross_origin
 from ml.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
 from resources import db
-
+from constants import DEFAULT_FEATURE_DICTIONARY
 import os
 import values
 
@@ -151,7 +151,10 @@ def features_create_region():
     if data['name'] == None or data['namelsad'] == None or data['stusps'] == None:
         return 'Must provide name, namelsad and stusps to add new region', 400
     
-    new_region = Feature(data)
+    new_data = DEFAULT_FEATURE_DICTIONARY
+    for key in data:
+        new_data[key] = data[key]
+    new_region = Feature(new_data)
     feats = new_region.generate_cwcs_array_features()
     cwcs = random_forest_regression_prediction(feats)
 
