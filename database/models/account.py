@@ -1,6 +1,6 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
-from database.models.base import Base
+from models.base import Base
 
 class Account(Base):
    __tablename__ = "account"

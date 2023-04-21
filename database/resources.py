@@ -1,5 +1,5 @@
-from database.queries import Database
-from database.connection import get_azure_engine
+from queries import Database
+from connection import get_azure_engine
 from sqlalchemy.orm import Session
 
 engine = get_azure_engine()

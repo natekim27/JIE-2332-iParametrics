@@ -2,11 +2,11 @@ import json
 
 from flask import Flask, request, send_file
 from flask_restful import Api
-from database.models.features import Feature
+from models.features import Feature
 from flask_cors import CORS, cross_origin
 from ml.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
-from database.resources import db
+from resources import db
 
 import values
 

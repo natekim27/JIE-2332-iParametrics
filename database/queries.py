@@ -2,8 +2,8 @@ from sqlalchemy import select
 from typing import List
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from database.models.account import Account
-from database.models.features import Feature
+from models.account import Account
+from models.features import Feature
 from typing import Dict
 
 class Database():
