@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const buttonStyle = {
@@ -15,6 +15,7 @@ const EditCommunityDetailsForm = () => {
     const { sno } = useParams();
     const [filteredData, setFilteredData] = useState({});
     const [message, setMessage] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
     const [population, setPopulation] = useState(filteredData && filteredData.population);
     const [gdp, setGdp] = useState(filteredData && filteredData.gdp);
@@ -66,10 +67,10 @@ const EditCommunityDetailsForm = () => {
         });
     }, []);
 
-    let handleSubmit = async (e) => {
+    let handleSubmit = (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://127.0.0.1:5000/features/update`, {
+            let response = fetch(`http://127.0.0.1:5000/features/update`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,20 +115,51 @@ const EditCommunityDetailsForm = () => {
                     bric_resilience: bric_resilience
                 }),
             });
-            if (response.status === 200) {
-                console.log(message);
-                setMessage("Community updated successfully");
-                navigate(`/communityDetails/${filteredData.serial_number}`, { replace: true });
-            } else {
-                setMessage("Some error occurred");
-            }
+            response.then(response => {
+                if (response.status === 200) {
+                    setShowModal(true);
+                    setMessage("Community updated successfully");
+                } else {
+                    response.text().then(text => {
+                        setShowModal(true);
+                        setMessage(text);
+                    });
+                }
+            });
         } catch (err) {
             console.log(err);
         }
     };
 
+    const closeModal = () => {
+        setShowModal(false);
+        setMessage("");
+    };
+
     return (
         <div>
+            <Modal show={showModal} onHide={closeModal} centered>
+                <Modal.Header closeButton>
+                {
+                    message === "Community updated successfully"
+                    ? <Modal.Title>Success</Modal.Title>
+                    : <Modal.Title>Error</Modal.Title>
+                }
+                </Modal.Header>
+                <Modal.Body>{message}</Modal.Body>
+                <Modal.Footer>
+                {message === "Community updated successfully" && (
+                    <Button variant="primary" onClick={() => navigate(`/communityDetails/${sno}`, {replace: true})}>
+                    Close
+                    </Button>
+                )}
+                {message !== "Community updated successfully" && (
+                    <Button variant="secondary" onClick={closeModal}>
+                    Close
+                    </Button>
+                )}
+                </Modal.Footer>
+            </Modal>
             <div>
                 <h4>{filteredData && filteredData.name}, {filteredData && filteredData.stusps}</h4>
             </div>

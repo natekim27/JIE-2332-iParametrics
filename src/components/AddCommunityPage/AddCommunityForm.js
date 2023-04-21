@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormControl, Button, FormSelect } from 'react-bootstrap';
+import { Modal, Form, FormControl, Button, FormSelect } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const buttonStyle = {
@@ -13,6 +13,7 @@ const buttonStyle = {
 const AddCommunityForm = () => {
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
+    const [showModal, setShowModal] = useState(false);
 
     const [name, setName] = useState(null);
     const [namelsad, setNamelsad] = useState(null);
@@ -103,13 +104,16 @@ const AddCommunityForm = () => {
                     bric_resilience: bric_resilience
                 }),
             });
+            
             res.then(response => {
                 if (response.status === 200) {
-                  console.log(message);
-                  setMessage("Community updated successfully");
-                  navigate("/communitySearch", { replace: true });
+                    setShowModal(true);
+                    setMessage("Community added successfully");
                 } else {
-                  setMessage("Some error occurred");
+                    response.text().then(text => {
+                        setShowModal(true);
+                        setMessage(text);
+                    });
                 }
             });
         } catch (err) {
@@ -117,8 +121,35 @@ const AddCommunityForm = () => {
         }
     };
 
+    const closeModal = () => {
+        setShowModal(false);
+        setMessage("");
+    };
+
     return (
         <div>
+            <Modal show={showModal} onHide={closeModal} centered>
+                <Modal.Header closeButton>
+                {
+                    message === "Community added successfully"
+                    ? <Modal.Title>Success</Modal.Title>
+                    : <Modal.Title>Error</Modal.Title>
+                }
+                </Modal.Header>
+                <Modal.Body>{message}</Modal.Body>
+                <Modal.Footer>
+                {message === "Community added successfully" && (
+                    <Button variant="primary" onClick={() => navigate('/communitySearch', {replace: true})}>
+                    Close
+                    </Button>
+                )}
+                {message !== "Community added successfully" && (
+                    <Button variant="secondary" onClick={closeModal}>
+                    Close
+                    </Button>
+                )}
+                </Modal.Footer>
+            </Modal>
             <Form className="container mt-3 mb-3" id="AddCommunityForm" onSubmit={handleSubmit}>
                 <Form.Label>Name</Form.Label>
                 <FormControl type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
@@ -189,8 +220,6 @@ const AddCommunityForm = () => {
                 <FormControl type="text" placeholder="Population" onChange={(e) => setPopulation(e.target.value)}/>
                 <Form.Label>GDP</Form.Label>
                 <FormControl type="text" placeholder="GDP" onChange={(e) => setGdp(e.target.value)}/>
-                <Form.Label>Declarations</Form.Label>
-                <FormControl type="text" placeholder="Declarations" onChange={(e) => setDeclarations(e.target.value)}/>
                 <Form.Label>Avg Democratic % of Votes</Form.Label>
                 <FormControl type="text" placeholder="Votes %" onChange={(e) => setAvgDemPct(e.target.value)}/>
                 <Form.Label>Avg Republic % of Votes</Form.Label>
