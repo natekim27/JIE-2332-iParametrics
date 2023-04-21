@@ -195,6 +195,12 @@ const CommunityCompareDetails = () => {
                         <th>{community1 && community1.name}</th>
                         <th>{community2 && community2.name}</th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th>CWCS</th>
+                        <th>{community1 && community1.cwcs}</th>
+                        <th>{community2 && community2.cwcs}</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <tr>
