@@ -84,8 +84,8 @@ const CommunityCompareDetails = () => {
     const exportToJson = e => {
         e.preventDefault();
         downloadFile({
-        data: "{" + JSON.stringify(community1[0]) + "," + JSON.stringify(community1[0]) + "}",
-        fileName: community1[0].name + '_' + community1[0].stusps + '_' + community2[0].name + '_' + community2[0].stusps + '.json',
+        data: "{" + JSON.stringify(community1) + "," + JSON.stringify(community2) + "}",
+        fileName: community1.name + '_' + community1.stusps + '_' + community2.name + '_' + community2.stusps + '.json',
         fileType: 'text/json',
         });
     };
@@ -97,87 +97,87 @@ const CommunityCompareDetails = () => {
         let headers = ['name,stusps,cwcs,population,gdp,avg_dem_pct,avg_rep_pct,declarations,hm,pa,hm_plan_status,nri,cdc_svi,hvri_sovi,high_comb_haz_com,high_comb_haz_res,em_employment,em_employment_per,em_lq,urban_rural,college_univ,higher_ed,poverty,broadband,health_insurance,voter_turn,pop_change,income_stability,built_environment,operating_ratio,taxes,bric_social,bric_econ,bric_house,bric_community,bric_institutional,bric_environmental,bric_resilience'];
 
         // Convert users data to a csv
-        let community1Csv = [community1[0].name + ','
-                            + community1[0].stusps + ','
-                            + community1[0].cwcs + ','
-                            + community1[0].population + ','
-                            + community1[0].gdp + ','
-                            + community1[0].avg_dem_pct + ','
-                            + community1[0].avg_rep_pct + ','
-                            + community1[0].declarations + ','
-                            + community1[0].hm + ','
-                            + community1[0].pa + ','
-                            + community1[0].hm_plan_status + ','
-                            + community1[0].nri + ','
-                            + community1[0].cdc_svi + ','
-                            + community1[0].hvri_sovi + ','
-                            + community1[0].high_comb_haz_com + ','
-                            + community1[0].high_comb_haz_res + ','
-                            + community1[0].em_employment + ','
-                            + community1[0].em_employment_per + ','
-                            + community1[0].em_lq + ','
-                            + community1[0].urban_rural + ','
-                            + community1[0].college_univ + ','
-                            + community1[0].higher_ed + ','
-                            + community1[0].poverty + ','
-                            + community1[0].broadband + ','
-                            + community1[0].health_insurance + ','
-                            + community1[0].voter_turn + ','
-                            + community1[0].pop_change + ','
-                            + community1[0].income_stability + ','
-                            + community1[0].built_environment + ','
-                            + community1[0].operating_ratio + ','
-                            + community1[0].taxes + ','
-                            + community1[0].bric_social + ','
-                            + community1[0].bric_econ + ','
-                            + community1[0].bric_house + ','
-                            + community1[0].bric_community + ','
-                            + community1[0].bric_institutional + ','
-                            + community1[0].bric_environmental + ','
-                            + community1[0].bric_resilience];
+        let community1Csv = [community1.name + ','
+                            + community1.stusps + ','
+                            + community1.cwcs + ','
+                            + community1.population + ','
+                            + community1.gdp + ','
+                            + community1.avg_dem_pct + ','
+                            + community1.avg_rep_pct + ','
+                            + community1.declarations + ','
+                            + community1.hm + ','
+                            + community1.pa + ','
+                            + community1.hm_plan_status + ','
+                            + community1.nri + ','
+                            + community1.cdc_svi + ','
+                            + community1.hvri_sovi + ','
+                            + community1.high_comb_haz_com + ','
+                            + community1.high_comb_haz_res + ','
+                            + community1.em_employment + ','
+                            + community1.em_employment_per + ','
+                            + community1.em_lq + ','
+                            + community1.urban_rural + ','
+                            + community1.college_univ + ','
+                            + community1.higher_ed + ','
+                            + community1.poverty + ','
+                            + community1.broadband + ','
+                            + community1.health_insurance + ','
+                            + community1.voter_turn + ','
+                            + community1.pop_change + ','
+                            + community1.income_stability + ','
+                            + community1.built_environment + ','
+                            + community1.operating_ratio + ','
+                            + community1.taxes + ','
+                            + community1.bric_social + ','
+                            + community1.bric_econ + ','
+                            + community1.bric_house + ','
+                            + community1.bric_community + ','
+                            + community1.bric_institutional + ','
+                            + community1.bric_environmental + ','
+                            + community1.bric_resilience];
 
-        let community2Csv = [community2[0].name + ','
-                            + community2[0].stusps + ','
-                            + community2[0].cwcs + ','
-                            + community2[0].population + ','
-                            + community2[0].gdp + ','
-                            + community2[0].avg_dem_pct + ','
-                            + community2[0].avg_rep_pct + ','
-                            + community2[0].declarations + ','
-                            + community2[0].hm + ','
-                            + community2[0].pa + ','
-                            + community2[0].hm_plan_status + ','
-                            + community2[0].nri + ','
-                            + community2[0].cdc_svi + ','
-                            + community2[0].hvri_sovi + ','
-                            + community2[0].high_comb_haz_com + ','
-                            + community2[0].high_comb_haz_res + ','
-                            + community2[0].em_employment + ','
-                            + community2[0].em_employment_per + ','
-                            + community2[0].em_lq + ','
-                            + community2[0].urban_rural + ','
-                            + community2[0].college_univ + ','
-                            + community2[0].higher_ed + ','
-                            + community2[0].poverty + ','
-                            + community2[0].broadband + ','
-                            + community2[0].health_insurance + ','
-                            + community2[0].voter_turn + ','
-                            + community2[0].pop_change + ','
-                            + community2[0].income_stability + ','
-                            + community2[0].built_environment + ','
-                            + community2[0].operating_ratio + ','
-                            + community2[0].taxes + ','
-                            + community2[0].bric_social + ','
-                            + community2[0].bric_econ + ','
-                            + community2[0].bric_house + ','
-                            + community2[0].bric_community + ','
-                            + community2[0].bric_institutional + ','
-                            + community2[0].bric_environmental + ','
-                            + community2[0].bric_resilience];
+        let community2Csv = [community2.name + ','
+                            + community2.stusps + ','
+                            + community2.cwcs + ','
+                            + community2.population + ','
+                            + community2.gdp + ','
+                            + community2.avg_dem_pct + ','
+                            + community2.avg_rep_pct + ','
+                            + community2.declarations + ','
+                            + community2.hm + ','
+                            + community2.pa + ','
+                            + community2.hm_plan_status + ','
+                            + community2.nri + ','
+                            + community2.cdc_svi + ','
+                            + community2.hvri_sovi + ','
+                            + community2.high_comb_haz_com + ','
+                            + community2.high_comb_haz_res + ','
+                            + community2.em_employment + ','
+                            + community2.em_employment_per + ','
+                            + community2.em_lq + ','
+                            + community2.urban_rural + ','
+                            + community2.college_univ + ','
+                            + community2.higher_ed + ','
+                            + community2.poverty + ','
+                            + community2.broadband + ','
+                            + community2.health_insurance + ','
+                            + community2.voter_turn + ','
+                            + community2.pop_change + ','
+                            + community2.income_stability + ','
+                            + community2.built_environment + ','
+                            + community2.operating_ratio + ','
+                            + community2.taxes + ','
+                            + community2.bric_social + ','
+                            + community2.bric_econ + ','
+                            + community2.bric_house + ','
+                            + community2.bric_community + ','
+                            + community2.bric_institutional + ','
+                            + community2.bric_environmental + ','
+                            + community2.bric_resilience];
 
         downloadFile({
             data: [...headers, ...community1Csv, ...community2Csv].join('\n'),
-            fileName: community1[0].name + '_' + community1[0].stusps + '_' + community2[0].name + '_' + community2[0].stusps + '.csv',
+            fileName: community1.name + '_' + community1.stusps + '_' + community2.name + '_' + community2.stusps + '.csv',
             fileType: 'text/csv',
         });
     };
@@ -186,196 +186,196 @@ const CommunityCompareDetails = () => {
 
     return (
         <div className='font-face-gs'>
-            <h4>{community1 && community1[0].name}, {community1 && community1[0].stusps} and {community2 && community2[0].name}, {community2 && community2[0].stusps}</h4>
+            <h4>{community1 && community1.name}, {community1 && community1.stusps} and {community2 && community2.name}, {community2 && community2.stusps}</h4>
             <Table className='table'>
                 <thead>
                     <tr>
                         <th>Factor</th>
-                        <th>{community1 && community1[0].name}</th>
-                        <th>{community2 && community2[0].name}</th>
+                        <th>{community1 && community1.name}</th>
+                        <th>{community2 && community2.name}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><b>CWCS</b></td>
-                        <td><b>{community1 && community1[0].cwcs}</b></td>
-                        <td><b>{community2 && community2[0].cwcs}</b></td>
+                        <td><b>{community1 && community1.cwcs}</b></td>
+                        <td><b>{community2 && community2.cwcs}</b></td>
                     </tr>
                     <tr>
                         <td>Public Assistance Obligations</td>
-                        <td>${community1 && nFormatter(community1[0].pa, 2)}</td>
-                        <td>${community2 && nFormatter(community2[0].pa, 2)}</td>
+                        <td>${community1 && nFormatter(community1.pa, 2)}</td>
+                        <td>${community2 && nFormatter(community2.pa, 2)}</td>
                     </tr>
                     <tr>
                         <td>Hazard Mitigation Obligations</td>
-                        <td>${community1 && nFormatter(community1[0].hm, 2)}</td>
-                        <td>${community2 && nFormatter(community2[0].hm, 2)}</td>
+                        <td>${community1 && nFormatter(community1.hm, 2)}</td>
+                        <td>${community2 && nFormatter(community2.hm, 2)}</td>
                     </tr>
                     <tr>
                         <td>GDP</td>
-                        <td>${community1 && nFormatter(community1[0].gdp * 1000, 2)}</td>
-                        <td>${community2 && nFormatter(community2[0].gdp * 1000, 2)}</td>
+                        <td>${community1 && nFormatter(community1.gdp * 1000, 2)}</td>
+                        <td>${community2 && nFormatter(community2.gdp * 1000, 2)}</td>
                     </tr>
                     <tr>
                         <td>Taxes</td>
-                        <td>${community1 && nFormatter(community1[0].taxes, 2)}</td>
-                        <td>${community2 && nFormatter(community2[0].taxes, 2)}</td>
+                        <td>${community1 && nFormatter(community1.taxes, 2)}</td>
+                        <td>${community2 && nFormatter(community2.taxes, 2)}</td>
                     </tr>
                     <tr>
                         <td>Population</td>
-                        <td>{community1 && nFormatter(community1[0].population, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].population, 2)}</td>
+                        <td>{community1 && nFormatter(community1.population, 2)}</td>
+                        <td>{community2 && nFormatter(community2.population, 2)}</td>
                     </tr>
                     <tr>
                         <td>EM Directors Employment</td>
-                        <td>{community1 && nFormatter(community1[0].em_employment, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].em_employment, 2)}</td>
+                        <td>{community1 && nFormatter(community1.em_employment, 2)}</td>
+                        <td>{community2 && nFormatter(community2.em_employment, 2)}</td>
                     </tr>
                     <tr>
                         <td>Colleges / Universities</td>
-                        <td>{community1 && nFormatter(community1[0].college_univ, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].college_univ, 2)}</td>
+                        <td>{community1 && nFormatter(community1.college_univ, 2)}</td>
+                        <td>{community2 && nFormatter(community2.college_univ, 2)}</td>
                     </tr>
                     <tr>
                         <td>Major Disaster Declarations</td>
-                        <td>{community1 && nFormatter(community1[0].declarations, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].declarations, 2)}</td>
+                        <td>{community1 && nFormatter(community1.declarations, 2)}</td>
+                        <td>{community2 && nFormatter(community2.declarations, 2)}</td>
                     </tr>
                     <tr>
                         <td>Resistant Commercial Buildings</td>
-                        <td>{community1 && nFormatter(community1[0].high_comb_haz_com, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].high_comb_haz_com, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.high_comb_haz_com, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.high_comb_haz_com, 2)}%</td>
                     </tr>
                     <tr>
                         <td>National Risk Index</td>
-                        <td>{community1 && nFormatter(community1[0].nri, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].nri, 2)}</td>
+                        <td>{community1 && nFormatter(community1.nri, 2)}</td>
+                        <td>{community2 && nFormatter(community2.nri, 2)}</td>
                     </tr>
                     <tr>
                         <td>Built Environment</td>
-                        <td>{community1 && nFormatter(community1[0].built_environment, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].built_environment, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.built_environment, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.built_environment, 2)}%</td>
                     </tr>
                     {extendedView ? <>
                     <tr>
                         <td>Average Democratic Percentage</td>
-                        <td>{community1 && nFormatter(community1[0].avg_dem_pct, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].avg_dem_pct, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.avg_dem_pct, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.avg_dem_pct, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Average Republican Percentage</td>
-                        <td>{community1 && nFormatter(community1[0].avg_rep_pct, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].avg_rep_pct, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.avg_rep_pct, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.avg_rep_pct, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Resistant Residential Buildings</td>
-                        <td>{community1 && nFormatter(community1[0].high_comb_haz_res, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].high_comb_haz_res, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.high_comb_haz_res, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.high_comb_haz_res, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Hazard Mitigation Plan Status</td>
-                        <td>{community1 && community1[0].hm_plan_status}</td>
-                        <td>{community2 && community2[0].hm_plan_status}</td>
+                        <td>{community1 && community1.hm_plan_status}</td>
+                        <td>{community2 && community2.hm_plan_status}</td>
                     </tr>
                     <tr>
                         <td>CDC Social Vulnerability Index</td>
-                        <td>{community1 && community1[0].cdc_svi}</td>
-                        <td>{community2 && community2[0].cdc_svi}</td>
+                        <td>{community1 && community1.cdc_svi}</td>
+                        <td>{community2 && community2.cdc_svi}</td>
                     </tr>
                     <tr>
                         <td>HVRI Social Responsibility Index</td>
-                        <td>{community1 && community1[0].hvri_sovi}</td>
-                        <td>{community2 && community2[0].hvri_sovi}</td>
+                        <td>{community1 && community1.hvri_sovi}</td>
+                        <td>{community2 && community2.hvri_sovi}</td>
                     </tr>
                     <tr>
                         <td>Operating Ratio</td>
-                        <td>{community1 && nFormatter(community1[0].operating_ratio, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].operating_ratio, 2)}</td>
+                        <td>{community1 && nFormatter(community1.operating_ratio, 2)}</td>
+                        <td>{community2 && nFormatter(community2.operating_ratio, 2)}</td>
                     </tr>
                     <tr>
                         <td>EM Directors Employment / 100 Jobs</td>
-                        <td>{community1 && community1[0].em_employment_per}</td>
-                        <td>{community2 && community2[0].em_employment_per}</td>
+                        <td>{community1 && community1.em_employment_per}</td>
+                        <td>{community2 && community2.em_employment_per}</td>
                     </tr>
                     <tr>
                         <td>EM Directors Location Quotient</td>
-                        <td>{community1 && community1[0].em_lq}</td>
-                        <td>{community2 && community2[0].em_lq}</td>
+                        <td>{community1 && community1.em_lq}</td>
+                        <td>{community2 && community2.em_lq}</td>
                     </tr>
                     <tr>
                         <td>NCHS Urban-Rural Classification Scheme</td>
-                        <td>{community1 && community1[0].urban_rural}</td>
-                        <td>{community2 && community2[0].urban_rural}</td>
+                        <td>{community1 && community1.urban_rural}</td>
+                        <td>{community2 && community2.urban_rural}</td>
                     </tr>
                     <tr>
                         <td>Higher Education</td>
-                        <td>{community1 && nFormatter(community1[0].higher_ed, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].higher_ed, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.higher_ed, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.higher_ed, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Health Insurance</td>
-                        <td>{community1 && nFormatter(community1[0].health_insurance, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].health_insurance, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.health_insurance, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.health_insurance, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Voter Turnout (2020)</td>
-                        <td>{community1 && nFormatter(community1[0].voter_turn, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].voter_turn, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.voter_turn, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.voter_turn, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Above Poverty Line</td>
-                        <td>{community1 && nFormatter(community1[0].poverty, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].poverty, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.poverty, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.poverty, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Population Change (2010-2020)</td>
-                        <td>{community1 && nFormatter(community1[0].pop_change, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].pop_change, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.pop_change, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.pop_change, 2)}%</td>
                     </tr>
                     <tr>
                         <td>Income Stability</td>
-                        <td>{community1 && nFormatter(community1[0].income_stability, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].income_stability, 2)}</td>
+                        <td>{community1 && nFormatter(community1.income_stability, 2)}</td>
+                        <td>{community2 && nFormatter(community2.income_stability, 2)}</td>
                     </tr>
                     <tr>
                         <td>Broadband Subscription</td>
-                        <td>{community1 && nFormatter(community1[0].broadband, 2)}%</td>
-                        <td>{community2 && nFormatter(community2[0].broadband, 2)}%</td>
+                        <td>{community1 && nFormatter(community1.broadband, 2)}%</td>
+                        <td>{community2 && nFormatter(community2.broadband, 2)}%</td>
                     </tr>
                     <tr>
                         <td>BRIC Social Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_social, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_social, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_social, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_social, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Economic Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_econ, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_econ, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_econ, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_econ, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Housing/Infrastructure Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_house, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_house, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_house, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_house, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Community Capital Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_community, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_community, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_community, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_community, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Institutional Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_institutional, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_institutional, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_institutional, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_institutional, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Environmental Sub-Index Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_environmental, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_environmental, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_environmental, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_environmental, 2)}</td>
                     </tr>
                     <tr>
                         <td>BRIC Resilience Score</td>
-                        <td>{community1 && nFormatter(community1[0].bric_resilience, 2)}</td>
-                        <td>{community2 && nFormatter(community2[0].bric_resilience, 2)}</td>
+                        <td>{community1 && nFormatter(community1.bric_resilience, 2)}</td>
+                        <td>{community2 && nFormatter(community2.bric_resilience, 2)}</td>
                     </tr>
                     </> : null}
                 </tbody>

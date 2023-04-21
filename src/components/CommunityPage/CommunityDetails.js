@@ -98,8 +98,8 @@ const CommunityDetails = () => {
     const exportToJson = e => {
         e.preventDefault();
         downloadFile({
-        data: JSON.stringify(filteredData[0]),
-        fileName: filteredData[0].name + '_' + filteredData[0].stusps + '.json',
+        data: JSON.stringify(filteredData),
+        fileName: filteredData.name + '_' + filteredData.stusps + '.json',
         fileType: 'text/json',
         });
     };
@@ -111,48 +111,48 @@ const CommunityDetails = () => {
         let headers = ['name,stusps,cwcs,population,gdp,avg_dem_pct,avg_rep_pct,declarations,hm,pa,hm_plan_status,nri,cdc_svi,hvri_sovi,high_comb_haz_com,high_comb_haz_res,em_employment,em_employment_per,em_lq,urban_rural,college_univ,higher_ed,poverty,broadband,health_insurance,voter_turn,pop_change,income_stability,built_environment,operating_ratio,taxes,bric_social,bric_econ,bric_house,bric_community,bric_institutional,bric_environmental,bric_resilience'];
 
         // Convert users data to a csv
-        let communityCsv = [filteredData[0].name + ','
-                            + filteredData[0].stusps + ','
-                            + filteredData[0].cwcs + ','
-                            + filteredData[0].population + ','
-                            + filteredData[0].gdp + ','
-                            + filteredData[0].avg_dem_pct + ','
-                            + filteredData[0].avg_rep_pct + ','
-                            + filteredData[0].declarations + ','
-                            + filteredData[0].hm + ','
-                            + filteredData[0].pa + ','
-                            + filteredData[0].hm_plan_status + ','
-                            + filteredData[0].nri + ','
-                            + filteredData[0].cdc_svi + ','
-                            + filteredData[0].hvri_sovi + ','
-                            + filteredData[0].high_comb_haz_com + ','
-                            + filteredData[0].high_comb_haz_res + ','
-                            + filteredData[0].em_employment + ','
-                            + filteredData[0].em_employment_per + ','
-                            + filteredData[0].em_lq + ','
-                            + filteredData[0].urban_rural + ','
-                            + filteredData[0].college_univ + ','
-                            + filteredData[0].higher_ed + ','
-                            + filteredData[0].poverty + ','
-                            + filteredData[0].broadband + ','
-                            + filteredData[0].health_insurance + ','
-                            + filteredData[0].voter_turn + ','
-                            + filteredData[0].pop_change + ','
-                            + filteredData[0].income_stability + ','
-                            + filteredData[0].built_environment + ','
-                            + filteredData[0].operating_ratio + ','
-                            + filteredData[0].taxes + ','
-                            + filteredData[0].bric_social + ','
-                            + filteredData[0].bric_econ + ','
-                            + filteredData[0].bric_house + ','
-                            + filteredData[0].bric_community + ','
-                            + filteredData[0].bric_institutional + ','
-                            + filteredData[0].bric_environmental + ','
-                            + filteredData[0].bric_resilience];
+        let communityCsv = [filteredData.name + ','
+                            + filteredData.stusps + ','
+                            + filteredData.cwcs + ','
+                            + filteredData.population + ','
+                            + filteredData.gdp + ','
+                            + filteredData.avg_dem_pct + ','
+                            + filteredData.avg_rep_pct + ','
+                            + filteredData.declarations + ','
+                            + filteredData.hm + ','
+                            + filteredData.pa + ','
+                            + filteredData.hm_plan_status + ','
+                            + filteredData.nri + ','
+                            + filteredData.cdc_svi + ','
+                            + filteredData.hvri_sovi + ','
+                            + filteredData.high_comb_haz_com + ','
+                            + filteredData.high_comb_haz_res + ','
+                            + filteredData.em_employment + ','
+                            + filteredData.em_employment_per + ','
+                            + filteredData.em_lq + ','
+                            + filteredData.urban_rural + ','
+                            + filteredData.college_univ + ','
+                            + filteredData.higher_ed + ','
+                            + filteredData.poverty + ','
+                            + filteredData.broadband + ','
+                            + filteredData.health_insurance + ','
+                            + filteredData.voter_turn + ','
+                            + filteredData.pop_change + ','
+                            + filteredData.income_stability + ','
+                            + filteredData.built_environment + ','
+                            + filteredData.operating_ratio + ','
+                            + filteredData.taxes + ','
+                            + filteredData.bric_social + ','
+                            + filteredData.bric_econ + ','
+                            + filteredData.bric_house + ','
+                            + filteredData.bric_community + ','
+                            + filteredData.bric_institutional + ','
+                            + filteredData.bric_environmental + ','
+                            + filteredData.bric_resilience];
 
         downloadFile({
         data: [...headers, ...communityCsv].join('\n'),
-        fileName: filteredData[0].name + '_' + filteredData[0].stusps + '.csv',
+        fileName: filteredData.name + '_' + filteredData.stusps + '.csv',
         fileType: 'text/csv',
         });
     };
@@ -166,7 +166,7 @@ const CommunityDetails = () => {
     setOpen(false);
     };
 
-    const cwcs = filteredData[0] && filteredData[0].cwcs;
+    const cwcs = filteredData && filteredData.cwcs;
 
     return (
         <div className='font-face-gs'>
@@ -177,7 +177,7 @@ const CommunityDetails = () => {
                     State
                 </Typography>
                 <Typography fontFamily='Gill Sans' variant="h4" component="div">
-                    {filteredData[0] && filteredData[0].stusps}
+                    {filteredData && filteredData.stusps}
                 </Typography>
             </CardContent>
             </Card>
@@ -187,7 +187,7 @@ const CommunityDetails = () => {
                     County
                 </Typography>
                 <Typography fontFamily='Gill Sans' variant="h4" component="div">
-                    {filteredData[0] && filteredData[0].name}
+                    {filteredData && filteredData.name}
                 </Typography>
             </CardContent>
             </Card>
@@ -197,7 +197,7 @@ const CommunityDetails = () => {
                     Population
                 </Typography>
                 <Typography fontFamily='Gill Sans' variant="h4" component="div">
-                    {nFormatter(filteredData[0] && filteredData[0].population, 1)}
+                    {nFormatter(filteredData && filteredData.population, 1)}
                 </Typography>
             </CardContent>
             </Card>
@@ -217,7 +217,7 @@ const CommunityDetails = () => {
                     </OverlayTrigger>
                 </Typography>
                 <Typography fontFamily='Gill Sans' variant="h4" component="div">
-                    {filteredData[0] && filteredData[0].cwcs}
+                    {filteredData && filteredData.cwcs}
                 </Typography>
             </CardContent>
             </Card>
@@ -247,144 +247,144 @@ const CommunityDetails = () => {
             <tbody>
                 <tr>
                     <td>Public Assistance Obligations</td>
-                    <td>${filteredData[0] && nFormatter(filteredData[0].pa, 2)}</td>
+                    <td>${filteredData && nFormatter(filteredData.pa, 2)}</td>
                 </tr>
                 <tr>
                     <td>Hazard Mitigation Obligations</td>
-                    <td>${filteredData[0] && nFormatter(filteredData[0].hm, 2)}</td>
+                    <td>${filteredData && nFormatter(filteredData.hm, 2)}</td>
                 </tr>
                 <tr>
                     <td>GDP</td>
-                    <td>${filteredData[0] && nFormatter(filteredData[0].gdp * 1000, 2)}</td>
+                    <td>${filteredData && nFormatter(filteredData.gdp * 1000, 2)}</td>
                 </tr>
                 <tr>
                     <td>Taxes</td>
-                    <td>${filteredData[0] && nFormatter(filteredData[0].taxes, 2)}</td>
+                    <td>${filteredData && nFormatter(filteredData.taxes, 2)}</td>
                 </tr>
                 <tr>
                     <td>Population</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].population, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.population, 2)}</td>
                 </tr>
                 <tr>
                     <td>EM Directors Employment</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].em_employment, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.em_employment, 2)}</td>
                 </tr>
                 <tr>
                     <td>Colleges / Universities</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].college_univ, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.college_univ, 2)}</td>
                 </tr>
                 <tr>
                     <td>Major Disaster Declarations</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].declarations, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.declarations, 2)}</td>
                 </tr>
                 <tr>
                     <td>Resistant Commercial Buildings</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].high_comb_haz_com, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.high_comb_haz_com, 2)}%</td>
                 </tr>
                 <tr>
                     <td>National Risk Index</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].nri, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.nri, 2)}</td>
                 </tr>
                 <tr>
                     <td>Built Environment</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].built_environment, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.built_environment, 2)}%</td>
                 </tr>
                 {extendedView ? <>
                 <tr>
                     <td>Average Democratic Percentage</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].avg_dem_pct, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.avg_dem_pct, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Average Republican Percentage</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].avg_rep_pct, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.avg_rep_pct, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Resistant Residential Buildings</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].high_comb_haz_res, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.high_comb_haz_res, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Hazard Mitigation Plan Status</td>
-                    <td>{filteredData[0] && filteredData[0].hm_plan_status}</td>
+                    <td>{filteredData && filteredData.hm_plan_status}</td>
                 </tr>
                 <tr>
                     <td>CDC Social Vulnerability Index</td>
-                    <td>{filteredData[0] && filteredData[0].cdc_svi}</td>
+                    <td>{filteredData && filteredData.cdc_svi}</td>
                 </tr>
                 <tr>
                     <td>HVRI Social Responsibility Index</td>
-                    <td>{filteredData[0] && filteredData[0].hvri_sovi}</td>
+                    <td>{filteredData && filteredData.hvri_sovi}</td>
                 </tr>
                 <tr>
                     <td>Operating Ratio</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].operating_ratio, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.operating_ratio, 2)}</td>
                 </tr>
                 <tr>
                     <td>EM Directors Employment / 100 Jobs</td>
-                    <td>{filteredData[0] && filteredData[0].em_employment_per}</td>
+                    <td>{filteredData && filteredData.em_employment_per}</td>
                 </tr>
                 <tr>
                     <td>EM Directors Location Quotient</td>
-                    <td>{filteredData[0] && filteredData[0].em_lq}</td>
+                    <td>{filteredData && filteredData.em_lq}</td>
                 </tr>
                 <tr>
                     <td>NCHS Urban-Rural Classification Scheme</td>
-                    <td>{filteredData[0] && filteredData[0].urban_rural}</td>
+                    <td>{filteredData && filteredData.urban_rural}</td>
                 </tr>
                 <tr>
                     <td>Higher Education</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].higher_ed, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.higher_ed, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Health Insurance</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].health_insurance, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.health_insurance, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Voter Turnout (2020)</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].voter_turn, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.voter_turn, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Above Poverty Line</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].poverty, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.poverty, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Population Change (2010-2020)</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].pop_change, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.pop_change, 2)}%</td>
                 </tr>
                 <tr>
                     <td>Income Stability</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].income_stability, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.income_stability, 2)}</td>
                 </tr>
                 <tr>
                     <td>Broadband Subscription</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].broadband, 2)}%</td>
+                    <td>{filteredData && nFormatter(filteredData.broadband, 2)}%</td>
                 </tr>
                 <tr>
                     <td>BRIC Social Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_social, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_social, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Economic Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_econ, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_econ, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Housing/Infrastructure Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_house, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_house, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Community Capital Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_community, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_community, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Institutional Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_institutional, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_institutional, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Environmental Sub-Index Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_environmental, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_environmental, 2)}</td>
                 </tr>
                 <tr>
                     <td>BRIC Resilience Score</td>
-                    <td>{filteredData[0] && nFormatter(filteredData[0].bric_resilience, 2)}</td>
+                    <td>{filteredData && nFormatter(filteredData.bric_resilience, 2)}</td>
                 </tr>
                 </> : null}
             </tbody>
@@ -409,7 +409,7 @@ const CommunityDetails = () => {
                 </Button>
             </div>
             <div style={buttonStyle}>
-                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityCompareSearch/${filteredData[0].serial_number}`, { replace: true })}>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/communityCompareSearch/${filteredData.serial_number}`, { replace: true })}>
                     Compare Communities
                 </Button>
             </div>
@@ -424,7 +424,7 @@ const CommunityDetails = () => {
                 </Button>
             </div>
             <div style={buttonStyle}>
-                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/editCommunityDetails/${filteredData[0].serial_number}`, { replace: true })}>
+                <Button variant="outline-secondary" type="submit" onClick={() => navigate(`/editCommunityDetails/${filteredData.serial_number}`, { replace: true })}>
                     Edit Data
                 </Button>
             </div>

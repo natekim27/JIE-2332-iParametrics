@@ -11,7 +11,7 @@ class SQLConnectionObject:
        self.driver = os.getenv("DRIVER")
        self.database_name = os.getenv("DATABASE")
        self.server = os.getenv("SERVER")
-       self.username = os.getenv("USERNAME")
+       self.username = os.getenv("USER_NAME")
        self.password = os.getenv("PASSWORD")
 
 
