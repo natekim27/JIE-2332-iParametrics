@@ -8,6 +8,7 @@ from ml.build_cwcs import random_forest_regression_prediction
 from compare_image import compare_floats_bar, compare_floats_pie
 from resources import db
 
+import os
 import values
 
 app = Flask(__name__)
@@ -32,6 +33,20 @@ def features_get_by_sno():
     serial_no = request.args.get('sno')
     feature = db.get_feature_by_sno(serial_no).as_dict()
     return json.dumps(feature), 200
+
+
+@app.route('/features/delete-local-images', methods=['GET'])
+@cross_origin()
+def delete_local_images():
+    folder_path = "./images"
+    files = os.listdir(folder_path)
+
+    for file in files:
+        if file != "placeholder" and file.endswith((".jpg", ".jpeg", ".png", ".gif")):
+            file_path = os.path.join(folder_path, file)
+            os.remove(file_path)
+
+    return 'Success', 200
 
 #Returns the communities within a population range
 #URL: http://127.0.0.1:5000/features/get-by-population-range?min_pop=<min_population>&max_pop=<max_population>
