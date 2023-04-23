@@ -13,9 +13,15 @@ Team
 Our client is iParametrics and we are making a web application to show the Community Willingness and Capability Scores, or CWCS, of different communities. The world has been constantly plagued with natural disasters. It is imperative that national and local administration takes steps to mitigate such disasters. However, to reduce unnecessary spending, it is important to find out which communities are the best to invest into for mitigation efforts. Hence, using machine learning,  this project determines the CWCS of different communities and displays them in an easy to understand web application. 
 
 # Installation Steps
+
+## Downloading files 
+- Go to our [respository](https://github.com/natekim27/JIE-2332-iParametrics). 
+- Click the Code button (green) and click "Download ZIP".
+- Unzip the file and you will have the folder containing all the files ready. 
 ## Front-End
 ### Windows
-- On Windows, open Powershell. Run
+
+- On Windows, open Powershell. Navigate to the folder you downloaded in the above steps. Run
 ```
 wsl --install
 ```
@@ -105,7 +111,7 @@ It is important to keep both the Front-end and Back-end servers running in separ
 1. In case the app (front-end) fails to compile:
     1. Delete the `node_modules/` directory.
     2. Run `sudo npm install` again.
-    
+
 2. 
     1. If you run into an error like this (check your server console output)
     ```
