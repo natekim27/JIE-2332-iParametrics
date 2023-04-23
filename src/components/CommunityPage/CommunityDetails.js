@@ -241,7 +241,7 @@ const CommunityDetails = () => {
             </Modal>
         </div>
         <div className='factors'>
-            <h3>Backing Data</h3>
+            <h3>Community Data</h3>
         </div>
         <Table className='table'>
             <tbody>
