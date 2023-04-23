@@ -114,15 +114,41 @@ It is important to keep both the Front-end and Back-end servers running in separ
 
 # Release Notes
 
+## Version 0.5.0
+### New Features
+- Connect to iParametrics Azure SQL server for database
+- User authentication for login
+- Create account functionality with account being created on database
+- Install backend dependencies using `setup.py`
+- Change Community Details backing data section from cards to a table
+- Modal displaying information about CWCS
+- Download images from Data Visualization page
+- Success and error message modals for adding and editing communities
+- Navigation to community 1 or community 2 from Compare Communities page
+### Bug Fixes
+- Remove duplicate Compare Communities button on Community Details Page
+- Number formatting for small decimal numbers and numbers greater than 1B
+- Fixed timeout issues for data visualization
+- Add accurate values for national and state averages
+- Population Change and Above Poverty Line now show accurate values
+- CWCS is now shown in Compare Communities table
+- CWCS is out of a scale of 10
+- ML algorithm has four target features:
+    - Hazard Mitigation Obligation (20%)
+    - Public Assistance Obligation (20%)
+    - Ratio of Total Revenues to Total Expenses (30%)
+    - Number of Federally Declared Major Disaster Declarations: 2003 to Present (30%)
+- Add default values instead of NaN in the database
+
 ## Version 0.4.0
 ### New Features
-- Created search page for community comparison
-- Created 'Compare Community' page to compare backing data of communities
+- Search page for community comparison
+- 'Compare Community' page to compare backing data of communities
 - Readjusted display of backing data in order of relevance to CWCS
-- Added extended data view
+- Added extended data view vs top factors view
 - Improved ML algorithm accuracy
-- Added data visualization for community data through graphs
-- Created 'Add Community' page
+- Data visualization for community data via graphs
+- 'Add Community' page
 ### Bug Fixes
 - Rerouted 'Add Community' button to the 'Add Community' page
 - Added units to data features
