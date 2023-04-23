@@ -12,11 +12,6 @@ Team
 
 Our client is iParametrics and we are making a web application to show the Community Willingness and Capability Scores, or CWCS, of different communities. The world has been constantly plagued with natural disasters. It is imperative that national and local administration takes steps to mitigate such disasters. However, to reduce unnecessary spending, it is important to find out which communities are the best to invest into for mitigation efforts. Hence, using machine learning,  this project determines the CWCS of different communities and displays them in an easy to understand web application. 
 
-So you have to make a PR to update the README with the installation guide
-
-
-So in the Readme theres a section called "Installation & Development". Replace that entire section with the following (ive already formatted it in markdown)
-
 
 # Installation Steps
 ## Front-End
