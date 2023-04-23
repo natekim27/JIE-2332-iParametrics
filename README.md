@@ -105,6 +105,7 @@ It is important to keep both the Front-end and Back-end servers running in separ
 1. In case the app (front-end) fails to compile:
     1. Delete the `node_modules/` directory.
     2. Run `sudo npm install` again.
+    
 2. 
     1. If you run into an error like this (check your server console output)
     ```
