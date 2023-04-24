@@ -132,6 +132,14 @@ It is important to keep both the Front-end and Back-end servers running in separ
     1. Check the details for the error message.
     2. Follow troubleshooting tip 2 or 3 to solve the issue.
 
+# Future Improvements
+- Deploy the app on a web server using services like Microsoft Azure.
+- Create an interactive heat map of the United States showing each county's CWCS.
+- Visualize Data could also generate graphs to compare data of two or more communities.
+- Add more features to the dataset. Doing so will also improve the accuracy of the CWCS generation.
+- Add unit tests and end to end tests to the repository for testing the app's back end and front end.
+- Implement caching and database optimization techniques to improve the application's speed and responsiveness.
+
 # Release Notes
 
 ## Version 0.5.0
@@ -159,6 +167,8 @@ It is important to keep both the Front-end and Back-end servers running in separ
     - Ratio of Total Revenues to Total Expenses (30%)
     - Number of Federally Declared Major Disaster Declarations: 2003 to Present (30%)
 - Add default values instead of NaN in the database
+### Known Issues
+- Visualize Data takes 10 seconds (has a timeout of 1000) to load all the images.
 
 ## Version 0.4.0
 ### New Features
