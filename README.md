@@ -124,6 +124,14 @@ It is important to keep both the Front-end and Back-end servers running in separ
     ```
     1. Go to your .env file within the app folder. Check the USER_NAME & PASSWORD fields there and make sure that they are correct. 
 
+4. Why are all the images on the Visualize Data page not downloading?
+    1. Wait for all the images to load (at least 10 seconds).
+    2. Try to download the images again. It should download all the images now.
+
+5. If you face a 500 Internal Server Error message while trying to log in,
+    1. Check the details for the error message.
+    2. Follow troubleshooting tip 2 or 3 to solve the issue.
+
 # Release Notes
 
 ## Version 0.5.0
